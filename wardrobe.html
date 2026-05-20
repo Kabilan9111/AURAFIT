@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURAFIT — My Wardrobe</title>
+  
+  <!-- Google Fonts (Inter + Outfit) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="wardrobe.css">
+</head>
+<body>
+
+  <!-- Background Cinema Neon Ambient Lighting Orbs -->
+  <div class="glow-orb orb-top-left"></div>
+  <div class="glow-orb orb-center-right"></div>
+  <div class="glow-orb orb-bottom-left"></div>
+  <div class="glow-orb orb-bottom-right"></div>
+
+  <!-- Master Grid Wrapper -->
+  <div class="dashboard-wrapper">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar-container" id="left-sidebar">
+      <!-- Logo Section -->
+      <div class="sidebar-brand">
+        <div class="logo-icon-wrapper">
+          <svg class="logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2L38 32H2L20 2Z" stroke="url(#logo-grad)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M20 10L30 27H10L20 10Z" fill="url(#logo-grad-inner)"/>
+            <circle cx="20" cy="22" r="3" fill="#ffffff" class="logo-pulse"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="2" y1="2" x2="38" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#A855F7"/>
+                <stop offset="1" stop-color="#7B2FF7"/>
+              </linearGradient>
+              <linearGradient id="logo-grad-inner" x1="10" y1="10" x2="30" y2="27" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#A855F7" stop-opacity="0.8"/>
+                <stop offset="1" stop-color="#7B2FF7" stop-opacity="0.3"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">AURA<span class="text-neon-purple">FIT</span></span>
+      </div>
+
+      <!-- Navigation links -->
+      <nav class="sidebar-nav">
+        <ul>
+          <li>
+            <a href="index.html" class="nav-item" id="nav-home">
+              <i data-lucide="layout-dashboard"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html" class="nav-item" id="nav-tryon">
+              <i data-lucide="shirt"></i>
+              <span>Try On</span>
+            </a>
+          </li>
+          <li>
+            <a href="wardrobe.html" class="nav-item active" id="nav-wardrobe">
+              <i data-lucide="folder-heart"></i>
+              <span>Wardrobe</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-item" id="nav-stylist">
+              <i data-lucide="sparkles"></i>
+              <span>AI Stylist</span>
+              <span class="badge-premium-glow">AI</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-item" id="nav-looks">
+              <i data-lucide="images"></i>
+              <span>Looks</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-item" id="nav-recommendations">
+              <i data-lucide="thumbs-up"></i>
+              <span>Recommendations</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-item" id="nav-community">
+              <i data-lucide="users"></i>
+              <span>Community</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-item" id="nav-profile">
+              <i data-lucide="user-cog"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Upgrade Card -->
+      <div class="upgrade-card-wrapper">
+        <div class="upgrade-card">
+          <div class="upgrade-glow-bg"></div>
+          <div class="upgrade-icon">
+            <i data-lucide="crown"></i>
+          </div>
+          <h4>AURAFIT PRO</h4>
+          <p>Unlock premium features and unlimited try-ons.</p>
+          <button class="btn btn-primary btn-upgrade-pro" id="btn-upgrade-sidebar">
+            <span>Upgrade Now</span>
+            <i data-lucide="zap"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- User Profile Card -->
+      <div class="sidebar-user-card" id="user-profile-trigger">
+        <img src="assets/leon_walker_avatar.png" alt="Leon Walker" class="user-avatar-img">
+        <div class="user-info">
+          <h4>Leon Walker</h4>
+          <p>Premium Member</p>
+        </div>
+        <div class="user-status-dot"></div>
+      </div>
+    </aside>
+
+    <!-- CONTENT DISPLAY PAGES -->
+    <main class="main-pages-viewport">
+      
+      <!-- WARDROBE CONTENT CONTAINER -->
+      <div id="page-wardrobe" class="page-content active">
+        <div class="main-layout-container">
+          
+          <!-- WARDROBE HEADER -->
+          <header class="header-container">
+            <div class="header-heading-center">
+              <h1>My Wardrobe 👔</h1>
+              <p>Organize your favorite looks and fashion collections.</p>
+            </div>
+
+            <!-- Top Center Search Bar -->
+            <div class="header-search-bar">
+              <i data-lucide="search" class="search-icon"></i>
+              <input type="text" placeholder="Search outfits, shirts, shoes, styles..." id="wardrobe-search-input">
+              <span class="search-shortcut">Ctrl K</span>
+            </div>
+
+            <div class="header-actions">
+              <button class="header-btn" id="btn-notifications-wardrobe" aria-label="Notifications">
+                <i data-lucide="bell"></i>
+                <span class="notification-dot"></span>
+              </button>
+              <button class="header-btn" id="btn-wishlist-header" aria-label="Wishlist">
+                <i data-lucide="heart" fill="currentColor"></i>
+                <span class="wishlist-count-badge" id="wishlist-counter-value">3</span>
+              </button>
+              <button class="header-btn" aria-label="Settings" id="btn-settings-wardrobe">
+                <i data-lucide="settings"></i>
+              </button>
+              <div class="header-user-avatar nav-to-profile">
+                <img src="assets/leon_walker_avatar.png" alt="Leon Walker">
+              </div>
+            </div>
+          </header>
+
+          <!-- THREE COLUMN WORKSPACE GRID -->
+          <div class="workspace-grid wardrobe-grid">
+            
+            <!-- COLUMN 1 & 2: WARDROBE MAIN CONTAINER -->
+            <div class="center-main-preview-workspace">
+              
+              <!-- TOP CATEGORY FILTERS -->
+              <div class="wardrobe-filters-container">
+                <!-- Row 1: Item types -->
+                <div class="filter-row filter-row-primary" id="wardrobe-primary-filters">
+                  <button class="filter-btn-pill active" data-item-type="all">All Items</button>
+                  <button class="filter-btn-pill" data-item-type="shirts">Shirts</button>
+                  <button class="filter-btn-pill" data-item-type="t-shirts">T-Shirts</button>
+                  <button class="filter-btn-pill" data-item-type="shoes">Shoes</button>
+                  <button class="filter-btn-pill" data-item-type="slippers">Slippers</button>
+                </div>
+
+                <!-- Row 2: Aesthetic types -->
+                <div class="filter-row filter-row-secondary" id="wardrobe-secondary-filters">
+                  <button class="filter-style-chip active" data-style-type="all">All Styles</button>
+                  <button class="filter-style-chip" data-style-type="casual">Casual</button>
+                  <button class="filter-style-chip" data-style-type="formal">Formal</button>
+                  <button class="filter-style-chip" data-style-type="college">College Day</button>
+                  <button class="filter-style-chip" data-style-type="outing">Outing</button>
+                  <button class="filter-style-chip" data-style-type="dating">Dating Night</button>
+                  <button class="filter-style-chip" data-style-type="party">Party Wear</button>
+                  <button class="filter-style-chip" data-style-type="streetwear">Streetwear</button>
+                  <button class="filter-style-chip" data-style-type="luxury">Luxury</button>
+                  <button class="filter-style-chip" data-style-type="gym">Gym</button>
+                  <button class="filter-style-chip" data-style-type="oversized">Oversized</button>
+                </div>
+              </div>
+
+              <!-- MAIN PRODUCT GRID -->
+              <div class="wardrobe-product-grid" id="wardrobe-items-grid">
+                
+                <!-- SHIRTS -->
+                <!-- Card 1 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="casual college outing">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_linen_overshirt.png" alt="Korean Linen Overshirt">
+                    <span class="badge-match-pct">95% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHIRT — KOREAN FIT</span>
+                    <h4>Korean Linen Overshirt</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹3,499</span>
+                      <span class="original-price">₹4,500</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 18</span>
+                  </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="party luxury dating">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_satin_shirt.png" alt="Midnight Satin Shirt">
+                    <span class="badge-match-pct">93% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHIRT — LUXURY SATIN</span>
+                    <h4>Midnight Satin Shirt</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹4,899</span>
+                      <span class="original-price">₹6,200</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 18</span>
+                  </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="streetwear oversized">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_linen_overshirt.png" alt="Oversized Utility Shirt" style="filter: brightness(0.7) contrast(1.1);">
+                    <span class="badge-match-pct">91% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHIRT — OVERSIZED STREET</span>
+                    <h4>Oversized Utility Shirt</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹3,999</span>
+                      <span class="original-price">₹5,200</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 15</span>
+                  </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="casual outing">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_linen_overshirt.png" alt="Classic Linen Overshirt" style="filter: hue-rotate(50deg);">
+                    <span class="badge-match-pct">88% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHIRT — LINEN CASUAL</span>
+                    <h4>Classic Linen Overshirt</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹4,200</span>
+                      <span class="original-price">₹5,500</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 12</span>
+                  </div>
+                </div>
+
+                <!-- Card 5 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="party dating">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_satin_shirt.png" alt="Club Black Satin Shirt" style="filter: hue-rotate(240deg) brightness(0.8);">
+                    <span class="badge-match-pct">89% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHIRT — PARTY SHIRT</span>
+                    <h4>Club Black Satin Shirt</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹4,599</span>
+                      <span class="original-price">₹5,800</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 10</span>
+                  </div>
+                </div>
+
+                <!-- T-SHIRTS -->
+                <!-- Card 6 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="casual gym streetwear">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_minimal_hoodie.png" alt="Minimal Black Tee" style="filter: brightness(0.6);">
+                    <span class="badge-match-pct">94% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">TEE — MINIMALIST BLACK</span>
+                    <h4>Minimal Black Tee</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹1,899</span>
+                      <span class="original-price">₹2,499</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 19</span>
+                  </div>
+                </div>
+
+                <!-- Card 7 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="streetwear oversized college">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_graphic_tee.png" alt="Vintage Washed Graphic Tee">
+                    <span class="badge-match-pct">92% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">TEE — OVERSIZED GRAPHIC</span>
+                    <h4>Vintage Washed Graphic Tee</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹2,499</span>
+                      <span class="original-price">₹3,500</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 19</span>
+                  </div>
+                </div>
+
+                <!-- Card 8 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="gym streetwear">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_minimal_hoodie.png" alt="AeroFit Compression Tee" style="filter: hue-rotate(180deg) brightness(0.7);">
+                    <span class="badge-match-pct">87% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">TEE — COMPRESSION FITNESS</span>
+                    <h4>AeroFit Compression Tee</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹2,199</span>
+                      <span class="original-price">₹2,999</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 14</span>
+                  </div>
+                </div>
+
+                <!-- Card 9 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="casual college">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_graphic_tee.png" alt="Washed Slate Tee" style="filter: brightness(0.85) contrast(0.95);">
+                    <span class="badge-match-pct">86% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">TEE — VINTAGE WASHED</span>
+                    <h4>Washed Slate Tee</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹1,999</span>
+                      <span class="original-price">₹2,800</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 11</span>
+                  </div>
+                </div>
+
+                <!-- Card 10 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="college casual">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_graphic_tee.png" alt="College Varsity Tee" style="filter: hue-rotate(120deg) brightness(0.8);">
+                    <span class="badge-match-pct">90% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">TEE — COLLEGE CASUAL</span>
+                    <h4>College Varsity Tee</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹2,299</span>
+                      <span class="original-price">₹3,200</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 08</span>
+                  </div>
+                </div>
+
+                <!-- SHOES -->
+                <!-- Card 11 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="casual college streetwear">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_white_sneakers.png" alt="Classic White Sneakers">
+                    <span class="badge-match-pct">96% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHOES — WHITE SNEAKER</span>
+                    <h4>Classic White Sneakers</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹6,800</span>
+                      <span class="original-price">₹8,900</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 20</span>
+                  </div>
+                </div>
+
+                <!-- Card 12 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="streetwear outing">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_white_sneakers.png" alt="Alpha Chunky Sneakers" style="filter: hue-rotate(280deg) brightness(0.85);">
+                    <span class="badge-match-pct">92% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHOES — CHUNKY STREET</span>
+                    <h4>Alpha Chunky Sneakers</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹8,999</span>
+                      <span class="original-price">₹12,000</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 17</span>
+                  </div>
+                </div>
+
+                <!-- Card 13 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="luxury formal dating">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_luxury_boots.png" alt="Chelsea Leather Boots">
+                    <span class="badge-match-pct">90% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHOES — LEATHER BOOTS</span>
+                    <h4>Chelsea Leather Boots</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹12,499</span>
+                      <span class="original-price">₹16,500</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 16</span>
+                  </div>
+                </div>
+
+                <!-- Card 14 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="formal luxury">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_luxury_boots.png" alt="Oxford Leather Shoes" style="filter: sepia(0.8) brightness(0.5) contrast(1.2);">
+                    <span class="badge-match-pct">85% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHOES — FORMAL SHOES</span>
+                    <h4>Oxford Leather Shoes</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹9,500</span>
+                      <span class="original-price">₹14,000</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 05</span>
+                  </div>
+                </div>
+
+                <!-- Card 15 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="casual outing">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_white_sneakers.png" alt="Urban Knit Slip-Ons" style="filter: brightness(0.5) grayscale(0.5);">
+                    <span class="badge-match-pct">87% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHOES — SLIP-ONS</span>
+                    <h4>Urban Knit Slip-Ons</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹3,499</span>
+                      <span class="original-price">₹4,999</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 02</span>
+                  </div>
+                </div>
+
+                <!-- SLIPPERS -->
+                <!-- Card 16 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="slippers" data-style-type="casual gym">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_minimal_slides.png" alt="Matte Black Slides">
+                    <span class="badge-match-pct">93% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SLIPPERS — MINIMAL SLIDES</span>
+                    <h4>Matte Black Slides</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹2,499</span>
+                      <span class="original-price">₹3,500</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 18</span>
+                  </div>
+                </div>
+
+                <!-- Card 17 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="slippers" data-style-type="luxury">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_minimal_slides.png" alt="Plush Velvet Slippers" style="filter: hue-rotate(240deg) brightness(0.6);">
+                    <span class="badge-match-pct">89% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SLIPPERS — LUXURY SLIPPERS</span>
+                    <h4>Plush Velvet Slippers</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹3,200</span>
+                      <span class="original-price">₹4,500</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 15</span>
+                  </div>
+                </div>
+
+                <!-- Card 18 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="slippers" data-style-type="casual outing">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_minimal_slides.png" alt="EVA Beach Slippers" style="filter: hue-rotate(80deg) brightness(0.9);">
+                    <span class="badge-match-pct">86% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SLIPPERS — BEACH SLIPPERS</span>
+                    <h4>EVA Beach Slippers</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹1,599</span>
+                      <span class="original-price">₹2,200</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 12</span>
+                  </div>
+                </div>
+
+                <!-- Card 19 -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="slippers" data-style-type="streetwear oversized">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_minimal_slides.png" alt="Apex Street Slides" style="filter: hue-rotate(180deg) brightness(0.75);">
+                    <span class="badge-match-pct">91% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SLIPPERS — STREET SLIDES</span>
+                    <h4>Apex Street Slides</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹2,800</span>
+                      <span class="original-price">₹3,800</span>
+                    </div>
+                    <span class="p-saved-date">Saved May 09</span>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- WARDROBE BOTTOM STATS ROW -->
+              <div class="wardrobe-bottom-stats-row">
+                
+                <div class="glass-panel stat-card-mini">
+                  <div class="stat-icon-wrap"><i data-lucide="bookmark"></i></div>
+                  <div class="stat-texts">
+                    <strong class="stat-count-num">148</strong>
+                    <span class="stat-label-text">Saved Outfits</span>
+                  </div>
+                </div>
+
+                <div class="glass-panel stat-card-mini">
+                  <div class="stat-icon-wrap"><i data-lucide="shirt"></i></div>
+                  <div class="stat-texts">
+                    <strong class="stat-count-num">52</strong>
+                    <span class="stat-label-text">Shirts & Tees</span>
+                  </div>
+                </div>
+
+                <div class="glass-panel stat-card-mini">
+                  <div class="stat-icon-wrap"><i data-lucide="footprints"></i></div>
+                  <div class="stat-texts">
+                    <strong class="stat-count-num">24</strong>
+                    <span class="stat-label-text">Shoes</span>
+                  </div>
+                </div>
+
+                <div class="glass-panel stat-card-mini">
+                  <div class="stat-icon-wrap"><i data-lucide="smile"></i></div>
+                  <div class="stat-texts">
+                    <strong class="stat-count-num">12</strong>
+                    <span class="stat-label-text">Slippers</span>
+                  </div>
+                </div>
+
+                <div class="glass-panel stat-card-mini">
+                  <div class="stat-icon-wrap"><i data-lucide="line-chart"></i></div>
+                  <div class="stat-texts">
+                    <strong class="stat-count-num">94%</strong>
+                    <span class="stat-label-text">Style Consistency</span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- COLUMN 3: RIGHT PANEL (Wardrobe Analytics) -->
+            <aside class="right-insights-panel wardrobe-right-panel">
+              
+              <!-- YOUR FASHION IDENTITY -->
+              <section class="glass-panel fashion-identity-card">
+                <div class="dna-header">
+                  <h3>Your Fashion Identity</h3>
+                  <span class="dna-badge-pill">Analyzed</span>
+                </div>
+                
+                <div class="dna-main-desc">
+                  <h4>Luxury Minimalist</h4>
+                  <p>Your dominant wardrobe vibe</p>
+                </div>
+
+                <!-- 4 Circular Analytics Rings -->
+                <div class="wardrobe-score-rings-quad">
+                  
+                  <div class="score-ring-box">
+                    <div class="svg-ring-wrap">
+                      <svg class="score-ring-svg" viewBox="0 0 36 36">
+                        <path class="score-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="score-fill ring-purple" stroke-dasharray="90, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                      </svg>
+                      <div class="score-label-num">90%</div>
+                    </div>
+                    <span class="ring-title-label">Casual Score</span>
+                  </div>
+
+                  <div class="score-ring-box">
+                    <div class="svg-ring-wrap">
+                      <svg class="score-ring-svg" viewBox="0 0 36 36">
+                        <path class="score-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="score-fill ring-green" stroke-dasharray="82, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                      </svg>
+                      <div class="score-label-num">82%</div>
+                    </div>
+                    <span class="ring-title-label">Formal Score</span>
+                  </div>
+
+                  <div class="score-ring-box">
+                    <div class="svg-ring-wrap">
+                      <svg class="score-ring-svg" viewBox="0 0 36 36">
+                        <path class="score-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="score-fill ring-blue" stroke-dasharray="88, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                      </svg>
+                      <div class="score-label-num">88%</div>
+                    </div>
+                    <span class="ring-title-label">Streetwear</span>
+                  </div>
+
+                  <div class="score-ring-box">
+                    <div class="svg-ring-wrap">
+                      <svg class="score-ring-svg" viewBox="0 0 36 36">
+                        <path class="score-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="score-fill ring-purple" stroke-dasharray="74, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" style="filter: hue-rotate(90deg);"/>
+                      </svg>
+                      <div class="score-label-num">74%</div>
+                    </div>
+                    <span class="ring-title-label">Party Style</span>
+                  </div>
+
+                </div>
+              </section>
+
+              <!-- MOST WORN CATEGORIES -->
+              <section class="glass-panel most-worn-categories-card">
+                <h3>Most Worn Categories</h3>
+                
+                <div class="dna-progress-bars-stack">
+                  <!-- Bar 1 -->
+                  <div class="dna-bar-item">
+                    <div class="bar-labels">
+                      <span>Oversized Shirts</span>
+                      <strong>42%</strong>
+                    </div>
+                    <div class="dna-progress-track">
+                      <div class="dna-progress-fill" style="width: 42%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Bar 2 -->
+                  <div class="dna-bar-item">
+                    <div class="bar-labels">
+                      <span>White Sneakers</span>
+                      <strong>28%</strong>
+                    </div>
+                    <div class="dna-progress-track">
+                      <div class="dna-progress-fill" style="width: 28%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Bar 3 -->
+                  <div class="dna-bar-item">
+                    <div class="bar-labels">
+                      <span>Linen Shirts</span>
+                      <strong>18%</strong>
+                    </div>
+                    <div class="dna-progress-track">
+                      <div class="dna-progress-fill" style="width: 18%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Bar 4 -->
+                  <div class="dna-bar-item">
+                    <div class="bar-labels">
+                      <span>Minimal Slides</span>
+                      <strong>12%</strong>
+                    </div>
+                    <div class="dna-progress-track">
+                      <div class="dna-progress-fill" style="width: 12%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- AI WARDROBE SUGGESTIONS -->
+              <section class="glass-panel wardrobe-suggestions-card">
+                <h3>AI Wardrobe Suggestions</h3>
+                
+                <div class="suggestions-stack-compact">
+                  
+                  <div class="suggestion-item-card">
+                    <div class="s-icon"><i data-lucide="leaf"></i></div>
+                    <div class="s-details">
+                      <h4>Earth-Tone Recommendations</h4>
+                      <p>You should add more earth-tone shirts.</p>
+                    </div>
+                  </div>
+
+                  <div class="suggestion-item-card">
+                    <div class="s-icon"><i data-lucide="layers"></i></div>
+                    <div class="s-details">
+                      <h4>Matching Essentials</h4>
+                      <p>Minimal white sneakers pair with 78% of your wardrobe.</p>
+                    </div>
+                  </div>
+
+                  <div class="suggestion-item-card">
+                    <div class="s-icon"><i data-lucide="sparkles"></i></div>
+                    <div class="s-details">
+                      <h4>Accessory Suggestions</h4>
+                      <p>Minimalist gold chains fit perfectly with luxury satin shirts.</p>
+                    </div>
+                  </div>
+
+                </div>
+              </section>
+
+              <!-- RECENTLY ADDED -->
+              <section class="glass-panel recently-added-card">
+                <h3>Recently Added</h3>
+                
+                <div class="recently-added-scroller">
+                  
+                  <div class="compact-product-card">
+                    <img src="assets/product_satin_shirt.png" alt="Satin Shirt" class="p-thumb">
+                    <div class="p-details">
+                      <h4>Luxury Satin Shirt</h4>
+                      <span class="p-price">₹4,899</span>
+                    </div>
+                    <div class="p-meta">
+                      <span class="p-match-pct">93%</span>
+                    </div>
+                  </div>
+
+                  <div class="compact-product-card">
+                    <img src="assets/product_luxury_boots.png" alt="Chelsea Boots" class="p-thumb">
+                    <div class="p-details">
+                      <h4>Chelsea Boots</h4>
+                      <span class="p-price">₹12,499</span>
+                    </div>
+                    <div class="p-meta">
+                      <span class="p-match-pct">90%</span>
+                    </div>
+                  </div>
+
+                  <div class="compact-product-card">
+                    <img src="assets/product_minimal_slides.png" alt="slides" class="p-thumb">
+                    <div class="p-details">
+                      <h4>Minimal Slides</h4>
+                      <span class="p-price">₹2,499</span>
+                    </div>
+                    <div class="p-meta">
+                      <span class="p-match-pct">87%</span>
+                    </div>
+                  </div>
+
+                </div>
+              </section>
+
+            </aside>
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- UPGRADE TO PRO NEON GLASS MODAL -->
+  <div class="modal-overlay" id="modal-pro-upgrade">
+    <div class="modal-content glass-panel">
+      <button class="modal-close-btn" id="modal-close" aria-label="Close modal">
+        <i data-lucide="x"></i>
+      </button>
+      
+      <div class="modal-header">
+        <div class="modal-badge-wrapper">
+          <i data-lucide="crown" class="badge-icon"></i>
+          <span>AURAFIT PRO</span>
+        </div>
+        <h2>Elevate Your Fashion Reality</h2>
+        <p>Gain access to the world's most advanced clothing synthesis engine.</p>
+      </div>
+
+      <div class="modal-body-perks">
+        <div class="perk-item">
+          <div class="perk-icon-wrap"><i data-lucide="check" class="perk-check"></i></div>
+          <div class="perk-details">
+            <h3>Unlimited Real-Time Try-Ons</h3>
+            <p>Style clothing variations instantly without any rate limits.</p>
+          </div>
+        </div>
+
+        <div class="perk-item">
+          <div class="perk-icon-wrap"><i data-lucide="check" class="perk-check"></i></div>
+          <div class="perk-details">
+            <h3>Cinema-Grade Backdrop Synthesis</h3>
+            <p>Transport yourself into premium environments like luxury villas or yacht decks.</p>
+          </div>
+        </div>
+
+        <div class="perk-item">
+          <div class="perk-icon-wrap"><i data-lucide="check" class="perk-check"></i></div>
+          <div class="perk-details">
+            <h3>Personal AI Stylist Consultations</h3>
+            <p>24/7 fashion styling consultations regarding fit, contrast, and matching.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer-pricing">
+        <div class="modal-price-card active">
+          <div class="price-badge">BEST VALUE</div>
+          <span class="plan-period">ANNUAL BILLING</span>
+          <div class="plan-price-num">₹299<span>/mo</span></div>
+          <span class="plan-bill-detail">Billed yearly (₹3,588)</span>
+        </div>
+
+        <div class="modal-price-card">
+          <span class="plan-period">MONTHLY BILLING</span>
+          <div class="plan-price-num">₹399<span>/mo</span></div>
+          <span class="plan-bill-detail">Cancel subscription anytime</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary modal-action-btn" id="btn-modal-checkout">
+        <span>Upgrade My Style Now</span>
+        <i data-lucide="arrow-right"></i>
+      </button>
+      <p class="modal-secure-text"><i data-lucide="lock" class="sec-lock-icon"></i> Secured with 256-bit SSL encryption. Cancel anytime.</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="wardrobe.js"></script>
+</body>
+</html>
