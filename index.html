@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="looks.css">
   <link rel="stylesheet" href="recommendations.css">
   <link rel="stylesheet" href="stylist.css">
+  <link rel="stylesheet" href="upload.css">
   
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -193,6 +194,9 @@
                       <span>Upload Photo</span>
                     </button>
                   </div>
+
+                  <!-- Hidden file input for Home hero upload -->
+                  <input type="file" id="home-file-input" accept="image/*" class="file-input-hidden" aria-hidden="true">
                 </div>
 
                 <div class="hero-right-visual">
@@ -219,6 +223,18 @@
                       <span>Linen Overshirt</span>
                       <strong>₹4,500</strong>
                     </div>
+                  </div>
+
+                  <!-- Home Upload: Loading Overlay -->
+                  <div id="home-upload-overlay" aria-hidden="true">
+                    <div class="upload-loading-ring"></div>
+                    <span class="upload-loading-label">Uploading...</span>
+                  </div>
+
+                  <!-- Home Upload: Success Badge -->
+                  <div id="home-upload-success-badge" aria-live="polite">
+                    <i data-lucide="check-circle"></i>
+                    <span>Uploaded to Cloud ✓</span>
                   </div>
 
                   <div class="floating-p-card card-sneakers">
@@ -663,6 +679,9 @@
                     <span>Use Camera</span>
                   </button>
                 </div>
+
+                <!-- Try-On: Upload success indicator -->
+                <div id="tryon-upload-success-tag" aria-live="polite"></div>
               </div>
 
               <!-- Details -->
@@ -3510,6 +3529,7 @@
   </div>
 
   <!-- Scripts -->
+  <script src="upload-handler.js?v=1"></script>
   <script src="app.js?v=4"></script>
   <script src="wardrobe.js?v=4"></script>
   <script src="looks.js?v=4"></script>

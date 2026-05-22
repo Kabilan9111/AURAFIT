@@ -189,13 +189,10 @@ document.addEventListener('DOMContentLoaded', () => {
     switchToPage('page-tryon', 'nav-tryon');
   });
 
-  // Hero Upload Action
+  // Hero Upload Action — opens home-page file picker (no page navigation)
   btnHeroUpload.addEventListener('click', () => {
-    switchToPage('page-tryon', 'nav-tryon');
-    // Simulate auto opening dialog
-    setTimeout(() => {
-      document.getElementById('file-input').click();
-    }, 300);
+    const homeInput = document.getElementById('home-file-input');
+    if (homeInput) homeInput.click();
   });
 
   // New Draft Click
@@ -535,18 +532,52 @@ document.addEventListener('DOMContentLoaded', () => {
     dropZone.classList.remove('drag-active');
   });
 
+  // ─── Try-On Upload Handler (powered by shared AuraUpload module) ──────────
+  async function handleTryOnUpload(file) {
+    await AuraUpload.uploadImageFile(file, {
+      onPreview: (dataURL) => {
+        heroDisplayImage.src = dataURL;
+        heroDisplayImage.style.filter = '';
+      },
+      onLoadingStart: () => {
+        dropZone.classList.add('uploading');
+        scannerLaser.classList.add('scanning');
+        scannerText.classList.add('active');
+        const label = scannerText.querySelector('span');
+        if (label) label.innerHTML = 'UPLOADING TO AI CLOUD...';
+      },
+      onLoadingEnd: () => {
+        dropZone.classList.remove('uploading');
+        scannerLaser.classList.remove('scanning');
+        scannerText.classList.remove('active');
+        fileInput.value = '';
+      },
+      onSuccess: (cloudURL) => {
+        heroDisplayImage.src = cloudURL;
+        const randScore = Math.floor(Math.random() * 6) + 91;
+        updateScoreRings(randScore, randScore - 3, randScore - 5);
+        updateActiveConfiguration('1');
+        const successTag = document.getElementById('tryon-upload-success-tag');
+        if (successTag) {
+          successTag.textContent = '✓ Synced to Cloud';
+          successTag.classList.add('visible');
+          setTimeout(() => successTag.classList.remove('visible'), 3000);
+        }
+      },
+      onError: () => {
+        heroDisplayImage.src = 'assets/black_model_hoodie.png';
+      },
+    });
+  }
+
   dropZone.addEventListener('drop', (e) => {
     e.preventDefault();
     dropZone.classList.remove('drag-active');
-    if (e.dataTransfer.files.length > 0) {
-      simulateAIScan(e.dataTransfer.files[0].name);
-    }
+    if (e.dataTransfer.files.length > 0) handleTryOnUpload(e.dataTransfer.files[0]);
   });
 
   fileInput.addEventListener('change', () => {
-    if (fileInput.files.length > 0) {
-      simulateAIScan(fileInput.files[0].name);
-    }
+    if (fileInput.files.length > 0) handleTryOnUpload(fileInput.files[0]);
   });
 
   btnUseCamera.addEventListener('click', (e) => {
@@ -718,6 +749,44 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load initial score rings values
   updateScoreRings(92, 89, 87);
+
+  // ─── Home Page Upload Handler (powered by shared AuraUpload module) ────────
+  const homeFileInput      = document.getElementById('home-file-input');
+  const heroModelImg       = document.querySelector('.hero-model-jacket-img');
+  const homeUploadOverlay  = document.getElementById('home-upload-overlay');
+  const homeSuccessBadge   = document.getElementById('home-upload-success-badge');
+
+  if (homeFileInput) {
+    homeFileInput.addEventListener('change', async () => {
+      if (!homeFileInput.files.length) return;
+      await AuraUpload.uploadImageFile(homeFileInput.files[0], {
+        onPreview: (dataURL) => {
+          if (heroModelImg) {
+            heroModelImg.src = dataURL;
+            heroModelImg.style.objectFit = 'cover';
+          }
+        },
+        onLoadingStart: () => {
+          if (homeUploadOverlay) homeUploadOverlay.classList.add('active');
+        },
+        onLoadingEnd: () => {
+          if (homeUploadOverlay) homeUploadOverlay.classList.remove('active');
+          homeFileInput.value = '';
+        },
+        onSuccess: (cloudURL) => {
+          if (heroModelImg) heroModelImg.src = cloudURL;
+          if (homeSuccessBadge) {
+            lucide.createIcons();
+            homeSuccessBadge.classList.add('visible');
+            setTimeout(() => homeSuccessBadge.classList.remove('visible'), 3000);
+          }
+        },
+        onError: () => {
+          if (heroModelImg) heroModelImg.src = 'assets/hero_home_model.png';
+        },
+      });
+    });
+  }
 
   // Dynamic Routing fallback for URL hash landing
   const initialHash = window.location.hash;
