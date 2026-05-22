@@ -1,0 +1,917 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURAFIT — AI Stylist</title>
+  
+  <!-- Google Fonts (Inter + Outfit) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="stylist.css">
+</head>
+<body>
+
+  <!-- Background Cinema Neon Ambient Lighting Orbs -->
+  <div class="glow-orb orb-top-left"></div>
+  <div class="glow-orb orb-center-right"></div>
+  <div class="glow-orb orb-bottom-left"></div>
+  <div class="glow-orb orb-bottom-right"></div>
+
+  <!-- Master Grid Wrapper -->
+  <div class="dashboard-wrapper">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar-container" id="left-sidebar">
+      <!-- Logo Section -->
+      <div class="sidebar-brand">
+        <div class="logo-icon-wrapper">
+          <svg class="logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2L38 32H2L20 2Z" stroke="url(#logo-grad)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M20 10L30 27H10L20 10Z" fill="url(#logo-grad-inner)"/>
+            <circle cx="20" cy="22" r="3" fill="#ffffff" class="logo-pulse"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="2" y1="2" x2="38" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#A855F7"/>
+                <stop offset="1" stop-color="#7B2FF7"/>
+              </linearGradient>
+              <linearGradient id="logo-grad-inner" x1="10" y1="10" x2="30" y2="27" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#A855F7" stop-opacity="0.8"/>
+                <stop offset="1" stop-color="#7B2FF7" stop-opacity="0.3"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">AURA<span class="text-neon-purple">FIT</span></span>
+      </div>
+
+      <!-- Navigation links -->
+      <nav class="sidebar-nav">
+        <ul>
+          <li>
+            <a href="index.html" class="nav-item" id="nav-home">
+              <i data-lucide="layout-dashboard"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#tryon" class="nav-item" id="nav-tryon">
+              <i data-lucide="shirt"></i>
+              <span>Try On</span>
+            </a>
+          </li>
+          <li>
+            <a href="wardrobe.html" class="nav-item" id="nav-wardrobe">
+              <i data-lucide="folder-heart"></i>
+              <span>Wardrobe</span>
+            </a>
+          </li>
+          <li>
+            <a href="stylist.html" class="nav-item active" id="nav-stylist">
+              <i data-lucide="sparkles"></i>
+              <span>AI Stylist</span>
+              <span class="badge-premium-glow">AI</span>
+            </a>
+          </li>
+          <li>
+            <a href="looks.html" class="nav-item" id="nav-looks">
+              <i data-lucide="images"></i>
+              <span>Looks</span>
+            </a>
+          </li>
+          <li>
+            <a href="recommendations.html" class="nav-item" id="nav-recommendations">
+              <i data-lucide="thumbs-up"></i>
+              <span>Recommendations</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-item" id="nav-profile">
+              <i data-lucide="user-cog"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Upgrade Card -->
+      <div class="upgrade-card-wrapper">
+        <div class="upgrade-card">
+          <div class="upgrade-glow-bg"></div>
+          <div class="upgrade-icon">
+            <i data-lucide="crown"></i>
+          </div>
+          <h4>AURAFIT PRO</h4>
+          <p>Unlock premium features and unlimited try-ons.</p>
+          <button class="btn btn-primary btn-upgrade-pro" id="btn-upgrade-sidebar">
+            <span>Upgrade Now</span>
+            <i data-lucide="zap"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- User Profile Card -->
+      <div class="sidebar-user-card" id="user-profile-trigger">
+        <img src="assets/leon_walker_avatar.png" alt="Leon Walker" class="user-avatar-img">
+        <div class="user-info">
+          <h4>Leon Walker</h4>
+          <p>Premium Member</p>
+        </div>
+        <div class="user-status-dot"></div>
+      </div>
+    </aside>
+
+    <!-- CONTENT DISPLAY PAGES -->
+    <main class="main-pages-viewport">
+      
+      <!-- AI STYLIST PAGE -->
+      <div id="page-stylist" class="page-content active">
+        <div class="main-layout-container">
+          
+          <!-- STYLIST HEADER -->
+          <header class="header-container">
+            <div class="header-heading-center">
+              <h1>AI Stylist ✨</h1>
+              <p>Your personal AI fashion consultant. Ask, explore and elevate your style.</p>
+            </div>
+
+            <!-- Top Search Bar with Cyber Glow -->
+            <div class="header-search-bar futuristic-search-glow">
+              <i data-lucide="search" class="search-icon"></i>
+              <input type="text" placeholder="Ask AI Stylist anything about fashion…" disabled>
+              <span class="search-shortcut">Ctrl K</span>
+            </div>
+
+            <div class="header-actions">
+              <button class="header-btn btn-wishlist-indicator" aria-label="Wishlist">
+                <i data-lucide="heart"></i>
+                <span class="wishlist-count-badge" id="wishlist-counter-value">3</span>
+              </button>
+              <button class="header-btn" id="btn-notifications-stylist" aria-label="Notifications">
+                <i data-lucide="bell"></i>
+                <span class="notification-dot"></span>
+              </button>
+              <div class="header-user-avatar nav-to-profile">
+                <img src="assets/leon_walker_avatar.png" alt="Leon Walker">
+              </div>
+            </div>
+          </header>
+
+          <div class="stylist-main-grid">
+            
+            <!-- HERO TOP ROW -->
+            <div class="stylist-hero-panel">
+              
+              <!-- LEFT: Avatar double ring -->
+              <div class="stylist-portrait-col">
+                <div class="portrait-glow-wrapper">
+                  <div class="portrait-glowing-ring"></div>
+                  <div class="portrait-glowing-ring-outer"></div>
+                  <div class="portrait-inner-avatar">
+                    <img src="assets/hero_home_model.png" alt="AI Stylist model avatar">
+                  </div>
+                </div>
+                <div class="stylist-status-tag">
+                  <span></span>ONLINE
+                </div>
+              </div>
+
+              <!-- CENTER: Chat display & input -->
+              <div class="stylist-interaction-col">
+                <div class="ai-greeting">
+                  <h3>Hey Leon! 👋 <span class="text-gradient">I’m your AI Stylist</span></h3>
+                  <p>Tell me what you need and I’ll create the perfect look for you.</p>
+                </div>
+
+                <div class="ai-stylist-chat-box" id="stylist-chat-box">
+                  <div class="chat-bubble assistant">
+                    Hello Leon! I'm here to refine your look. Choose a suggestion below or type your style prompt.
+                  </div>
+                </div>
+
+                <div class="ai-suggestion-row">
+                  <div class="suggestion-chip">Style me for a date night</div>
+                  <div class="suggestion-chip">What matches black cargos?</div>
+                  <div class="suggestion-chip">Airport look under ₹5000</div>
+                  <div class="suggestion-chip">Looks for a gym session</div>
+                </div>
+
+                <div class="ai-input-bar-wrapper">
+                  <i data-lucide="sparkles" class="search-icon"></i>
+                  <input type="text" placeholder="Ask me anything about fashion…" id="stylist-chat-input">
+                  <div class="input-actions-right">
+                    <span class="input-badge-enter">Enter</span>
+                    <button class="btn-send-chat" id="btn-stylist-send" aria-label="Send Message">
+                      <i data-lucide="arrow-up" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="ai-hero-quick-actions">
+                  <button class="btn-quick-feat active"><i data-lucide="trending-up"></i>Trend Analysis</button>
+                  <button class="btn-quick-feat"><i data-lucide="shirt"></i>Outfit Generator</button>
+                  <button class="btn-quick-feat"><i data-lucide="palette"></i>Color Advice</button>
+                  <button class="btn-quick-feat"><i data-lucide="scissors"></i>Fit Advice</button>
+                  <button class="btn-quick-feat"><i data-lucide="sparkles"></i>Grooming Tips</button>
+                </div>
+              </div>
+
+              <!-- RIGHT: Stacked glowing cards -->
+              <div class="stylist-stats-col">
+                <div class="glowing-stats-card">
+                  <h4><i data-lucide="lightbulb"></i>AI Stylist Tip</h4>
+                  <p>Fit is the foundation of style. Never wear clothes that don't fit perfectly to maintain high shoulder silhouettes.</p>
+                </div>
+
+                <div class="glowing-stats-card highlight">
+                  <h4><i data-lucide="activity"></i>Today’s Style Mood</h4>
+                  <div class="mood-value" id="style-mood-value">Confident Minimalist</div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- SECTION 1: CHOOSE OCCASION -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Choose Occasion</h2>
+                <span class="section-badge">Matrix Select</span>
+              </div>
+              <div class="stylist-matrix-grid">
+                <button class="matrix-card-btn active"><i data-lucide="wine"></i>Date Night</button>
+                <button class="matrix-card-btn"><i data-lucide="glass-water"></i>Party</button>
+                <button class="matrix-card-btn"><i data-lucide="plane"></i>Airport</button>
+                <button class="matrix-card-btn"><i data-lucide="graduation-cap"></i>College</button>
+                <button class="matrix-card-btn"><i data-lucide="briefcase"></i>Office</button>
+                <button class="matrix-card-btn"><i data-lucide="dumbbell"></i>Gym</button>
+                <button class="matrix-card-btn"><i data-lucide="gem"></i>Wedding</button>
+                <button class="matrix-card-btn"><i data-lucide="palmtree"></i>Vacation</button>
+                <button class="matrix-card-btn"><i data-lucide="plus"></i>More</button>
+              </div>
+            </div>
+
+            <!-- SECTION 2: SELECT YOUR MOOD -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Select Your Mood</h2>
+                <span class="section-badge">Interactive Tones</span>
+              </div>
+              <div class="ai-suggestion-row">
+                <button class="suggestion-chip select-mood-btn active">Confident</button>
+                <button class="suggestion-chip select-mood-btn">Elegant</button>
+                <button class="suggestion-chip select-mood-btn">Mysterious</button>
+                <button class="suggestion-chip select-mood-btn">Streetwear</button>
+                <button class="suggestion-chip select-mood-btn">Luxury</button>
+                <button class="suggestion-chip select-mood-btn">Soft</button>
+                <button class="suggestion-chip select-mood-btn">Dominant</button>
+                <button class="suggestion-chip select-mood-btn">Minimal</button>
+              </div>
+            </div>
+
+            <!-- SECTION 3: AI OUTFIT GENERATOR -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>AI Outfit Generator</h2>
+                <span class="section-badge">Synthesis Lab</span>
+              </div>
+              <div class="outfit-generator-workspace">
+                
+                <!-- LEFT PANEL: Settings -->
+                <div class="glass-panel generator-config-card">
+                  <div class="config-budget-slider-wrapper">
+                    <div class="slider-val-row">
+                      <span>BUDGET RANGE</span>
+                      <span class="val" id="budget-val-indicator">₹6,000</span>
+                    </div>
+                    <input type="range" min="1000" max="15000" value="6000" class="budget-range-slider" id="budget-slider">
+                  </div>
+
+                  <div class="config-input-group">
+                    <label>Weather Condition</label>
+                    <select>
+                      <option>Warm & Clear (28°C)</option>
+                      <option>Cool Breeze (18°C)</option>
+                      <option>Rainy Outcast</option>
+                      <option>Extreme Winter (8°C)</option>
+                    </select>
+                  </div>
+
+                  <div class="config-input-group">
+                    <label>Season</label>
+                    <select>
+                      <option>Spring / Summer</option>
+                      <option>Autumn / Winter</option>
+                    </select>
+                  </div>
+
+                  <div class="config-input-group">
+                    <label>Style Personality</label>
+                    <select>
+                      <option>Minimalist Tech</option>
+                      <option>Classic Elegance</option>
+                      <option>Street Dominator</option>
+                      <option>Cyber Goth</option>
+                    </select>
+                  </div>
+
+                  <div class="config-input-group">
+                    <label>Body Silhouette</label>
+                    <select>
+                      <option>Trapezoid (Athletic)</option>
+                      <option>Inverted Triangle</option>
+                      <option>Rectangle</option>
+                      <option>Oval / Rounded</option>
+                    </select>
+                  </div>
+
+                  <div class="config-input-group">
+                    <label>Color Preference</label>
+                    <div class="color-pref-selection-row">
+                      <div class="color-dot-node active" style="background: #000;" data-color="black"></div>
+                      <div class="color-dot-node" style="background: #ffffff; border: 1px solid #ddd;" data-color="white"></div>
+                      <div class="color-dot-node" style="background: #4B5563;" data-color="gray"></div>
+                      <div class="color-dot-node" style="background: #1E3A8A;" data-color="navy"></div>
+                      <div class="color-dot-node" style="background: #78350F;" data-color="brown"></div>
+                      <div class="color-dot-node" style="background: #064E3B;" data-color="forest"></div>
+                    </div>
+                  </div>
+
+                  <button class="btn btn-primary btn-generate-styled" id="btn-generate-look">
+                    <span>Generate My Look</span>
+                    <i data-lucide="zap"></i>
+                  </button>
+                </div>
+
+                <!-- CENTER PANEL: Flat-Lay Display -->
+                <div class="glass-panel generator-display-stage">
+                  <div class="generator-laser-sweep" id="generator-laser"></div>
+                  
+                  <div class="flatlay-layout-grid">
+                    <div class="flatlay-node-item large-span">
+                      <img src="assets/product_relaxed_pants.png" alt="Black Tech Trousers" class="img-tint-mono" style="max-height: 250px;">
+                      <h5>Tech Pants</h5>
+                      <span class="flatlay-pulse-pin"></span>
+                    </div>
+
+                    <div class="flatlay-node-item">
+                      <img src="assets/product_linen_overshirt.png" alt="Luxury Overshirt" class="img-tint-sunset">
+                      <h5>Overshirt</h5>
+                      <span class="flatlay-pulse-pin"></span>
+                    </div>
+
+                    <div class="flatlay-node-item accessory-node">
+                      <img src="assets/product_luxury_boots.png" alt="Leather Boots" class="img-tint-cool">
+                      <h5>Boots</h5>
+                      <span class="flatlay-pulse-pin"></span>
+                    </div>
+
+                    <div class="flatlay-node-item">
+                      <img src="assets/product_minimal_slides.png" alt="Minimal Slides" class="img-tint-sunset">
+                      <h5>Sandals</h5>
+                    </div>
+
+                    <div class="flatlay-node-item accessory-node">
+                      <img src="assets/user_avatar.png" alt="Aesthetic Perfume Bottle" style="border-radius: 8px;">
+                      <h5>Oud Intense</h5>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- RIGHT PANEL: Breakdown details list -->
+                <div class="glass-panel generator-breakdown-card">
+                  <div class="breakdown-header-details">
+                    <h3>Synthesized Outfit</h3>
+                    <div class="meta">
+                      <span>Leon Silhouette v2</span>
+                      <span class="score" id="breakdown-fit-score">95% Fit Match</span>
+                    </div>
+
+                    <div class="breakdown-items-list-box">
+                      <div class="breakdown-item-row">
+                        <span class="name" id="breakdown-item-jacket">Midnight Tech Overshirt</span>
+                        <span class="price" id="breakdown-price-jacket">₹2,499</span>
+                      </div>
+                      <div class="breakdown-item-row">
+                        <span class="name" id="breakdown-item-tee">Heavyweight White Tee</span>
+                        <span class="price" id="breakdown-price-tee">₹999</span>
+                      </div>
+                      <div class="breakdown-item-row">
+                        <span class="name" id="breakdown-item-pants">Relaxed Tech Pants</span>
+                        <span class="price" id="breakdown-price-pants">₹1,599</span>
+                      </div>
+                      <div class="breakdown-item-row">
+                        <span class="name" id="breakdown-item-shoes">Luxury Leather Boots</span>
+                        <span class="price" id="breakdown-price-shoes">₹2,299</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="breakdown-total-bar">
+                      <span class="label-text">ESTIMATED TOTAL</span>
+                      <span class="price-val" id="breakdown-total-price">₹7,396</span>
+                    </div>
+                    <button class="btn btn-primary btn-shop-flatlay"><i data-lucide="shopping-cart"></i>Shop This Entire Look</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- SECTION 4 & 5: STYLE SCORES & WARDROBE MATCHES -->
+            <div class="scores-matches-split-container">
+              
+              <!-- SECTION 4: AI STYLE SCORES -->
+              <div class="stylist-section-container">
+                <div class="stylist-section-header">
+                  <h2>AI Style Scores</h2>
+                  <span class="section-badge">Vector Radar</span>
+                </div>
+                <div class="glass-panel scores-radar-widget-panel">
+                  <div class="scores-radar-graphic-area">
+                    <div class="radar-overall-value-center">
+                      <h3 id="radar-overall-val">93</h3>
+                      <span>Overall</span>
+                    </div>
+                    <svg class="radar-svg-canvas" viewBox="0 0 220 220">
+                      <!-- Radar Grid Rings -->
+                      <g class="radar-grid-rings">
+                        <polygon points="110,10 200,75 165,175 55,175 20,75"></polygon>
+                        <polygon points="110,40 170,85 145,150 75,150 50,85"></polygon>
+                        <polygon points="110,70 140,95 125,125 95,125 80,95"></polygon>
+                      </g>
+                      <!-- Radar Axes Lines -->
+                      <g class="radar-grid-lines">
+                        <line x1="110" y1="110" x2="110" y2="10"></line>
+                        <line x1="110" y1="110" x2="200" y2="75"></line>
+                        <line x1="110" y1="110" x2="165" y2="175"></line>
+                        <line x1="110" y1="110" x2="55" y2="175"></line>
+                        <line x1="110" y1="110" x2="20" y2="75"></line>
+                      </g>
+                      <!-- Value Polygon -->
+                      <g class="radar-fill-area">
+                        <polygon id="radar-score-polygon" points="110,35 175,85 165,160 55,155 45,100"></polygon>
+                      </g>
+                      <!-- Labels text coordinates -->
+                      <text x="110" y="8" text-anchor="middle" class="radar-text-label">CONFIDENCE</text>
+                      <text x="204" y="78" text-anchor="start" class="radar-text-label">ELEGANCE</text>
+                      <text x="170" y="188" text-anchor="start" class="radar-text-label">LUXURY</text>
+                      <text x="50" y="188" text-anchor="end" class="radar-text-label">BALANCE</text>
+                      <text x="16" y="78" text-anchor="end" class="radar-text-label">ATTRACTIVE</text>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SECTION 5: WARDROBE MATCHES -->
+              <div class="stylist-section-container">
+                <div class="stylist-section-header">
+                  <h2>Wardrobe Matches</h2>
+                  <span class="section-badge">Owned Assets</span>
+                </div>
+                <div class="glass-panel wardrobe-matches-panel-card">
+                  <div class="wardrobe-matches-cards-row">
+                    <div class="wardrobe-mini-card">
+                      <div class="img-container">
+                        <img src="assets/product_relaxed_pants.png" alt="Tech Cargo Pants" class="img-tint-sunset">
+                      </div>
+                      <h4>Relaxed Joggers</h4>
+                      <span class="status">Match 95%</span>
+                    </div>
+
+                    <div class="wardrobe-mini-card">
+                      <div class="img-container">
+                        <img src="assets/product_minimal_hoodie.png" alt="Black Tech Hoodie" class="img-tint-sunset">
+                      </div>
+                      <h4>Midnight Hoodie</h4>
+                      <span class="status">Match 88%</span>
+                    </div>
+
+                    <div class="wardrobe-mini-card">
+                      <div class="img-container">
+                        <img src="assets/product_linen_overshirt.png" alt="Watch accessory" class="img-tint-sunset">
+                      </div>
+                      <h4>Beige Overshirt</h4>
+                      <span class="status">Match 92%</span>
+                    </div>
+
+                    <div class="wardrobe-mini-card">
+                      <div class="img-container">
+                        <img src="assets/product_white_sneakers.png" alt="Minimal Sneakers">
+                      </div>
+                      <h4>White Sneakers</h4>
+                      <span class="status">Match 96%</span>
+                    </div>
+                  </div>
+                  <button class="btn btn-secondary btn-shop-flatlay" style="margin-top: 18px; padding: 10px;"><i data-lucide="plus"></i>View All Suggested Matches</button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- SECTION 6: BODY & COLOR ANALYSIS -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Body & Color Analysis</h2>
+                <span class="section-badge">AI Metrics</span>
+              </div>
+              <div class="analysis-dashboard-grid">
+                
+                <div class="analysis-detail-box">
+                  <div class="icon-wrap"><i data-lucide="user"></i></div>
+                  <h3>Body Silhouette</h3>
+                  <p>Trapezoid athletic build. Well-balanced shoulders and waist ratios, supporting tailored fits and structured jackets.</p>
+                </div>
+
+                <div class="analysis-detail-box">
+                  <div class="icon-wrap" style="color: #10B981; background: rgba(16, 185, 129, 0.05);"><i data-lucide="palette"></i></div>
+                  <h3>Best Contrast Colors</h3>
+                  <p>Cool winter palette. Midnight black, slate gray, neutral sand beige, and rich velvet ruby red complement your skin undertone.</p>
+                  <div class="color-tag-bubbles">
+                    <div class="color-analysis-bubble" style="background: #000;"></div>
+                    <div class="color-analysis-bubble" style="background: #4B5563;"></div>
+                    <div class="color-analysis-bubble" style="background: #D1D5DB;"></div>
+                    <div class="color-analysis-bubble" style="background: #7F1D1D;"></div>
+                  </div>
+                </div>
+
+                <div class="analysis-detail-box">
+                  <div class="icon-wrap" style="color: #EF4444; background: rgba(239, 68, 68, 0.05);"><i data-lucide="slash"></i></div>
+                  <h3>Avoid Colors</h3>
+                  <p>Highly saturated neon yellows, pastel pinks, and bright orange tints washing out natural low-contrast facial shadows.</p>
+                  <div class="color-tag-bubbles">
+                    <div class="color-analysis-bubble" style="background: #FBBF24;"></div>
+                    <div class="color-analysis-bubble" style="background: #F472B6;"></div>
+                    <div class="color-analysis-bubble" style="background: #F97316;"></div>
+                  </div>
+                </div>
+
+                <div class="analysis-detail-box">
+                  <div class="icon-wrap"><i data-lucide="scissors"></i></div>
+                  <h3>Best Fit Style</h3>
+                  <p>Relaxed-draped trousers paired with drop-shoulder structured jackets to enhance shoulder widths while maintaining movement flexibility.</p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- SECTION 7: CELEBRITY / AESTHETIC MODE -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Celebrity / Aesthetic Mode</h2>
+                <span class="section-badge">Style Presets</span>
+              </div>
+              <div class="aesthetic-carousel-viewport">
+                <div class="aesthetic-carousel-row">
+                  <div class="aesthetic-circle-node" data-preset="old-money">
+                    <div class="circle-avatar-wrap">
+                      <div class="circle-inner-image"><img src="assets/looks_casual_com.png" alt="Old Money"></div>
+                    </div>
+                    <span class="label">Old Money</span>
+                  </div>
+
+                  <div class="aesthetic-circle-node" data-preset="korean-minimal">
+                    <div class="circle-avatar-wrap">
+                      <div class="circle-inner-image"><img src="assets/looks_urban_mini.png" alt="Korean Minimal"></div>
+                    </div>
+                    <span class="label">Korean Minimal</span>
+                  </div>
+
+                  <div class="aesthetic-circle-node" data-preset="mafia-style">
+                    <div class="circle-avatar-wrap">
+                      <div class="circle-inner-image"><img src="assets/looks_night_ele.png" alt="Mafia Style"></div>
+                    </div>
+                    <span class="label">Mafia Style</span>
+                  </div>
+
+                  <div class="aesthetic-circle-node" data-preset="tech-billionaire">
+                    <div class="circle-avatar-wrap">
+                      <div class="circle-inner-image"><img src="assets/hero_home_model.png" alt="Tech Billionaire"></div>
+                    </div>
+                    <span class="label">Tech Billionaire</span>
+                  </div>
+
+                  <div class="aesthetic-circle-node active" data-preset="streetwear">
+                    <div class="circle-avatar-wrap">
+                      <div class="circle-inner-image"><img src="assets/looks_street_dom.png" alt="Streetwear"></div>
+                    </div>
+                    <span class="label">Streetwear</span>
+                  </div>
+
+                  <div class="aesthetic-circle-node" data-preset="rockstar">
+                    <div class="circle-avatar-wrap">
+                      <div class="circle-inner-image"><img src="assets/looks_night_ele.png" alt="Rockstar"></div>
+                    </div>
+                    <span class="label">Rockstar</span>
+                  </div>
+
+                  <div class="aesthetic-circle-node" data-preset="anime-mc">
+                    <div class="circle-avatar-wrap">
+                      <div class="circle-inner-image"><img src="assets/looks_casual_com.png" alt="Anime MC"></div>
+                    </div>
+                    <span class="label">Anime MC</span>
+                  </div>
+
+                  <div class="aesthetic-circle-node" data-preset="luxury-ceo">
+                    <div class="circle-avatar-wrap">
+                      <div class="circle-inner-image"><img src="assets/looks_urban_mini.png" alt="Luxury CEO"></div>
+                    </div>
+                    <span class="label">Luxury CEO</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 8: STYLE IMPROVEMENT TIPS -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Style Improvement Tips</h2>
+                <span class="section-badge">AI Editorial</span>
+              </div>
+              <div class="tips-dashboard-layout">
+                <div class="tips-editorial-card">
+                  <h3>Master Subtle Textures</h3>
+                  <p>Avoid plain flat polyester fabrics. Layer textured heavy-knit cotton, waffle weaves, and brushed linen to inject sophisticated depth into solid black outfits.</p>
+                </div>
+                <div class="tips-editorial-card">
+                  <h3>Rule of Thirds Proportion</h3>
+                  <p>Tuck undercoats and adjust trouser rises to create a visual 1:2 height ratio. This elongates legs and builds a highly attractive editorial silhouette.</p>
+                </div>
+                <div class="tips-editorial-card">
+                  <h3>Anchor with Contrast</h3>
+                  <p>When wearing monochromatic black or deep purple coordinates, break up outlines using premium accessories like a silver curb chain or high-sole white sneakers.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 9: COMPARE OUTFITS -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Compare Outfits</h2>
+                <span class="section-badge">A/B Testing</span>
+              </div>
+              <div class="outfits-compare-grid">
+                
+                <!-- Left outfit -->
+                <div class="outfit-comparison-panel">
+                  <div class="img-box">
+                    <img src="assets/looks_urban_mini.png" alt="Urban Minimal Outfit">
+                  </div>
+                  <div class="comparison-panel-details">
+                    <h3>Urban Minimalist</h3>
+                    <p>Tech Trench + Trousers</p>
+                    <div class="panel-scores-block">
+                      <div class="score-progress-bar-row">
+                        <div class="row-meta"><span>Confidence</span><span class="v">95%</span></div>
+                        <div class="score-progress-bar-track"><div class="score-progress-bar-fill" style="width: 95%;"></div></div>
+                      </div>
+                      <div class="score-progress-bar-row">
+                        <div class="row-meta"><span>Luxury Index</span><span class="v">92%</span></div>
+                        <div class="score-progress-bar-track"><div class="score-progress-bar-fill" style="width: 92%;"></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- VS Circle -->
+                <div class="comparison-vs-divider">
+                  <span>VS</span>
+                </div>
+
+                <!-- Right outfit -->
+                <div class="outfit-comparison-panel">
+                  <div class="img-box">
+                    <img src="assets/looks_street_dom.png" alt="Streetwear Outfit">
+                  </div>
+                  <div class="comparison-panel-details">
+                    <h3>Street Dominator</h3>
+                    <p>Cargo Vest + Knitwear</p>
+                    <div class="panel-scores-block">
+                      <div class="score-progress-bar-row">
+                        <div class="row-meta"><span>Confidence</span><span class="v">91%</span></div>
+                        <div class="score-progress-bar-track"><div class="score-progress-bar-fill" style="width: 91%;"></div></div>
+                      </div>
+                      <div class="score-progress-bar-row">
+                        <div class="row-meta"><span>Luxury Index</span><span class="v">86%</span></div>
+                        <div class="score-progress-bar-track"><div class="score-progress-bar-fill" style="width: 86%;"></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- SECTION 10: STYLE EVOLUTION -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Style Evolution</h2>
+                <span class="section-badge">Timeline Tracker</span>
+              </div>
+              <div class="evolution-timeline-grid">
+                
+                <div class="evolution-step-card active">
+                  <div class="evolution-node-dot"><i data-lucide="circle-dot"></i></div>
+                  <h3>Current You</h3>
+                  <p>Casual and loose coordinates. Heavy reliance on street silhouettes and athletic jackets.</p>
+                </div>
+
+                <div class="evolution-step-card">
+                  <div class="evolution-node-dot"><i data-lucide="chevron-right"></i></div>
+                  <h3>3 Months</h3>
+                  <p>Transition to tailored trousers, minimal linen shirts, and high-fashion watch integrations.</p>
+                </div>
+
+                <div class="evolution-step-card">
+                  <div class="evolution-node-dot"><i data-lucide="sparkles"></i></div>
+                  <h3>6 Months</h3>
+                  <p>Complete integration of quiet luxury palettes, custom blazers, and double-breasted tech trench coats.</p>
+                </div>
+
+                <div class="evolution-step-card">
+                  <div class="evolution-node-dot"><i data-lucide="crown"></i></div>
+                  <h3>Future You</h3>
+                  <p>Perfect symmetry, absolute fit confidence, curated color profiles, and complete style DNA optimization.</p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- SECTION 11: TRENDING NOW -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Trending Now</h2>
+                <span class="section-badge">Growth Indices</span>
+              </div>
+              <div class="trending-list-wrapper">
+                <div class="trending-row-widget">
+                  <div class="trending-widget-info">
+                    <h4>Oversized Blazers</h4>
+                    <p>Formal Outings / Luxury Wear</p>
+                  </div>
+                  <span class="trending-growth-badge">+34%</span>
+                </div>
+
+                <div class="trending-row-widget">
+                  <div class="trending-widget-info">
+                    <h4>Wide Tech Cargos</h4>
+                    <p>College / Street culture</p>
+                  </div>
+                  <span class="trending-growth-badge">+28%</span>
+                </div>
+
+                <div class="trending-row-widget">
+                  <div class="trending-widget-info">
+                    <h4>Minimal White Sneakers</h4>
+                    <p>Daily Staples / Outings</p>
+                  </div>
+                  <span class="trending-growth-badge">+41%</span>
+                </div>
+
+                <div class="trending-row-widget">
+                  <div class="trending-widget-info">
+                    <h4>Neutral Sand Tones</h4>
+                    <p>Quiet Luxury / Resort aesthetics</p>
+                  </div>
+                  <span class="trending-growth-badge">+19%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 12: SAVED CONVERSATIONS -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Saved Conversations</h2>
+                <span class="section-badge">AI Chats Library</span>
+              </div>
+              <div class="chats-list-dashboard">
+                <div class="saved-chat-item-box">
+                  <div class="content">
+                    <i data-lucide="message-square" class="chat-icon"></i>
+                    <span class="title">Style me for birthday party</span>
+                  </div>
+                  <i data-lucide="chevron-right" class="arrow"></i>
+                </div>
+
+                <div class="saved-chat-item-box">
+                  <div class="content">
+                    <i data-lucide="message-square" class="chat-icon"></i>
+                    <span class="title">Best winter outfits</span>
+                  </div>
+                  <i data-lucide="chevron-right" class="arrow"></i>
+                </div>
+
+                <div class="saved-chat-item-box">
+                  <div class="content">
+                    <i data-lucide="message-square" class="chat-icon"></i>
+                    <span class="title">What matches black cargos?</span>
+                  </div>
+                  <i data-lucide="chevron-right" class="arrow"></i>
+                </div>
+
+                <div class="saved-chat-item-box">
+                  <div class="content">
+                    <i data-lucide="message-square" class="chat-icon"></i>
+                    <span class="title">Looks under ₹5000</span>
+                  </div>
+                  <i data-lucide="chevron-right" class="arrow"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- BOTTOM QUICK ACTION BAR -->
+            <div class="stylist-quick-actions-bar">
+              <button class="btn-bottom-quick"><i data-lucide="mic"></i>Voice Stylist</button>
+              <button class="btn-bottom-quick"><i data-lucide="camera"></i>Photo Upload</button>
+              <button class="btn-bottom-quick"><i data-lucide="calendar"></i>Event Styling</button>
+              <button class="btn-bottom-quick active"><i data-lucide="compass"></i>Daily Style Pick</button>
+              <button class="btn-bottom-quick"><i data-lucide="shopping-bag"></i>Shop With AI</button>
+              <button class="btn-bottom-quick"><i data-lucide="wind"></i>Trend Forecast</button>
+              <button class="btn-bottom-quick"><i data-lucide="ruler"></i>Fit & Size Guide</button>
+              <button class="btn-bottom-quick"><i data-lucide="sparkles"></i>Grooming Guide</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- UPGRADE TO PRO NEON GLASS MODAL -->
+  <div class="modal-overlay" id="modal-pro-upgrade">
+    <div class="modal-content glass-panel">
+      <button class="modal-close-btn" id="modal-close" aria-label="Close modal">
+        <i data-lucide="x"></i>
+      </button>
+      
+      <div class="modal-header">
+        <div class="modal-badge-wrapper">
+          <i data-lucide="crown" class="badge-icon"></i>
+          <span>AURAFIT PRO</span>
+        </div>
+        <h2>Elevate Your Fashion Reality</h2>
+        <p>Gain access to the world's most advanced clothing synthesis engine.</p>
+      </div>
+
+      <div class="modal-body-perks">
+        <div class="perk-item">
+          <div class="perk-icon-wrap"><i data-lucide="check" class="perk-check"></i></div>
+          <div class="perk-details">
+            <h3>Unlimited Real-Time Try-Ons</h3>
+            <p>Style clothing variations instantly without any rate limits.</p>
+          </div>
+        </div>
+
+        <div class="perk-item">
+          <div class="perk-icon-wrap"><i data-lucide="check" class="perk-check"></i></div>
+          <div class="perk-details">
+            <h3>Cinema-Grade Backdrop Synthesis</h3>
+            <p>Transport yourself into premium environments like luxury villas or yacht decks.</p>
+          </div>
+        </div>
+
+        <div class="perk-item">
+          <div class="perk-icon-wrap"><i data-lucide="check" class="perk-check"></i></div>
+          <div class="perk-details">
+            <h3>Personal AI Stylist Consultations</h3>
+            <p>24/7 fashion styling consultations regarding fit, contrast, and matching.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer-pricing">
+        <div class="modal-price-card active">
+          <div class="price-badge">BEST VALUE</div>
+          <span class="plan-period">ANNUAL BILLING</span>
+          <div class="plan-price-num">₹299<span>/mo</span></div>
+          <span class="plan-bill-detail">Billed yearly (₹3,588)</span>
+        </div>
+
+        <div class="modal-price-card">
+          <span class="plan-period">MONTHLY BILLING</span>
+          <div class="plan-price-num">₹399<span>/mo</span></div>
+          <span class="plan-bill-detail">Cancel subscription anytime</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary modal-action-btn" id="btn-modal-checkout">
+        <span>Upgrade My Style Now</span>
+        <i data-lucide="arrow-right"></i>
+      </button>
+      <p class="modal-secure-text"><i data-lucide="lock" class="sec-lock-icon"></i> Secured with 256-bit SSL encryption. Cancel anytime.</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="stylist.js?v=4"></script>
+</body>
+</html>

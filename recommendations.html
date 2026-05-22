@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURAFIT — Recommendations</title>
+  
+  <!-- Google Fonts (Inter + Outfit) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="recommendations.css">
+</head>
+<body>
+
+  <!-- Background Cinema Neon Ambient Lighting Orbs -->
+  <div class="glow-orb orb-top-left"></div>
+  <div class="glow-orb orb-center-right"></div>
+  <div class="glow-orb orb-bottom-left"></div>
+  <div class="glow-orb orb-bottom-right"></div>
+
+  <!-- Master Grid Wrapper -->
+  <div class="dashboard-wrapper">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar-container" id="left-sidebar">
+      <!-- Logo Section -->
+      <div class="sidebar-brand">
+        <div class="logo-icon-wrapper">
+          <svg class="logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2L38 32H2L20 2Z" stroke="url(#logo-grad)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M20 10L30 27H10L20 10Z" fill="url(#logo-grad-inner)"/>
+            <circle cx="20" cy="22" r="3" fill="#ffffff" class="logo-pulse"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="2" y1="2" x2="38" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#A855F7"/>
+                <stop offset="1" stop-color="#7B2FF7"/>
+              </linearGradient>
+              <linearGradient id="logo-grad-inner" x1="10" y1="10" x2="30" y2="27" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#A855F7" stop-opacity="0.8"/>
+                <stop offset="1" stop-color="#7B2FF7" stop-opacity="0.3"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">AURA<span class="text-neon-purple">FIT</span></span>
+      </div>
+
+      <!-- Navigation links -->
+      <nav class="sidebar-nav">
+        <ul>
+          <li>
+            <a href="index.html" class="nav-item" id="nav-home">
+              <i data-lucide="layout-dashboard"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html#tryon" class="nav-item" id="nav-tryon">
+              <i data-lucide="shirt"></i>
+              <span>Try On</span>
+            </a>
+          </li>
+          <li>
+            <a href="wardrobe.html" class="nav-item" id="nav-wardrobe">
+              <i data-lucide="folder-heart"></i>
+              <span>Wardrobe</span>
+            </a>
+          </li>
+          <li>
+            <a href="stylist.html" class="nav-item" id="nav-stylist">
+              <i data-lucide="sparkles"></i>
+              <span>AI Stylist</span>
+              <span class="badge-premium-glow">AI</span>
+            </a>
+          </li>
+          <li>
+            <a href="looks.html" class="nav-item" id="nav-looks">
+              <i data-lucide="images"></i>
+              <span>Looks</span>
+            </a>
+          </li>
+          <li>
+            <a href="recommendations.html" class="nav-item active" id="nav-recommendations">
+              <i data-lucide="thumbs-up"></i>
+              <span>Recommendations</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-item" id="nav-profile">
+              <i data-lucide="user-cog"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Upgrade Card -->
+      <div class="upgrade-card-wrapper">
+        <div class="upgrade-card">
+          <div class="upgrade-glow-bg"></div>
+          <div class="upgrade-icon">
+            <i data-lucide="crown"></i>
+          </div>
+          <h4>AURAFIT PRO</h4>
+          <p>Unlock premium features and unlimited try-ons.</p>
+          <button class="btn btn-primary btn-upgrade-pro" id="btn-upgrade-sidebar">
+            <span>Upgrade Now</span>
+            <i data-lucide="zap"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- User Profile Card -->
+      <div class="sidebar-user-card" id="user-profile-trigger">
+        <img src="assets/leon_walker_avatar.png" alt="Leon Walker" class="user-avatar-img">
+        <div class="user-info">
+          <h4>Leon Walker</h4>
+          <p>Premium Member</p>
+        </div>
+        <div class="user-status-dot"></div>
+      </div>
+    </aside>
+
+    <!-- CONTENT DISPLAY PAGES -->
+    <main class="main-pages-viewport">
+      
+      <!-- RECOMMENDATIONS PAGE -->
+      <div id="page-recommendations" class="page-content active">
+        <div class="main-layout-container">
+          
+          <!-- RECOMMENDATIONS HEADER -->
+          <header class="header-container">
+            <div class="header-heading-center">
+              <h1>Recommendations ✨</h1>
+              <p>AI-powered suggestions tailored to your style, preferences and goals.</p>
+            </div>
+
+            <!-- Top Search Bar with Cyber Glow -->
+            <div class="header-search-bar futuristic-search-glow">
+              <i data-lucide="search" class="search-icon"></i>
+              <input type="text" placeholder="Search items, styles, brands…" id="recommendations-search-input">
+              <span class="search-shortcut">Ctrl K</span>
+            </div>
+
+            <div class="header-actions">
+              <button class="header-btn" id="btn-notifications-rec" aria-label="Notifications">
+                <i data-lucide="bell"></i>
+                <span class="notification-dot"></span>
+              </button>
+              <button class="header-btn" id="btn-wishlist-header" aria-label="Wishlist">
+                <i data-lucide="heart" fill="currentColor"></i>
+                <span class="wishlist-count-badge" id="wishlist-counter-value">9</span>
+              </button>
+              <button class="header-btn" aria-label="Settings" id="btn-settings-rec">
+                <i data-lucide="settings"></i>
+              </button>
+              <div class="header-user-avatar nav-to-profile">
+                <img src="assets/leon_walker_avatar.png" alt="Leon Walker">
+              </div>
+            </div>
+          </header>
+
+          <!-- MAIN RECOMMENDATIONS GRID WORKSPACE -->
+          <div class="recommendations-main-grid">
+
+            <!-- SECTION 1 — STYLE DNA PANEL -->
+            <section class="style-dna-panel">
+              
+              <!-- Left Column: DNA metrics -->
+              <div class="dna-column">
+                <div class="dna-heading">
+                  <h3>Your Style DNA</h3>
+                  <p>Based on your wardrobe, looks and daily style patterns.</p>
+                </div>
+                
+                <div class="dna-progress-list">
+                  <!-- Progress 1: Minimalist -->
+                  <div class="dna-progress-item">
+                    <div class="dna-progress-info">
+                      <span class="dna-progress-label">Minimalist</span>
+                      <span class="dna-progress-value">92%</span>
+                    </div>
+                    <div class="dna-progress-bar-bg">
+                      <div class="dna-progress-bar-fill" style="width: 92%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Progress 2: Modern -->
+                  <div class="dna-progress-item">
+                    <div class="dna-progress-info">
+                      <span class="dna-progress-label">Modern</span>
+                      <span class="dna-progress-value">88%</span>
+                    </div>
+                    <div class="dna-progress-bar-bg">
+                      <div class="dna-progress-bar-fill" style="width: 88%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Progress 3: Streetwear -->
+                  <div class="dna-progress-item">
+                    <div class="dna-progress-info">
+                      <span class="dna-progress-label">Streetwear</span>
+                      <span class="dna-progress-value">78%</span>
+                    </div>
+                    <div class="dna-progress-bar-bg">
+                      <div class="dna-progress-bar-fill" style="width: 78%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Progress 4: Dark Aesthetic -->
+                  <div class="dna-progress-item">
+                    <div class="dna-progress-info">
+                      <span class="dna-progress-label">Dark Aesthetic</span>
+                      <span class="dna-progress-value">71%</span>
+                    </div>
+                    <div class="dna-progress-bar-bg">
+                      <div class="dna-progress-bar-fill" style="width: 71%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Progress 5: Smart Casual -->
+                  <div class="dna-progress-item">
+                    <div class="dna-progress-info">
+                      <span class="dna-progress-label">Smart Casual</span>
+                      <span class="dna-progress-value">65%</span>
+                    </div>
+                    <div class="dna-progress-bar-bg">
+                      <div class="dna-progress-bar-fill" style="width: 65%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Center Column: circular AI visualizer -->
+              <div class="dna-center-visual">
+                <div class="dna-avatar-container">
+                  <!-- Floating Neon Glowing Rings -->
+                  <div class="dna-ring dna-ring-1"></div>
+                  <div class="dna-ring dna-ring-2"></div>
+                  <!-- Same Person Avatar -->
+                  <img src="assets/leon_walker_avatar.png" alt="Leon Walker" class="dna-avatar-image">
+                </div>
+                <span class="dna-accuracy-badge">Style Accuracy 87%</span>
+              </div>
+
+              <!-- Right Column: stacked cards insights -->
+              <div class="dna-column">
+                <div class="dna-heading">
+                  <h3>Recommendation Insights</h3>
+                  <p>AI suggestions to elevate your current wardrobe matching baseline.</p>
+                </div>
+                
+                <div class="dna-insights-list">
+                  <!-- Card 1: Minimalist recommendations -->
+                  <div class="dna-insight-card">
+                    <div class="dna-insight-icon-wrap"><i data-lucide="layers" style="width: 16px; height: 16px;"></i></div>
+                    <span class="dna-insight-text">Elevate minimalist baseline with textured layers.</span>
+                    <span class="dna-insight-pct">+12%</span>
+                  </div>
+
+                  <!-- Card 2: Oversized fit recommendation -->
+                  <div class="dna-insight-card">
+                    <div class="dna-insight-icon-wrap"><i data-lucide="expand" style="width: 16px; height: 16px;"></i></div>
+                    <span class="dna-insight-text">Transition structured coats to fluid oversized fits.</span>
+                    <span class="dna-insight-pct">+8%</span>
+                  </div>
+
+                  <!-- Card 3: Earth tone recommendation -->
+                  <div class="dna-insight-card">
+                    <div class="dna-insight-icon-wrap"><i data-lucide="palette" style="width: 16px; height: 16px;"></i></div>
+                    <span class="dna-insight-text">Inject sage green and raw sand shades into dark bases.</span>
+                    <span class="dna-insight-pct">+15%</span>
+                  </div>
+
+                  <!-- Card 4: Layering recommendation -->
+                  <div class="dna-insight-card">
+                    <div class="dna-insight-icon-wrap"><i data-lucide="sparkles" style="width: 16px; height: 16px;"></i></div>
+                    <span class="dna-insight-text">Utilize fine turtleneck undercoats for dimensional styling.</span>
+                    <span class="dna-insight-pct">+10%</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+
+            <!-- SECTION 2 — RECOMMENDED FOR YOU -->
+            <section class="recommendations-section-container">
+              <div class="recommendations-section-header">
+                <h2>Recommended For You</h2>
+                <span class="section-count">6 Items</span>
+              </div>
+
+              <div class="product-recommendations-grid">
+                
+                <!-- Card 1: Beige Overshirt -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/product_linen_overshirt.png" alt="Beige Overshirt" style="filter: sepia(0.3) saturate(1.1) brightness(0.95);">
+                    <span class="rec-match-badge">95% Match</span>
+                    <button class="rec-heart-btn active" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Premium Linen</span>
+                      <h4>Beige Overshirt</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹3,499</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #fef3c7;" title="Beige"></span>
+                        <span class="rec-color-dot" style="background-color: #030712;" title="Black"></span>
+                        <span class="rec-color-dot" style="background-color: #ffffff;" title="White"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 2: Black Polo Shirt -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/model_black_polo.png" alt="Black Polo Shirt">
+                    <span class="rec-match-badge glow-purple">92% Match</span>
+                    <button class="rec-heart-btn active" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Athletic Fit</span>
+                      <h4>Black Polo Shirt</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹2,899</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #030712;" title="Black"></span>
+                        <span class="rec-color-dot" style="background-color: #5b21b6;" title="Purple"></span>
+                        <span class="rec-color-dot" style="background-color: #ffffff;" title="White"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 3: Black Cargo Pants -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/product_cargo_pants.png" alt="Black Cargo Pants">
+                    <span class="rec-match-badge">94% Match</span>
+                    <button class="rec-heart-btn" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Techwear</span>
+                      <h4>Black Cargo Pants</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹4,199</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #030712;" title="Black"></span>
+                        <span class="rec-color-dot" style="background-color: #1e3a8a;" title="Blue"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 4: Minimal White Sneakers -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/product_white_sneakers.png" alt="Minimal White Sneakers">
+                    <span class="rec-match-badge glow-purple">96% Match</span>
+                    <button class="rec-heart-btn active" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Classic Leather</span>
+                      <h4>Minimal White Sneakers</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹5,499</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #ffffff;" title="White"></span>
+                        <span class="rec-color-dot" style="background-color: #030712;" title="Black"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 5: Oversized Hoodie -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/product_minimal_hoodie.png" alt="Oversized Hoodie" style="filter: grayscale(0.5) brightness(0.85);">
+                    <span class="rec-match-badge">90% Match</span>
+                    <button class="rec-heart-btn" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Heavy Cotton</span>
+                      <h4>Oversized Hoodie</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹3,999</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #111827;" title="Charcoal"></span>
+                        <span class="rec-color-dot" style="background-color: #7c3aed;" title="Purple"></span>
+                        <span class="rec-color-dot" style="background-color: #fef3c7;" title="Beige"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 6: Silver Chain -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/product_graphic_tee.png" alt="Silver Chain" style="filter: grayscale(1) contrast(1.3) brightness(0.9);">
+                    <span class="rec-match-badge">88% Match</span>
+                    <button class="rec-heart-btn" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Accessory</span>
+                      <h4>Silver Chain</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹1,899</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #d1d5db;" title="Silver"></span>
+                        <span class="rec-color-dot" style="background-color: #fbbf24;" title="Gold"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+
+            <!-- SECTION 3 — OUTFIT RECOMMENDATIONS -->
+            <section class="recommendations-section-container">
+              <div class="recommendations-section-header">
+                <h2>Outfit Recommendations</h2>
+                <span class="section-count">4 Styles</span>
+              </div>
+
+              <div class="outfit-recommendations-grid">
+                
+                <!-- Card 1: Urban Minimalist -->
+                <div class="outfit-rec-card">
+                  <img src="assets/looks_urban_mini.png" alt="Urban Minimalist" class="outfit-bg-img">
+                  <div class="outfit-gradient-overlay">
+                    <div class="outfit-card-header">
+                      <span class="outfit-match-pill">95% Match</span>
+                      <div class="outfit-card-actions">
+                        <button class="outfit-action-btn" aria-label="Bookmark"><i data-lucide="bookmark" style="width: 14px; height: 14px;"></i></button>
+                        <button class="outfit-action-btn active" aria-label="Like"><i data-lucide="heart" fill="currentColor" style="width: 14px; height: 14px;"></i></button>
+                      </div>
+                    </div>
+                    
+                    <div class="outfit-card-footer">
+                      <div class="outfit-text-block">
+                        <h3>Urban Minimalist</h3>
+                        <div class="outfit-tags">
+                          <span class="outfit-tag">Minimalist</span>
+                          <span class="outfit-tag">Techwear</span>
+                        </div>
+                      </div>
+                      <div class="outfit-price-row">
+                        <span class="outfit-price-label">EST. OUTFIT PRICE</span>
+                        <span class="outfit-price-num">₹12,499</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 2: Night Elegance -->
+                <div class="outfit-rec-card">
+                  <img src="assets/looks_night_ele.png" alt="Night Elegance" class="outfit-bg-img">
+                  <div class="outfit-gradient-overlay">
+                    <div class="outfit-card-header">
+                      <span class="outfit-match-pill">92% Match</span>
+                      <div class="outfit-card-actions">
+                        <button class="outfit-action-btn" aria-label="Bookmark"><i data-lucide="bookmark" style="width: 14px; height: 14px;"></i></button>
+                        <button class="outfit-action-btn" aria-label="Like"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                      </div>
+                    </div>
+                    
+                    <div class="outfit-card-footer">
+                      <div class="outfit-text-block">
+                        <h3>Night Elegance</h3>
+                        <div class="outfit-tags">
+                          <span class="outfit-tag">Formal</span>
+                          <span class="outfit-tag">Velvet</span>
+                        </div>
+                      </div>
+                      <div class="outfit-price-row">
+                        <span class="outfit-price-label">EST. OUTFIT PRICE</span>
+                        <span class="outfit-price-num">₹18,999</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 3: Street Dominator -->
+                <div class="outfit-rec-card">
+                  <img src="assets/looks_street_dom.png" alt="Street Dominator" class="outfit-bg-img">
+                  <div class="outfit-gradient-overlay">
+                    <div class="outfit-card-header">
+                      <span class="outfit-match-pill">94% Match</span>
+                      <div class="outfit-card-actions">
+                        <button class="outfit-action-btn" aria-label="Bookmark"><i data-lucide="bookmark" style="width: 14px; height: 14px;"></i></button>
+                        <button class="outfit-action-btn active" aria-label="Like"><i data-lucide="heart" fill="currentColor" style="width: 14px; height: 14px;"></i></button>
+                      </div>
+                    </div>
+                    
+                    <div class="outfit-card-footer">
+                      <div class="outfit-text-block">
+                        <h3>Street Dominator</h3>
+                        <div class="outfit-tags">
+                          <span class="outfit-tag">Streetwear</span>
+                          <span class="outfit-tag">Utility</span>
+                        </div>
+                      </div>
+                      <div class="outfit-price-row">
+                        <span class="outfit-price-label">EST. OUTFIT PRICE</span>
+                        <span class="outfit-price-num">₹14,499</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 4: Casual Comfort -->
+                <div class="outfit-rec-card">
+                  <img src="assets/looks_casual_com.png" alt="Casual Comfort" class="outfit-bg-img">
+                  <div class="outfit-gradient-overlay">
+                    <div class="outfit-card-header">
+                      <span class="outfit-match-pill">89% Match</span>
+                      <div class="outfit-card-actions">
+                        <button class="outfit-action-btn" aria-label="Bookmark"><i data-lucide="bookmark" style="width: 14px; height: 14px;"></i></button>
+                        <button class="outfit-action-btn" aria-label="Like"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                      </div>
+                    </div>
+                    
+                    <div class="outfit-card-footer">
+                      <div class="outfit-text-block">
+                        <h3>Casual Comfort</h3>
+                        <div class="outfit-tags">
+                          <span class="outfit-tag">Casual</span>
+                          <span class="outfit-tag">Knitwear</span>
+                        </div>
+                      </div>
+                      <div class="outfit-price-row">
+                        <span class="outfit-price-label">EST. OUTFIT PRICE</span>
+                        <span class="outfit-price-num">₹9,899</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+
+            <!-- SECTION 4 — TRENDING RIGHT NOW -->
+            <section class="recommendations-section-container">
+              <div class="recommendations-section-header">
+                <h2>Trending Right Now</h2>
+                <span class="section-count">Live Insights</span>
+              </div>
+
+              <div class="trending-list-wrapper">
+                <div class="trending-list">
+                  <!-- Row 1: Oversized Tees -->
+                  <div class="trending-row">
+                    <div class="trend-left">
+                      <span class="trend-number">01</span>
+                      <div class="trend-thumbnail-wrap">
+                        <img src="assets/product_graphic_tee.png" alt="Oversized Tees">
+                      </div>
+                      <div class="trend-info">
+                        <span class="trend-title">Oversized Tees</span>
+                        <span class="trend-tag">Active streetwear wearability</span>
+                      </div>
+                    </div>
+                    <span class="trend-right"><i data-lucide="trending-up"></i> +24%</span>
+                  </div>
+
+                  <!-- Row 2: Cargo Pants -->
+                  <div class="trending-row">
+                    <div class="trend-left">
+                      <span class="trend-number">02</span>
+                      <div class="trend-thumbnail-wrap">
+                        <img src="assets/product_cargo_pants.png" alt="Cargo Pants">
+                      </div>
+                      <div class="trend-info">
+                        <span class="trend-title">Cargo Pants</span>
+                        <span class="trend-tag">Technical pockets and modular shapes</span>
+                      </div>
+                    </div>
+                    <span class="trend-right"><i data-lucide="trending-up"></i> +18%</span>
+                  </div>
+
+                  <!-- Row 3: Minimal Sneakers -->
+                  <div class="trending-row">
+                    <div class="trend-left">
+                      <span class="trend-number">03</span>
+                      <div class="trend-thumbnail-wrap">
+                        <img src="assets/product_white_sneakers.png" alt="Minimal Sneakers">
+                      </div>
+                      <div class="trend-info">
+                        <span class="trend-title">Minimal Sneakers</span>
+                        <span class="trend-tag">Low profile white leather classics</span>
+                      </div>
+                    </div>
+                    <span class="trend-right"><i data-lucide="trending-up"></i> +31%</span>
+                  </div>
+
+                  <!-- Row 4: Neutral Shades -->
+                  <div class="trending-row">
+                    <div class="trend-left">
+                      <span class="trend-number">04</span>
+                      <div class="trend-thumbnail-wrap">
+                        <img src="assets/looks_casual_com.png" alt="Neutral Shades" style="object-position: top center;">
+                      </div>
+                      <div class="trend-info">
+                        <span class="trend-title">Neutral Shades</span>
+                        <span class="trend-tag">Warm beige, slate and sand textures</span>
+                      </div>
+                    </div>
+                    <span class="trend-right"><i data-lucide="trending-up"></i> +15%</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+
+            <!-- SECTION 5 — SEASONAL PICKS FOR YOU -->
+            <section class="recommendations-section-container">
+              <div class="recommendations-section-header">
+                <h2>Seasonal Picks For You</h2>
+                <span class="section-count">4 Items</span>
+              </div>
+
+              <div class="seasonal-recommendations-grid">
+                
+                <!-- Card 1: Light Jacket -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/model_brown_jacket.png" alt="Light Jacket">
+                    <span class="rec-match-badge">92% Match</span>
+                    <button class="rec-heart-btn active" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Structured Outerwear</span>
+                      <h4>Light Jacket</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹6,499</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #78350f;" title="Brown"></span>
+                        <span class="rec-color-dot" style="background-color: #030712;" title="Black"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 2: Knitted Polo -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/model_black_polo.png" alt="Knitted Polo" style="filter: sepia(0.2) saturate(1.1) brightness(0.9);">
+                    <span class="rec-match-badge glow-purple">89% Match</span>
+                    <button class="rec-heart-btn" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Smart Casual</span>
+                      <h4>Knitted Polo</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹3,199</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #d97706;" title="Amber"></span>
+                        <span class="rec-color-dot" style="background-color: #030712;" title="Black"></span>
+                        <span class="rec-color-dot" style="background-color: #ffffff;" title="White"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 3: Loafers -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/product_luxury_boots.png" alt="Loafers" style="filter: hue-rotate(15deg) brightness(0.8) saturate(1.1);">
+                    <span class="rec-match-badge">87% Match</span>
+                    <button class="rec-heart-btn" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Premium Suede</span>
+                      <h4>Loafers</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹5,899</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #451a03;" title="Dark Suede"></span>
+                        <span class="rec-color-dot" style="background-color: #030712;" title="Black"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 4: Linen Shirt -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/product_linen_overshirt.png" alt="Linen Shirt" style="filter: contrast(1.05) brightness(1.02);">
+                    <span class="rec-match-badge glow-purple">90% Match</span>
+                    <button class="rec-heart-btn active" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Relaxed Fitting</span>
+                      <h4>Linen Shirt</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹3,499</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #ffffff;" title="White"></span>
+                        <span class="rec-color-dot" style="background-color: #b45309;" title="Amber"></span>
+                        <span class="rec-color-dot" style="background-color: #fef3c7;" title="Beige"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+
+            <!-- BOTTOM STATS BAR -->
+            <div class="recommendations-stats-bar">
+              <div class="rec-stat-widget">
+                <span class="rec-stat-label">Recommendations</span>
+                <span class="rec-stat-value">23 <span>Items</span></span>
+              </div>
+              <div class="rec-stat-widget">
+                <span class="rec-stat-label">Outfit Ideas</span>
+                <span class="rec-stat-value">12 <span>Styles</span></span>
+              </div>
+              <div class="rec-stat-widget">
+                <span class="rec-stat-label">Style Match</span>
+                <span class="rec-stat-value">87% <span>Match</span></span>
+              </div>
+              <div class="rec-stat-widget">
+                <span class="rec-stat-label">New Arrivals</span>
+                <span class="rec-stat-value">8 <span>Active</span></span>
+              </div>
+              <div class="rec-stat-widget">
+                <span class="rec-stat-label">Trending For You</span>
+                <span class="rec-stat-value">5 <span>Fits</span></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- UPGRADE TO PRO NEON GLASS MODAL -->
+  <div class="modal-overlay" id="modal-pro-upgrade">
+    <div class="modal-content glass-panel">
+      <button class="modal-close-btn" id="modal-close" aria-label="Close modal">
+        <i data-lucide="x"></i>
+      </button>
+      
+      <div class="modal-header">
+        <div class="modal-badge-wrapper">
+          <i data-lucide="crown" class="badge-icon"></i>
+          <span>AURAFIT PRO</span>
+        </div>
+        <h2>Elevate Your Fashion Reality</h2>
+        <p>Gain access to the world's most advanced clothing synthesis engine.</p>
+      </div>
+
+      <div class="modal-body-perks">
+        <div class="perk-item">
+          <div class="perk-icon-wrap"><i data-lucide="check" class="perk-check"></i></div>
+          <div class="perk-details">
+            <h3>Unlimited Real-Time Try-Ons</h3>
+            <p>Style clothing variations instantly without any rate limits.</p>
+          </div>
+        </div>
+
+        <div class="perk-item">
+          <div class="perk-icon-wrap"><i data-lucide="check" class="perk-check"></i></div>
+          <div class="perk-details">
+            <h3>Cinema-Grade Backdrop Synthesis</h3>
+            <p>Transport yourself into premium environments like luxury villas or yacht decks.</p>
+          </div>
+        </div>
+
+        <div class="perk-item">
+          <div class="perk-icon-wrap"><i data-lucide="check" class="perk-check"></i></div>
+          <div class="perk-details">
+            <h3>Personal AI Stylist Consultations</h3>
+            <p>24/7 fashion styling consultations regarding fit, contrast, and matching.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer-pricing">
+        <div class="modal-price-card active">
+          <div class="price-badge">BEST VALUE</div>
+          <span class="plan-period">ANNUAL BILLING</span>
+          <div class="plan-price-num">₹299<span>/mo</span></div>
+          <span class="plan-bill-detail">Billed yearly (₹3,588)</span>
+        </div>
+
+        <div class="modal-price-card">
+          <span class="plan-period">MONTHLY BILLING</span>
+          <div class="plan-price-num">₹399<span>/mo</span></div>
+          <span class="plan-bill-detail">Cancel subscription anytime</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary modal-action-btn" id="btn-modal-checkout">
+        <span>Upgrade My Style Now</span>
+        <i data-lucide="arrow-right"></i>
+      </button>
+      <p class="modal-secure-text"><i data-lucide="lock" class="sec-lock-icon"></i> Secured with 256-bit SSL encryption. Cancel anytime.</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="recommendations.js?v=4"></script>
+</body>
+</html>

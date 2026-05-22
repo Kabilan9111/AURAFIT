@@ -14,6 +14,10 @@
   
   <!-- Stylesheet -->
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="wardrobe.css">
+  <link rel="stylesheet" href="looks.css">
+  <link rel="stylesheet" href="recommendations.css">
+  <link rel="stylesheet" href="stylist.css">
   
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
@@ -91,12 +95,6 @@
             <a href="#" class="nav-item" id="nav-recommendations">
               <i data-lucide="thumbs-up"></i>
               <span>Recommendations</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-item" id="nav-community">
-              <i data-lucide="users"></i>
-              <span>Community</span>
             </a>
           </li>
           <li>
@@ -959,6 +957,2488 @@
 
         </div>
       </div>
+    </div> <!-- Close #page-tryon -->
+
+      <div id="page-wardrobe" class="page-content">
+        <div class="main-layout-container">
+          
+          <!-- WARDROBE HEADER -->
+          <header class="header-container">
+            <div class="header-heading-center">
+              <h1>My Wardrobe 👕</h1>
+              <p>Organize your favorite looks and fashion collections.</p>
+            </div>
+
+            <!-- Top Center Search Bar with Cyber Glow -->
+            <div class="header-search-bar futuristic-search-glow">
+              <i data-lucide="search" class="search-icon"></i>
+              <input type="text" placeholder="Search outfits, shirts, shoes, styles..." id="wardrobe-search-input">
+              <span class="search-shortcut">Ctrl K</span>
+            </div>
+
+            <div class="header-actions">
+              <button class="header-btn" id="btn-notifications-wardrobe" aria-label="Notifications">
+                <i data-lucide="bell"></i>
+                <span class="notification-dot"></span>
+              </button>
+              <button class="header-btn" id="btn-wishlist-header" aria-label="Wishlist">
+                <i data-lucide="heart" fill="currentColor"></i>
+                <span class="wishlist-count-badge" id="wishlist-counter-value">9</span>
+              </button>
+              <button class="header-btn" aria-label="Settings" id="btn-settings-wardrobe">
+                <i data-lucide="settings"></i>
+              </button>
+              <div class="header-user-avatar nav-to-profile">
+                <img src="assets/leon_walker_avatar.png" alt="Leon Walker">
+              </div>
+            </div>
+          </header>
+
+          <!-- THREE COLUMN WORKSPACE GRID -->
+          <div class="workspace-grid wardrobe-grid">
+            
+            <!-- COLUMN 1 & 2: WARDROBE MAIN CONTAINER -->
+            <div class="center-main-preview-workspace">
+              
+              <!-- TOP CATEGORY FILTERS -->
+              <div class="wardrobe-filters-container">
+                <!-- Row 1: Item types -->
+                <div class="filter-row filter-row-primary" id="wardrobe-primary-filters">
+                  <button class="filter-btn-pill active" data-item-type="all">All</button>
+                  <button class="filter-btn-pill" data-item-type="shirts">Shirts</button>
+                  <button class="filter-btn-pill" data-item-type="t-shirts">T-Shirts</button>
+                  <button class="filter-btn-pill" data-item-type="shoes">Shoes</button>
+                  <button class="filter-btn-pill" data-item-type="slippers">Slippers</button>
+                </div>
+
+                <!-- Row 2: Aesthetic types -->
+                <div class="filter-row filter-row-secondary" id="wardrobe-secondary-filters">
+                  <button class="filter-style-chip active" data-style-type="all">All Styles</button>
+                  <button class="filter-style-chip" data-style-type="casual">Casual</button>
+                  <button class="filter-style-chip" data-style-type="formal">Formal</button>
+                  <button class="filter-style-chip" data-style-type="college">College Day</button>
+                  <button class="filter-style-chip" data-style-type="outing">Outing</button>
+                  <button class="filter-style-chip" data-style-type="dating">Dating Night</button>
+                  <button class="filter-style-chip" data-style-type="party">Party Wear</button>
+                  <button class="filter-style-chip" data-style-type="streetwear">Streetwear</button>
+                  <button class="filter-style-chip" data-style-type="luxury">Luxury</button>
+                  <button class="filter-style-chip" data-style-type="gym">Gym</button>
+                  <button class="filter-style-chip" data-style-type="oversized">Oversized</button>
+                  <button class="filter-settings-btn" aria-label="Filter Settings">
+                    <i data-lucide="sliders-horizontal"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- MAIN PRODUCT GRID - EXACTLY 20 LUXURY FASHION CARDS -->
+              <div class="wardrobe-product-grid" id="wardrobe-items-grid">
+                
+                <!-- SHIRTS -->
+                <!-- Card 1: Beige Linen Shirt -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="casual college outing">
+                  <div class="p-card-image-wrap img-beige-tint">
+                    <img src="assets/product_linen_overshirt.png" alt="Beige Linen Shirt">
+                    <span class="badge-match-pct glow-green">95% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHIRT — PREMIUM LINEN</span>
+                    <h4>Beige Linen Shirt</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹3,499</span>
+                      <span class="original-price">₹4,500</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>95% AI Compatibility</span>
+                      <span>Saved May 18 • 14 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 2: Black Luxury Shirt -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="luxury formal dating">
+                  <div class="p-card-image-wrap img-dark-sepia">
+                    <img src="assets/product_satin_shirt.png" alt="Black Luxury Shirt">
+                    <span class="badge-match-pct glow-purple">93% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHIRT — LUXURY BLACK</span>
+                    <h4>Black Luxury Shirt</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹4,899</span>
+                      <span class="original-price">₹6,200</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>93% AI Compatibility</span>
+                      <span>Saved May 18 • 8 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 3: White Korean Fit Shirt -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="casual dating oversized">
+                  <div class="p-card-image-wrap img-bright-contrast">
+                    <img src="assets/product_linen_overshirt.png" alt="White Korean Fit Shirt">
+                    <span class="badge-match-pct glow-green">96% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHIRT — KOREAN FIT</span>
+                    <h4>White Korean Fit Shirt</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹3,200</span>
+                      <span class="original-price">₹4,200</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>96% AI Compatibility</span>
+                      <span>Saved May 17 • 18 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 4: Oversized Street Shirt -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="streetwear oversized">
+                  <div class="p-card-image-wrap img-grunge-dark">
+                    <img src="assets/product_linen_overshirt.png" alt="Oversized Street Shirt">
+                    <span class="badge-match-pct glow-purple">91% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHIRT — OVERSIZED STREET</span>
+                    <h4>Oversized Street Shirt</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹3,999</span>
+                      <span class="original-price">₹5,200</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>91% AI Compatibility</span>
+                      <span>Saved May 15 • 22 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 5: Satin Party Shirt -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="party luxury dating">
+                  <div class="p-card-image-wrap img-party-purple">
+                    <img src="assets/product_satin_shirt.png" alt="Satin Party Shirt">
+                    <span class="badge-match-pct glow-purple">89% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHIRT — SATIN PARTY</span>
+                    <h4>Satin Party Shirt</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹4,599</span>
+                      <span class="original-price">₹5,800</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>89% AI Compatibility</span>
+                      <span>Saved May 10 • 6 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- T-SHIRTS -->
+                <!-- Card 6: Minimal Black Tee -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="casual gym">
+                  <div class="p-card-image-wrap img-matte-dark">
+                    <img src="assets/product_minimal_hoodie.png" alt="Minimal Black Tee">
+                    <span class="badge-match-pct glow-green">94% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">TEE — MINIMALIST BLACK</span>
+                    <h4>Minimal Black Tee</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹1,899</span>
+                      <span class="original-price">₹2,499</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>94% AI Compatibility</span>
+                      <span>Saved May 19 • 30 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 7: Oversized Graphic Tee -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="streetwear oversized college">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_graphic_tee.png" alt="Oversized Graphic Tee">
+                    <span class="badge-match-pct glow-green">92% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">TEE — OVERSIZED GRAPHIC</span>
+                    <h4>Oversized Graphic Tee</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹2,499</span>
+                      <span class="original-price">₹3,500</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>92% AI Compatibility</span>
+                      <span>Saved May 19 • 15 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 8: Gym Fit Compression Tee -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="gym">
+                  <div class="p-card-image-wrap img-blue-performance">
+                    <img src="assets/product_minimal_hoodie.png" alt="Gym Fit Compression Tee">
+                    <span class="badge-match-pct glow-purple">87% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">TEE — COMPRESSION FITNESS</span>
+                    <h4>Gym Fit Compression Tee</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹2,199</span>
+                      <span class="original-price">₹2,999</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>87% AI Compatibility</span>
+                      <span>Saved May 14 • 12 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 9: Casual College Tee -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="college casual">
+                  <div class="p-card-image-wrap img-cyan-varsity">
+                    <img src="assets/product_graphic_tee.png" alt="Casual College Tee">
+                    <span class="badge-match-pct glow-green">90% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">TEE — COLLEGE CASUAL</span>
+                    <h4>Casual College Tee</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹2,299</span>
+                      <span class="original-price">₹3,200</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>90% AI Compatibility</span>
+                      <span>Saved May 08 • 16 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 10: Vintage Washed Tee -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="streetwear casual college">
+                  <div class="p-card-image-wrap img-washed-faded">
+                    <img src="assets/product_graphic_tee.png" alt="Vintage Washed Tee">
+                    <span class="badge-match-pct glow-purple">86% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">TEE — VINTAGE WASHED</span>
+                    <h4>Vintage Washed Tee</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹1,999</span>
+                      <span class="original-price">₹2,800</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>86% AI Compatibility</span>
+                      <span>Saved May 11 • 20 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SNEAKERS & SHOES -->
+                <!-- Card 11: Minimal White Sneakers -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="casual streetwear college">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_white_sneakers.png" alt="Minimal White Sneakers">
+                    <span class="badge-match-pct glow-green">96% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHOES — WHITE SNEAKER</span>
+                    <h4>Minimal White Sneakers</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹6,800</span>
+                      <span class="original-price">₹8,900</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>96% AI Compatibility</span>
+                      <span>Saved May 20 • 45 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 12: Luxury Black Boots -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="luxury formal dating">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_luxury_boots.png" alt="Luxury Black Boots">
+                    <span class="badge-match-pct glow-green">90% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHOES — LEATHER BOOTS</span>
+                    <h4>Luxury Black Boots</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹12,499</span>
+                      <span class="original-price">₹16,500</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>90% AI Compatibility</span>
+                      <span>Saved May 16 • 5 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 13: Chunky Street Sneakers -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="streetwear outing">
+                  <div class="p-card-image-wrap img-chunky-violet">
+                    <img src="assets/product_white_sneakers.png" alt="Chunky Street Sneakers">
+                    <span class="badge-match-pct glow-purple">92% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHOES — CHUNKY STREET</span>
+                    <h4>Chunky Street Sneakers</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹8,999</span>
+                      <span class="original-price">₹12,000</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>92% AI Compatibility</span>
+                      <span>Saved May 17 • 24 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 14: Formal Leather Shoes -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="formal luxury">
+                  <div class="p-card-image-wrap img-polished-sepia">
+                    <img src="assets/product_luxury_boots.png" alt="Formal Leather Shoes">
+                    <span class="badge-match-pct glow-purple">85% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHOES — FORMAL SHOES</span>
+                    <h4>Formal Leather Shoes</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹9,500</span>
+                      <span class="original-price">₹14,000</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>85% AI Compatibility</span>
+                      <span>Saved May 05 • 3 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 15: Casual Slip-ons -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="casual outing">
+                  <div class="p-card-image-wrap img-charcoal-knit">
+                    <img src="assets/product_white_sneakers.png" alt="Casual Slip-ons">
+                    <span class="badge-match-pct glow-purple">87% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHOES — SLIP-ONS</span>
+                    <h4>Casual Slip-ons</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹3,499</span>
+                      <span class="original-price">₹4,999</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>87% AI Compatibility</span>
+                      <span>Saved May 02 • 10 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SLIPPERS -->
+                <!-- Card 16: Minimal Slides -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="slippers" data-style-type="casual gym">
+                  <div class="p-card-image-wrap">
+                    <img src="assets/product_minimal_slides.png" alt="Minimal Slides">
+                    <span class="badge-match-pct glow-green">93% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SLIPPERS — MINIMAL SLIDES</span>
+                    <h4>Minimal Slides</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹2,499</span>
+                      <span class="original-price">₹3,500</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>93% AI Compatibility</span>
+                      <span>Saved May 18 • 38 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 17: Luxury Home Slippers -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="slippers" data-style-type="luxury">
+                  <div class="p-card-image-wrap img-velvet-ruby">
+                    <img src="assets/product_minimal_slides.png" alt="Luxury Home Slippers">
+                    <span class="badge-match-pct glow-purple">89% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SLIPPERS — LUXURY SLIPPERS</span>
+                    <h4>Luxury Home Slippers</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹3,200</span>
+                      <span class="original-price">₹4,500</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>89% AI Compatibility</span>
+                      <span>Saved May 15 • 11 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 18: Beach Slippers -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="slippers" data-style-type="casual outing">
+                  <div class="p-card-image-wrap img-sunny-teal">
+                    <img src="assets/product_minimal_slides.png" alt="Beach Slippers">
+                    <span class="badge-match-pct glow-purple">86% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SLIPPERS — BEACH SLIPPERS</span>
+                    <h4>Beach Slippers</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹1,599</span>
+                      <span class="original-price">₹2,200</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>86% AI Compatibility</span>
+                      <span>Saved May 12 • 7 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 19: Casual Daily Wear -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="slippers" data-style-type="casual">
+                  <div class="p-card-image-wrap img-sand-sepia">
+                    <img src="assets/product_minimal_slides.png" alt="Casual Daily Wear">
+                    <span class="badge-match-pct glow-green">88% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SLIPPERS — DAILY CASUAL</span>
+                    <h4>Casual Daily Wear</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹1,850</span>
+                      <span class="original-price">₹2,500</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>88% AI Compatibility</span>
+                      <span>Saved May 08 • 29 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 20: Streetwear Slides -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="slippers" data-style-type="streetwear oversized">
+                  <div class="p-card-image-wrap img-dark-violet-glow">
+                    <img src="assets/product_minimal_slides.png" alt="Streetwear Slides">
+                    <span class="badge-match-pct glow-purple">91% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SLIPPERS — STREET SLIDES</span>
+                    <h4>Streetwear Slides</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹2,800</span>
+                      <span class="original-price">₹3,800</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>91% AI Compatibility</span>
+                      <span>Saved May 09 • 19 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              <!-- WARDROBE BOTTOM STATS ROW -->
+              <div class="wardrobe-bottom-stats-row">
+                
+                <div class="glass-panel stat-card-mini">
+                  <div class="stat-icon-wrap"><i data-lucide="bookmark"></i></div>
+                  <div class="stat-texts">
+                    <strong class="stat-count-num">148</strong>
+                    <span class="stat-label-text">Saved Outfits</span>
+                  </div>
+                </div>
+
+                <div class="glass-panel stat-card-mini">
+                  <div class="stat-icon-wrap"><i data-lucide="shirt"></i></div>
+                  <div class="stat-texts">
+                    <strong class="stat-count-num">52</strong>
+                    <span class="stat-label-text">Shirts</span>
+                  </div>
+                </div>
+
+                <div class="glass-panel stat-card-mini">
+                  <div class="stat-icon-wrap"><i data-lucide="footprints"></i></div>
+                  <div class="stat-texts">
+                    <strong class="stat-count-num">24</strong>
+                    <span class="stat-label-text">Shoes</span>
+                  </div>
+                </div>
+
+                <div class="glass-panel stat-card-mini">
+                  <div class="stat-icon-wrap"><i data-lucide="smile"></i></div>
+                  <div class="stat-texts">
+                    <strong class="stat-count-num">12</strong>
+                    <span class="stat-label-text">Slippers</span>
+                  </div>
+                </div>
+
+                <div class="glass-panel stat-card-mini">
+                  <div class="stat-icon-wrap"><i data-lucide="line-chart"></i></div>
+                  <div class="stat-texts">
+                    <strong class="stat-count-num">94%</strong>
+                    <span class="stat-label-text">Style Consistency %</span>
+                  </div>
+                </div>
+
+              </div>
+
+            </div>
+
+            <!-- COLUMN 3: RIGHT PANEL (Wardrobe Analytics Insights) -->
+            <aside class="right-insights-panel wardrobe-right-panel">
+              
+              <!-- SECTION 1: YOUR FASHION IDENTITY -->
+              <section class="glass-panel fashion-identity-card">
+                <div class="dna-header">
+                  <h3>Your Fashion Identity</h3>
+                  <span class="dna-badge-pill">Analyzed</span>
+                </div>
+                
+                <div class="dna-main-desc">
+                  <h4 class="text-neon-glow-purple">Luxury Minimalist</h4>
+                  <p>Your dominant wardrobe vibe</p>
+                </div>
+
+                <!-- 4 Circular Analytics Rings -->
+                <div class="wardrobe-score-rings-quad">
+                  
+                  <div class="score-ring-box">
+                    <div class="svg-ring-wrap">
+                      <svg class="score-ring-svg" viewBox="0 0 36 36">
+                        <path class="score-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="score-fill ring-purple" stroke-dasharray="90, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                      </svg>
+                      <div class="score-label-num">90%</div>
+                    </div>
+                    <span class="ring-title-label">Casual Score</span>
+                  </div>
+
+                  <div class="score-ring-box">
+                    <div class="svg-ring-wrap">
+                      <svg class="score-ring-svg" viewBox="0 0 36 36">
+                        <path class="score-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="score-fill ring-green" stroke-dasharray="82, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                      </svg>
+                      <div class="score-label-num">82%</div>
+                    </div>
+                    <span class="ring-title-label">Formal Score</span>
+                  </div>
+
+                  <div class="score-ring-box">
+                    <div class="svg-ring-wrap">
+                      <svg class="score-ring-svg" viewBox="0 0 36 36">
+                        <path class="score-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="score-fill ring-blue" stroke-dasharray="88, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                      </svg>
+                      <div class="score-label-num">88%</div>
+                    </div>
+                    <span class="ring-title-label">Streetwear</span>
+                  </div>
+
+                  <div class="score-ring-box">
+                    <div class="svg-ring-wrap">
+                      <svg class="score-ring-svg" viewBox="0 0 36 36">
+                        <path class="score-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                        <path class="score-fill ring-neon-purple-glow" stroke-dasharray="74, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
+                      </svg>
+                      <div class="score-label-num">74%</div>
+                    </div>
+                    <span class="ring-title-label">Party Score</span>
+                  </div>
+
+                </div>
+              </section>
+
+              <!-- SECTION 2: MOST WORN CATEGORIES -->
+              <section class="glass-panel most-worn-categories-card">
+                <h3>Most Worn Categories</h3>
+                
+                <div class="dna-progress-bars-stack">
+                  <!-- Bar 1 -->
+                  <div class="dna-bar-item">
+                    <div class="bar-labels">
+                      <span>Shirts</span>
+                      <strong>42%</strong>
+                    </div>
+                    <div class="dna-progress-track">
+                      <div class="dna-progress-fill glow-track-fill" style="width: 42%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Bar 2 -->
+                  <div class="dna-bar-item">
+                    <div class="bar-labels">
+                      <span>Sneakers</span>
+                      <strong>28%</strong>
+                    </div>
+                    <div class="dna-progress-track">
+                      <div class="dna-progress-fill glow-track-fill" style="width: 28%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Bar 3 -->
+                  <div class="dna-bar-item">
+                    <div class="bar-labels">
+                      <span>Oversized Fits</span>
+                      <strong>18%</strong>
+                    </div>
+                    <div class="dna-progress-track">
+                      <div class="dna-progress-fill glow-track-fill" style="width: 18%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Bar 4 -->
+                  <div class="dna-bar-item">
+                    <div class="bar-labels">
+                      <span>Dark Aesthetic</span>
+                      <strong>12%</strong>
+                    </div>
+                    <div class="dna-progress-track">
+                      <div class="dna-progress-fill glow-track-fill" style="width: 12%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- SECTION 3: AI WARDROBE SUGGESTIONS -->
+              <section class="glass-panel wardrobe-suggestions-card">
+                <h3>AI Wardrobe Suggestions</h3>
+                
+                <div class="suggestions-stack-compact">
+                  
+                  <div class="suggestion-item-card suggestion-glow-hover">
+                    <div class="s-icon"><i data-lucide="leaf"></i></div>
+                    <div class="s-details">
+                      <h4>Earth-Tone Recommendations</h4>
+                      <p>Add more earth-tone shirts</p>
+                    </div>
+                  </div>
+
+                  <div class="suggestion-item-card suggestion-glow-hover">
+                    <div class="s-icon"><i data-lucide="layers"></i></div>
+                    <div class="s-details">
+                      <h4>Matching Essentials</h4>
+                      <p>White sneakers pair with 78% wardrobe</p>
+                    </div>
+                  </div>
+
+                  <div class="suggestion-item-card suggestion-glow-hover">
+                    <div class="s-icon"><i data-lucide="sparkles"></i></div>
+                    <div class="s-details">
+                      <h4>Accessory Suggestions</h4>
+                      <p>Add layered accessories</p>
+                    </div>
+                  </div>
+
+                </div>
+              </section>
+
+              <!-- SECTION 4: RECENTLY ADDED -->
+              <section class="glass-panel recently-added-card">
+                <h3>Recently Added</h3>
+                
+                <div class="recently-added-scroller">
+                  
+                  <div class="compact-product-card compact-glow-hover">
+                    <img src="assets/product_linen_overshirt.png" alt="Beige Linen Shirt" class="p-thumb">
+                    <div class="p-details">
+                      <h4>Beige Linen Shirt</h4>
+                      <span class="p-price">₹3,499</span>
+                    </div>
+                    <div class="p-meta">
+                      <span class="p-match-pct-small">95%</span>
+                    </div>
+                  </div>
+
+                  <div class="compact-product-card compact-glow-hover">
+                    <img src="assets/product_white_sneakers.png" alt="White Sneakers" class="p-thumb">
+                    <div class="p-details">
+                      <h4>Minimal White Sneakers</h4>
+                      <span class="p-price">₹6,800</span>
+                    </div>
+                    <div class="p-meta">
+                      <span class="p-match-pct-small">96%</span>
+                    </div>
+                  </div>
+
+                  <div class="compact-product-card compact-glow-hover">
+                    <img src="assets/product_luxury_boots.png" alt="Black Boots" class="p-thumb">
+                    <div class="p-details">
+                      <h4>Luxury Black Boots</h4>
+                      <span class="p-price">₹12,499</span>
+                    </div>
+                    <div class="p-meta">
+                      <span class="p-match-pct-small">90%</span>
+                    </div>
+                  </div>
+
+                </div>
+              </section>
+
+            </aside>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- MY LOOKS PAGE -->
+      <div id="page-looks" class="page-content">
+        <div class="main-layout-container">
+          
+          <!-- LOOKS HEADER -->
+          <header class="header-container">
+            <div class="header-heading-center">
+              <h1>My Looks ✨</h1>
+              <p>Curated outfits, moodboards and style ideas for every occasion.</p>
+            </div>
+
+            <!-- Top Search Bar with Cyber Glow -->
+            <div class="header-search-bar futuristic-search-glow">
+              <i data-lucide="search" class="search-icon"></i>
+              <input type="text" placeholder="Search looks, moods, styles…" id="looks-search-input">
+              <span class="search-shortcut">Ctrl K</span>
+            </div>
+
+            <div class="header-actions">
+              <button class="header-btn" id="btn-notifications-looks" aria-label="Notifications">
+                <i data-lucide="bell"></i>
+                <span class="notification-dot"></span>
+              </button>
+              <button class="header-btn" id="btn-wishlist-header" aria-label="Wishlist">
+                <i data-lucide="heart" fill="currentColor"></i>
+                <span class="wishlist-count-badge" id="wishlist-counter-value">9</span>
+              </button>
+              <button class="header-btn" aria-label="Settings" id="btn-settings-looks">
+                <i data-lucide="settings"></i>
+              </button>
+              <div class="header-user-avatar nav-to-profile">
+                <img src="assets/leon_walker_avatar.png" alt="Leon Walker">
+              </div>
+            </div>
+          </header>
+
+          <!-- NAV CONTROLS: Segmented Tabs & Filters -->
+          <div class="looks-nav-controls">
+            <!-- Segmented Tabs -->
+            <div class="looks-tab-bar">
+              <button class="looks-tab-btn active" data-tab-type="all-looks">All Looks</button>
+              <button class="looks-tab-btn" data-tab-type="saved-looks">Saved Looks</button>
+              <button class="looks-tab-btn" data-tab-type="recent">Recent</button>
+              <button class="looks-tab-btn" data-tab-type="trending">Trending</button>
+            </div>
+
+            <!-- Filter Pills Row -->
+            <div class="looks-filter-row">
+              <button class="looks-filter-pill active" data-style-type="all">All</button>
+              <button class="looks-filter-pill" data-style-type="casual">Casual</button>
+              <button class="looks-filter-pill" data-style-type="streetwear">Streetwear</button>
+              <button class="looks-filter-pill" data-style-type="formal">Formal</button>
+              <button class="looks-filter-pill" data-style-type="luxury">Luxury</button>
+              <button class="looks-filter-pill" data-style-type="party">Party</button>
+              <button class="looks-filter-pill" data-style-type="gym">Gym</button>
+              <button class="looks-filter-pill" data-style-type="college">College</button>
+              <button class="looks-filter-pill" data-style-type="datenight">Date Night</button>
+            </div>
+          </div>
+
+          <!-- MAIN LOOKS GRID WORKSPACE -->
+          <div class="looks-main-grid">
+
+            <!-- 1. FEATURED LOOKS -->
+            <section class="looks-section-container">
+              <div class="looks-section-header">
+                <h2>Featured Looks</h2>
+                <span class="section-count">4 Curated</span>
+              </div>
+
+              <div class="featured-looks-grid">
+                
+                <!-- Card 1: Urban Minimalist -->
+                <div class="featured-look-card" data-style-type="casual luxury college" data-tab-type="all-looks recent">
+                  <div class="featured-card-img-wrapper">
+                    <img src="assets/looks_urban_mini.png" alt="Urban Minimalist">
+                    <span class="featured-match-badge">95% Match</span>
+                  </div>
+                  <div class="featured-card-content">
+                    <div class="featured-card-text">
+                      <h3>Urban Minimalist</h3>
+                      <p>Structured tech trench coat, dark-charcoal turtleneck, and sleek cyber-metallic accessories.</p>
+                    </div>
+                    <div class="featured-card-footer">
+                      <div class="featured-likes">
+                        <i data-lucide="heart"></i>
+                        <span>1.4K Likes</span>
+                      </div>
+                      <div class="featured-card-actions">
+                        <button class="looks-action-btn" aria-label="Bookmark"><i data-lucide="bookmark"></i></button>
+                        <button class="looks-action-btn" aria-label="Like"><i data-lucide="heart"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 2: Night Elegance -->
+                <div class="featured-look-card" data-style-type="formal luxury datenight" data-tab-type="all-looks trending">
+                  <div class="featured-card-img-wrapper">
+                    <img src="assets/looks_night_ele.png" alt="Night Elegance" class="img-tint-sunset">
+                    <span class="featured-match-badge">92% Match</span>
+                  </div>
+                  <div class="featured-card-content">
+                    <div class="featured-card-text">
+                      <h3>Night Elegance</h3>
+                      <p>Plush velvet deep purple tuxedo jacket with an open-collar premium satin silk shirt.</p>
+                    </div>
+                    <div class="featured-card-footer">
+                      <div class="featured-likes">
+                        <i data-lucide="heart"></i>
+                        <span>2.8K Likes</span>
+                      </div>
+                      <div class="featured-card-actions">
+                        <button class="looks-action-btn" aria-label="Bookmark"><i data-lucide="bookmark"></i></button>
+                        <button class="looks-action-btn" aria-label="Like"><i data-lucide="heart"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 3: Street Dominator -->
+                <div class="featured-look-card" data-style-type="streetwear party" data-tab-type="all-looks recent trending">
+                  <div class="featured-card-img-wrapper">
+                    <img src="assets/looks_street_dom.png" alt="Street Dominator">
+                    <span class="featured-match-badge">94% Match</span>
+                  </div>
+                  <div class="featured-card-content">
+                    <div class="featured-card-text">
+                      <h3>Street Dominator</h3>
+                      <p>Futuristic tactical heavy-strap utility cargo vest paired with an oversized dark technical hoodie.</p>
+                    </div>
+                    <div class="featured-card-footer">
+                      <div class="featured-likes">
+                        <i data-lucide="heart"></i>
+                        <span>3.1K Likes</span>
+                      </div>
+                      <div class="featured-card-actions">
+                        <button class="looks-action-btn" aria-label="Bookmark"><i data-lucide="bookmark"></i></button>
+                        <button class="looks-action-btn" aria-label="Like"><i data-lucide="heart"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 4: Casual Comfort -->
+                <div class="featured-look-card" data-style-type="casual college" data-tab-type="all-looks recent">
+                  <div class="featured-card-img-wrapper">
+                    <img src="assets/looks_casual_com.png" alt="Casual Comfort">
+                    <span class="featured-match-badge">89% Match</span>
+                  </div>
+                  <div class="featured-card-content">
+                    <div class="featured-card-text">
+                      <h3>Casual Comfort</h3>
+                      <p>Premium oversized heavy knit sweater in deep violet-gray with relaxed dark trousers.</p>
+                    </div>
+                    <div class="featured-card-footer">
+                      <div class="featured-likes">
+                        <i data-lucide="heart"></i>
+                        <span>1.9K Likes</span>
+                      </div>
+                      <div class="featured-card-actions">
+                        <button class="looks-action-btn" aria-label="Bookmark"><i data-lucide="bookmark"></i></button>
+                        <button class="looks-action-btn" aria-label="Like"><i data-lucide="heart"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+            <!-- 2. LOOKBOOKS SECTION -->
+            <section class="looks-section-container">
+              <div class="looks-section-header">
+                <h2>Lookbooks</h2>
+                <span class="section-count">8 Collections</span>
+              </div>
+
+              <div class="lookbooks-grid">
+                
+                <!-- Card 1: Summer Essentials -->
+                <div class="lookbook-card" data-style-type="casual college">
+                  <img src="assets/looks_casual_com.png" alt="Summer Essentials" class="lookbook-bg-img img-tint-sunset">
+                  <div class="lookbook-overlay">
+                    <h3>Summer Essentials</h3>
+                    <div class="lookbook-info">
+                      <span class="lookbook-count">6 Looks</span>
+                      <span class="lookbook-arrow">View <i data-lucide="arrow-right" style="width:12px;height:12px;margin-left:4px;"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 2: Monochrome Mood -->
+                <div class="lookbook-card" data-style-type="formal streetwear luxury">
+                  <img src="assets/looks_urban_mini.png" alt="Monochrome Mood" class="lookbook-bg-img img-tint-mono">
+                  <div class="lookbook-overlay">
+                    <h3>Monochrome Mood</h3>
+                    <div class="lookbook-info">
+                      <span class="lookbook-count">12 Looks</span>
+                      <span class="lookbook-arrow">View <i data-lucide="arrow-right" style="width:12px;height:12px;margin-left:4px;"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 3: Date Night Edit -->
+                <div class="lookbook-card" data-style-type="formal luxury datenight">
+                  <img src="assets/looks_night_ele.png" alt="Date Night Edit" class="lookbook-bg-img img-tint-warm">
+                  <div class="lookbook-overlay">
+                    <h3>Date Night Edit</h3>
+                    <div class="lookbook-info">
+                      <span class="lookbook-count">8 Looks</span>
+                      <span class="lookbook-arrow">View <i data-lucide="arrow-right" style="width:12px;height:12px;margin-left:4px;"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 4: Streetwear Culture -->
+                <div class="lookbook-card" data-style-type="streetwear party">
+                  <img src="assets/looks_street_dom.png" alt="Streetwear Culture" class="lookbook-bg-img img-tint-neon">
+                  <div class="lookbook-overlay">
+                    <h3>Streetwear Culture</h3>
+                    <div class="lookbook-info">
+                      <span class="lookbook-count">15 Looks</span>
+                      <span class="lookbook-arrow">View <i data-lucide="arrow-right" style="width:12px;height:12px;margin-left:4px;"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 5: Gym Grind -->
+                <div class="lookbook-card" data-style-type="gym">
+                  <img src="assets/looks_street_dom.png" alt="Gym Grind" class="lookbook-bg-img img-tint-cool">
+                  <div class="lookbook-overlay">
+                    <h3>Gym Grind</h3>
+                    <div class="lookbook-info">
+                      <span class="lookbook-count">5 Looks</span>
+                      <span class="lookbook-arrow">View <i data-lucide="arrow-right" style="width:12px;height:12px;margin-left:4px;"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 6: Luxury Staples -->
+                <div class="lookbook-card" data-style-type="luxury formal">
+                  <img src="assets/looks_urban_mini.png" alt="Luxury Staples" class="lookbook-bg-img img-tint-vintage">
+                  <div class="lookbook-overlay">
+                    <h3>Luxury Staples</h3>
+                    <div class="lookbook-info">
+                      <span class="lookbook-count">10 Looks</span>
+                      <span class="lookbook-arrow">View <i data-lucide="arrow-right" style="width:12px;height:12px;margin-left:4px;"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 7: Daily Casual -->
+                <div class="lookbook-card" data-style-type="casual college">
+                  <img src="assets/looks_casual_com.png" alt="Daily Casual" class="lookbook-bg-img img-tint-emerald">
+                  <div class="lookbook-overlay">
+                    <h3>Daily Casual</h3>
+                    <div class="lookbook-info">
+                      <span class="lookbook-count">9 Looks</span>
+                      <span class="lookbook-arrow">View <i data-lucide="arrow-right" style="width:12px;height:12px;margin-left:4px;"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 8: Airport Fit -->
+                <div class="lookbook-card" data-style-type="casual streetwear">
+                  <img src="assets/looks_casual_com.png" alt="Airport Fit" class="lookbook-bg-img img-tint-mono">
+                  <div class="lookbook-overlay">
+                    <h3>Airport Fit</h3>
+                    <div class="lookbook-info">
+                      <span class="lookbook-count">7 Looks</span>
+                      <span class="lookbook-arrow">View <i data-lucide="arrow-right" style="width:12px;height:12px;margin-left:4px;"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+            <!-- 3. SAVED LOOKS SECTION -->
+            <section class="looks-section-container">
+              <div class="looks-section-header">
+                <h2>Saved Looks</h2>
+                <span class="section-count">5 Saved</span>
+              </div>
+
+              <div class="saved-looks-grid">
+                
+                <!-- Saved 1: Airport Fit -->
+                <div class="saved-look-card" data-style-type="casual streetwear" data-tab-type="all-looks saved-looks recent">
+                  <div class="saved-card-img-wrapper">
+                    <img src="assets/looks_casual_com.png" alt="Airport Fit" class="img-tint-cool">
+                    <span class="saved-card-badge">AIRPORT</span>
+                    <button class="saved-card-heart-btn active" aria-label="Saved"><i data-lucide="heart" style="width:14px;height:14px;"></i></button>
+                    <span class="saved-card-match">91% Fit</span>
+                  </div>
+                  <div class="saved-card-content">
+                    <h4>Airport Fit</h4>
+                    <span class="saved-card-date">Saved May 18</span>
+                  </div>
+                </div>
+
+                <!-- Saved 2: Daily Casual -->
+                <div class="saved-look-card" data-style-type="casual college" data-tab-type="all-looks saved-looks">
+                  <div class="saved-card-img-wrapper">
+                    <img src="assets/looks_casual_com.png" alt="Daily Casual" class="img-tint-warm">
+                    <span class="saved-card-badge">DAILY</span>
+                    <button class="saved-card-heart-btn active" aria-label="Saved"><i data-lucide="heart" style="width:14px;height:14px;"></i></button>
+                    <span class="saved-card-match">88% Fit</span>
+                  </div>
+                  <div class="saved-card-content">
+                    <h4>Daily Casual</h4>
+                    <span class="saved-card-date">Saved May 16</span>
+                  </div>
+                </div>
+
+                <!-- Saved 3: Black Aesthetic -->
+                <div class="saved-look-card" data-style-type="streetwear luxury formal" data-tab-type="all-looks saved-looks trending">
+                  <div class="saved-card-img-wrapper">
+                    <img src="assets/looks_urban_mini.png" alt="Black Aesthetic" class="img-tint-mono">
+                    <span class="saved-card-badge">AESTHETIC</span>
+                    <button class="saved-card-heart-btn active" aria-label="Saved"><i data-lucide="heart" style="width:14px;height:14px;"></i></button>
+                    <span class="saved-card-match">96% Fit</span>
+                  </div>
+                  <div class="saved-card-content">
+                    <h4>Black Aesthetic</h4>
+                    <span class="saved-card-date">Saved May 14</span>
+                  </div>
+                </div>
+
+                <!-- Saved 4: Cafe Look -->
+                <div class="saved-look-card" data-style-type="casual college datenight" data-tab-type="all-looks saved-looks recent">
+                  <div class="saved-card-img-wrapper">
+                    <img src="assets/looks_casual_com.png" alt="Cafe Look" class="img-tint-vintage">
+                    <span class="saved-card-badge">CAFE</span>
+                    <button class="saved-card-heart-btn active" aria-label="Saved"><i data-lucide="heart" style="width:14px;height:14px;"></i></button>
+                    <span class="saved-card-match">90% Fit</span>
+                  </div>
+                  <div class="saved-card-content">
+                    <h4>Cafe Look</h4>
+                    <span class="saved-card-date">Saved May 12</span>
+                  </div>
+                </div>
+
+                <!-- Saved 5: Weekend Vibes -->
+                <div class="saved-look-card" data-style-type="streetwear party" data-tab-type="all-looks saved-looks recent trending">
+                  <div class="saved-card-img-wrapper">
+                    <img src="assets/looks_street_dom.png" alt="Weekend Vibes" class="img-tint-neon">
+                    <span class="saved-card-badge">WEEKEND</span>
+                    <button class="saved-card-heart-btn active" aria-label="Saved"><i data-lucide="heart" style="width:14px;height:14px;"></i></button>
+                    <span class="saved-card-match">93% Fit</span>
+                  </div>
+                  <div class="saved-card-content">
+                    <h4>Weekend Vibes</h4>
+                    <span class="saved-card-date">Saved May 10</span>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+            <!-- BOTTOM STATS BAR -->
+            <div class="looks-stats-bar">
+              <div class="looks-stat-widget">
+                <span class="looks-stat-label">Saved Looks</span>
+                <span class="looks-stat-value">42 <span>Looks</span></span>
+              </div>
+              <div class="looks-stat-widget">
+                <span class="looks-stat-label">Outfit Ideas</span>
+                <span class="looks-stat-value">128 <span>Styles</span></span>
+              </div>
+              <div class="looks-stat-widget">
+                <span class="looks-stat-label">Style Accuracy</span>
+                <span class="looks-stat-value">87% <span>Match</span></span>
+              </div>
+              <div class="looks-stat-widget">
+                <span class="looks-stat-label">Lookbooks</span>
+                <span class="looks-stat-value">7 <span>Active</span></span>
+              </div>
+              <div class="looks-stat-widget">
+                <span class="looks-stat-label">Total Likes</span>
+                <span class="looks-stat-value">12K <span>Likes</span></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- RECOMMENDATIONS PAGE -->
+      <div id="page-recommendations" class="page-content">
+        <div class="main-layout-container">
+          
+          <!-- RECOMMENDATIONS HEADER -->
+          <header class="header-container">
+            <div class="header-heading-center">
+              <h1>Recommendations ✨</h1>
+              <p>AI-powered suggestions tailored to your style, preferences and goals.</p>
+            </div>
+
+            <!-- Top Search Bar with Cyber Glow -->
+            <div class="header-search-bar futuristic-search-glow">
+              <i data-lucide="search" class="search-icon"></i>
+              <input type="text" placeholder="Search items, styles, brands…" id="recommendations-search-input">
+              <span class="search-shortcut">Ctrl K</span>
+            </div>
+
+            <div class="header-actions">
+              <button class="header-btn" id="btn-notifications-rec" aria-label="Notifications">
+                <i data-lucide="bell"></i>
+                <span class="notification-dot"></span>
+              </button>
+              <button class="header-btn" id="btn-wishlist-header" aria-label="Wishlist">
+                <i data-lucide="heart" fill="currentColor"></i>
+                <span class="wishlist-count-badge" id="wishlist-counter-value">9</span>
+              </button>
+              <button class="header-btn" aria-label="Settings" id="btn-settings-rec">
+                <i data-lucide="settings"></i>
+              </button>
+              <div class="header-user-avatar nav-to-profile">
+                <img src="assets/leon_walker_avatar.png" alt="Leon Walker">
+              </div>
+            </div>
+          </header>
+
+          <!-- MAIN RECOMMENDATIONS GRID WORKSPACE -->
+          <div class="recommendations-main-grid">
+
+            <!-- SECTION 1 — STYLE DNA PANEL -->
+            <section class="style-dna-panel">
+              
+              <!-- Left Column: DNA metrics -->
+              <div class="dna-column">
+                <div class="dna-heading">
+                  <h3>Your Style DNA</h3>
+                  <p>Based on your wardrobe, looks and daily style patterns.</p>
+                </div>
+                
+                <div class="dna-progress-list">
+                  <!-- Progress 1: Minimalist -->
+                  <div class="dna-progress-item">
+                    <div class="dna-progress-info">
+                      <span class="dna-progress-label">Minimalist</span>
+                      <span class="dna-progress-value">92%</span>
+                    </div>
+                    <div class="dna-progress-bar-bg">
+                      <div class="dna-progress-bar-fill" style="width: 92%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Progress 2: Modern -->
+                  <div class="dna-progress-item">
+                    <div class="dna-progress-info">
+                      <span class="dna-progress-label">Modern</span>
+                      <span class="dna-progress-value">88%</span>
+                    </div>
+                    <div class="dna-progress-bar-bg">
+                      <div class="dna-progress-bar-fill" style="width: 88%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Progress 3: Streetwear -->
+                  <div class="dna-progress-item">
+                    <div class="dna-progress-info">
+                      <span class="dna-progress-label">Streetwear</span>
+                      <span class="dna-progress-value">78%</span>
+                    </div>
+                    <div class="dna-progress-bar-bg">
+                      <div class="dna-progress-bar-fill" style="width: 78%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Progress 4: Dark Aesthetic -->
+                  <div class="dna-progress-item">
+                    <div class="dna-progress-info">
+                      <span class="dna-progress-label">Dark Aesthetic</span>
+                      <span class="dna-progress-value">71%</span>
+                    </div>
+                    <div class="dna-progress-bar-bg">
+                      <div class="dna-progress-bar-fill" style="width: 71%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Progress 5: Smart Casual -->
+                  <div class="dna-progress-item">
+                    <div class="dna-progress-info">
+                      <span class="dna-progress-label">Smart Casual</span>
+                      <span class="dna-progress-value">65%</span>
+                    </div>
+                    <div class="dna-progress-bar-bg">
+                      <div class="dna-progress-bar-fill" style="width: 65%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Center Column: circular AI visualizer -->
+              <div class="dna-center-visual">
+                <div class="dna-avatar-container">
+                  <!-- Floating Neon Glowing Rings -->
+                  <div class="dna-ring dna-ring-1"></div>
+                  <div class="dna-ring dna-ring-2"></div>
+                  <!-- Same Person Avatar -->
+                  <img src="assets/leon_walker_avatar.png" alt="Leon Walker" class="dna-avatar-image">
+                </div>
+                <span class="dna-accuracy-badge">Style Accuracy 87%</span>
+              </div>
+
+              <!-- Right Column: stacked cards insights -->
+              <div class="dna-column">
+                <div class="dna-heading">
+                  <h3>Recommendation Insights</h3>
+                  <p>AI suggestions to elevate your current wardrobe matching baseline.</p>
+                </div>
+                
+                <div class="dna-insights-list">
+                  <!-- Card 1: Minimalist recommendations -->
+                  <div class="dna-insight-card">
+                    <div class="dna-insight-icon-wrap"><i data-lucide="layers" style="width: 16px; height: 16px;"></i></div>
+                    <span class="dna-insight-text">Elevate minimalist baseline with textured layers.</span>
+                    <span class="dna-insight-pct">+12%</span>
+                  </div>
+
+                  <!-- Card 2: Oversized fit recommendation -->
+                  <div class="dna-insight-card">
+                    <div class="dna-insight-icon-wrap"><i data-lucide="expand" style="width: 16px; height: 16px;"></i></div>
+                    <span class="dna-insight-text">Transition structured coats to fluid oversized fits.</span>
+                    <span class="dna-insight-pct">+8%</span>
+                  </div>
+
+                  <!-- Card 3: Earth tone recommendation -->
+                  <div class="dna-insight-card">
+                    <div class="dna-insight-icon-wrap"><i data-lucide="palette" style="width: 16px; height: 16px;"></i></div>
+                    <span class="dna-insight-text">Inject sage green and raw sand shades into dark bases.</span>
+                    <span class="dna-insight-pct">+15%</span>
+                  </div>
+
+                  <!-- Card 4: Layering recommendation -->
+                  <div class="dna-insight-card">
+                    <div class="dna-insight-icon-wrap"><i data-lucide="sparkles" style="width: 16px; height: 16px;"></i></div>
+                    <span class="dna-insight-text">Utilize fine turtleneck undercoats for dimensional styling.</span>
+                    <span class="dna-insight-pct">+10%</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+
+            <!-- SECTION 2 — RECOMMENDED FOR YOU -->
+            <section class="recommendations-section-container">
+              <div class="recommendations-section-header">
+                <h2>Recommended For You</h2>
+                <span class="section-count">6 Items</span>
+              </div>
+
+              <div class="product-recommendations-grid">
+                
+                <!-- Card 1: Beige Overshirt -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/product_linen_overshirt.png" alt="Beige Overshirt" style="filter: sepia(0.3) saturate(1.1) brightness(0.95);">
+                    <span class="rec-match-badge">95% Match</span>
+                    <button class="rec-heart-btn active" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Premium Linen</span>
+                      <h4>Beige Overshirt</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹3,499</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #fef3c7;" title="Beige"></span>
+                        <span class="rec-color-dot" style="background-color: #030712;" title="Black"></span>
+                        <span class="rec-color-dot" style="background-color: #ffffff;" title="White"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 2: Black Polo Shirt -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/model_black_polo.png" alt="Black Polo Shirt">
+                    <span class="rec-match-badge glow-purple">92% Match</span>
+                    <button class="rec-heart-btn active" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Athletic Fit</span>
+                      <h4>Black Polo Shirt</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹2,899</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #030712;" title="Black"></span>
+                        <span class="rec-color-dot" style="background-color: #5b21b6;" title="Purple"></span>
+                        <span class="rec-color-dot" style="background-color: #ffffff;" title="White"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 3: Black Cargo Pants -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/product_cargo_pants.png" alt="Black Cargo Pants">
+                    <span class="rec-match-badge">94% Match</span>
+                    <button class="rec-heart-btn" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Techwear</span>
+                      <h4>Black Cargo Pants</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹4,199</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #030712;" title="Black"></span>
+                        <span class="rec-color-dot" style="background-color: #1e3a8a;" title="Blue"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 4: Minimal White Sneakers -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/product_white_sneakers.png" alt="Minimal White Sneakers">
+                    <span class="rec-match-badge glow-purple">96% Match</span>
+                    <button class="rec-heart-btn active" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Classic Leather</span>
+                      <h4>Minimal White Sneakers</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹5,499</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #ffffff;" title="White"></span>
+                        <span class="rec-color-dot" style="background-color: #030712;" title="Black"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 5: Oversized Hoodie -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/product_minimal_hoodie.png" alt="Oversized Hoodie" style="filter: grayscale(0.5) brightness(0.85);">
+                    <span class="rec-match-badge">90% Match</span>
+                    <button class="rec-heart-btn" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Heavy Cotton</span>
+                      <h4>Oversized Hoodie</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹3,999</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #111827;" title="Charcoal"></span>
+                        <span class="rec-color-dot" style="background-color: #7c3aed;" title="Purple"></span>
+                        <span class="rec-color-dot" style="background-color: #fef3c7;" title="Beige"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 6: Silver Chain -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/product_graphic_tee.png" alt="Silver Chain" style="filter: grayscale(1) contrast(1.3) brightness(0.9);">
+                    <span class="rec-match-badge">88% Match</span>
+                    <button class="rec-heart-btn" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Accessory</span>
+                      <h4>Silver Chain</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹1,899</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #d1d5db;" title="Silver"></span>
+                        <span class="rec-color-dot" style="background-color: #fbbf24;" title="Gold"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+
+            <!-- SECTION 3 — OUTFIT RECOMMENDATIONS -->
+            <section class="recommendations-section-container">
+              <div class="recommendations-section-header">
+                <h2>Outfit Recommendations</h2>
+                <span class="section-count">4 Styles</span>
+              </div>
+
+              <div class="outfit-recommendations-grid">
+                
+                <!-- Card 1: Urban Minimalist -->
+                <div class="outfit-rec-card">
+                  <img src="assets/looks_urban_mini.png" alt="Urban Minimalist" class="outfit-bg-img">
+                  <div class="outfit-gradient-overlay">
+                    <div class="outfit-card-header">
+                      <span class="outfit-match-pill">95% Match</span>
+                      <div class="outfit-card-actions">
+                        <button class="outfit-action-btn" aria-label="Bookmark"><i data-lucide="bookmark" style="width: 14px; height: 14px;"></i></button>
+                        <button class="outfit-action-btn active" aria-label="Like"><i data-lucide="heart" fill="currentColor" style="width: 14px; height: 14px;"></i></button>
+                      </div>
+                    </div>
+                    
+                    <div class="outfit-card-footer">
+                      <div class="outfit-text-block">
+                        <h3>Urban Minimalist</h3>
+                        <div class="outfit-tags">
+                          <span class="outfit-tag">Minimalist</span>
+                          <span class="outfit-tag">Techwear</span>
+                        </div>
+                      </div>
+                      <div class="outfit-price-row">
+                        <span class="outfit-price-label">EST. OUTFIT PRICE</span>
+                        <span class="outfit-price-num">₹12,499</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 2: Night Elegance -->
+                <div class="outfit-rec-card">
+                  <img src="assets/looks_night_ele.png" alt="Night Elegance" class="outfit-bg-img">
+                  <div class="outfit-gradient-overlay">
+                    <div class="outfit-card-header">
+                      <span class="outfit-match-pill">92% Match</span>
+                      <div class="outfit-card-actions">
+                        <button class="outfit-action-btn" aria-label="Bookmark"><i data-lucide="bookmark" style="width: 14px; height: 14px;"></i></button>
+                        <button class="outfit-action-btn" aria-label="Like"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                      </div>
+                    </div>
+                    
+                    <div class="outfit-card-footer">
+                      <div class="outfit-text-block">
+                        <h3>Night Elegance</h3>
+                        <div class="outfit-tags">
+                          <span class="outfit-tag">Formal</span>
+                          <span class="outfit-tag">Velvet</span>
+                        </div>
+                      </div>
+                      <div class="outfit-price-row">
+                        <span class="outfit-price-label">EST. OUTFIT PRICE</span>
+                        <span class="outfit-price-num">₹18,999</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 3: Street Dominator -->
+                <div class="outfit-rec-card">
+                  <img src="assets/looks_street_dom.png" alt="Street Dominator" class="outfit-bg-img">
+                  <div class="outfit-gradient-overlay">
+                    <div class="outfit-card-header">
+                      <span class="outfit-match-pill">94% Match</span>
+                      <div class="outfit-card-actions">
+                        <button class="outfit-action-btn" aria-label="Bookmark"><i data-lucide="bookmark" style="width: 14px; height: 14px;"></i></button>
+                        <button class="outfit-action-btn active" aria-label="Like"><i data-lucide="heart" fill="currentColor" style="width: 14px; height: 14px;"></i></button>
+                      </div>
+                    </div>
+                    
+                    <div class="outfit-card-footer">
+                      <div class="outfit-text-block">
+                        <h3>Street Dominator</h3>
+                        <div class="outfit-tags">
+                          <span class="outfit-tag">Streetwear</span>
+                          <span class="outfit-tag">Utility</span>
+                        </div>
+                      </div>
+                      <div class="outfit-price-row">
+                        <span class="outfit-price-label">EST. OUTFIT PRICE</span>
+                        <span class="outfit-price-num">₹14,499</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 4: Casual Comfort -->
+                <div class="outfit-rec-card">
+                  <img src="assets/looks_casual_com.png" alt="Casual Comfort" class="outfit-bg-img">
+                  <div class="outfit-gradient-overlay">
+                    <div class="outfit-card-header">
+                      <span class="outfit-match-pill">89% Match</span>
+                      <div class="outfit-card-actions">
+                        <button class="outfit-action-btn" aria-label="Bookmark"><i data-lucide="bookmark" style="width: 14px; height: 14px;"></i></button>
+                        <button class="outfit-action-btn" aria-label="Like"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                      </div>
+                    </div>
+                    
+                    <div class="outfit-card-footer">
+                      <div class="outfit-text-block">
+                        <h3>Casual Comfort</h3>
+                        <div class="outfit-tags">
+                          <span class="outfit-tag">Casual</span>
+                          <span class="outfit-tag">Knitwear</span>
+                        </div>
+                      </div>
+                      <div class="outfit-price-row">
+                        <span class="outfit-price-label">EST. OUTFIT PRICE</span>
+                        <span class="outfit-price-num">₹9,899</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+
+            <!-- SECTION 4 — TRENDING RIGHT NOW -->
+            <section class="recommendations-section-container">
+              <div class="recommendations-section-header">
+                <h2>Trending Right Now</h2>
+                <span class="section-count">Live Insights</span>
+              </div>
+
+              <div class="trending-list-wrapper">
+                <div class="trending-list">
+                  <!-- Row 1: Oversized Tees -->
+                  <div class="trending-row">
+                    <div class="trend-left">
+                      <span class="trend-number">01</span>
+                      <div class="trend-thumbnail-wrap">
+                        <img src="assets/product_graphic_tee.png" alt="Oversized Tees">
+                      </div>
+                      <div class="trend-info">
+                        <span class="trend-title">Oversized Tees</span>
+                        <span class="trend-tag">Active streetwear wearability</span>
+                      </div>
+                    </div>
+                    <span class="trend-right"><i data-lucide="trending-up"></i> +24%</span>
+                  </div>
+
+                  <!-- Row 2: Cargo Pants -->
+                  <div class="trending-row">
+                    <div class="trend-left">
+                      <span class="trend-number">02</span>
+                      <div class="trend-thumbnail-wrap">
+                        <img src="assets/product_cargo_pants.png" alt="Cargo Pants">
+                      </div>
+                      <div class="trend-info">
+                        <span class="trend-title">Cargo Pants</span>
+                        <span class="trend-tag">Technical pockets and modular shapes</span>
+                      </div>
+                    </div>
+                    <span class="trend-right"><i data-lucide="trending-up"></i> +18%</span>
+                  </div>
+
+                  <!-- Row 3: Minimal Sneakers -->
+                  <div class="trending-row">
+                    <div class="trend-left">
+                      <span class="trend-number">03</span>
+                      <div class="trend-thumbnail-wrap">
+                        <img src="assets/product_white_sneakers.png" alt="Minimal Sneakers">
+                      </div>
+                      <div class="trend-info">
+                        <span class="trend-title">Minimal Sneakers</span>
+                        <span class="trend-tag">Low profile white leather classics</span>
+                      </div>
+                    </div>
+                    <span class="trend-right"><i data-lucide="trending-up"></i> +31%</span>
+                  </div>
+
+                  <!-- Row 4: Neutral Shades -->
+                  <div class="trending-row">
+                    <div class="trend-left">
+                      <span class="trend-number">04</span>
+                      <div class="trend-thumbnail-wrap">
+                        <img src="assets/looks_casual_com.png" alt="Neutral Shades" style="object-position: top center;">
+                      </div>
+                      <div class="trend-info">
+                        <span class="trend-title">Neutral Shades</span>
+                        <span class="trend-tag">Warm beige, slate and sand textures</span>
+                      </div>
+                    </div>
+                    <span class="trend-right"><i data-lucide="trending-up"></i> +15%</span>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+
+            <!-- SECTION 5 — SEASONAL PICKS FOR YOU -->
+            <section class="recommendations-section-container">
+              <div class="recommendations-section-header">
+                <h2>Seasonal Picks For You</h2>
+                <span class="section-count">4 Items</span>
+              </div>
+
+              <div class="seasonal-recommendations-grid">
+                
+                <!-- Card 1: Light Jacket -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/model_brown_jacket.png" alt="Light Jacket">
+                    <span class="rec-match-badge">92% Match</span>
+                    <button class="rec-heart-btn active" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Structured Outerwear</span>
+                      <h4>Light Jacket</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹6,499</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #78350f;" title="Brown"></span>
+                        <span class="rec-color-dot" style="background-color: #030712;" title="Black"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 2: Knitted Polo -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/model_black_polo.png" alt="Knitted Polo" style="filter: sepia(0.2) saturate(1.1) brightness(0.9);">
+                    <span class="rec-match-badge glow-purple">89% Match</span>
+                    <button class="rec-heart-btn" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Smart Casual</span>
+                      <h4>Knitted Polo</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹3,199</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #d97706;" title="Amber"></span>
+                        <span class="rec-color-dot" style="background-color: #030712;" title="Black"></span>
+                        <span class="rec-color-dot" style="background-color: #ffffff;" title="White"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 3: Loafers -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/product_luxury_boots.png" alt="Loafers" style="filter: hue-rotate(15deg) brightness(0.8) saturate(1.1);">
+                    <span class="rec-match-badge">87% Match</span>
+                    <button class="rec-heart-btn" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Premium Suede</span>
+                      <h4>Loafers</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹5,899</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #451a03;" title="Dark Suede"></span>
+                        <span class="rec-color-dot" style="background-color: #030712;" title="Black"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 4: Linen Shirt -->
+                <div class="premium-rec-card">
+                  <div class="rec-card-image-wrap">
+                    <img src="assets/product_linen_overshirt.png" alt="Linen Shirt" style="filter: contrast(1.05) brightness(1.02);">
+                    <span class="rec-match-badge glow-purple">90% Match</span>
+                    <button class="rec-heart-btn active" aria-label="Favorite"><i data-lucide="heart" style="width: 14px; height: 14px;"></i></button>
+                  </div>
+                  <div class="rec-card-body">
+                    <div class="rec-card-text">
+                      <span class="rec-card-category">Relaxed Fitting</span>
+                      <h4>Linen Shirt</h4>
+                    </div>
+                    <div class="rec-card-footer">
+                      <span class="rec-price">₹3,499</span>
+                      <div class="rec-color-selectors">
+                        <span class="rec-color-dot active" style="background-color: #ffffff;" title="White"></span>
+                        <span class="rec-color-dot" style="background-color: #b45309;" title="Amber"></span>
+                        <span class="rec-color-dot" style="background-color: #fef3c7;" title="Beige"></span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+
+            <!-- BOTTOM STATS BAR -->
+            <div class="recommendations-stats-bar">
+              <div class="rec-stat-widget">
+                <span class="rec-stat-label">Recommendations</span>
+                <span class="rec-stat-value">23 <span>Items</span></span>
+              </div>
+              <div class="rec-stat-widget">
+                <span class="rec-stat-label">Outfit Ideas</span>
+                <span class="rec-stat-value">12 <span>Styles</span></span>
+              </div>
+              <div class="rec-stat-widget">
+                <span class="rec-stat-label">Style Match</span>
+                <span class="rec-stat-value">87% <span>Match</span></span>
+              </div>
+              <div class="rec-stat-widget">
+                <span class="rec-stat-label">New Arrivals</span>
+                <span class="rec-stat-value">8 <span>Active</span></span>
+              </div>
+              <div class="rec-stat-widget">
+                <span class="rec-stat-label">Trending For You</span>
+                <span class="rec-stat-value">5 <span>Fits</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+      <!-- ==========================================================================
+           PAGE 6: AI STYLIST PAGE
+           ========================================================================== -->
+      <div id="page-stylist" class="page-content">
+        <div class="main-layout-container">
+          
+          <!-- STYLIST HEADER -->
+          <header class="header-container">
+            <div class="header-heading-center">
+              <h1>AI Stylist ✨</h1>
+              <p>Your personal AI fashion consultant. Ask, explore and elevate your style.</p>
+            </div>
+
+            <!-- Top Search Bar with Cyber Glow -->
+            <div class="header-search-bar futuristic-search-glow">
+              <i data-lucide="search" class="search-icon"></i>
+              <input type="text" placeholder="Ask AI Stylist anything about fashion…" disabled>
+              <span class="search-shortcut">Ctrl K</span>
+            </div>
+
+            <div class="header-actions">
+              <button class="header-btn btn-wishlist-indicator" aria-label="Wishlist">
+                <i data-lucide="heart"></i>
+                <span class="wishlist-count-badge">3</span>
+              </button>
+              <button class="header-btn" id="btn-notifications-stylist" aria-label="Notifications">
+                <i data-lucide="bell"></i>
+                <span class="notification-dot"></span>
+              </button>
+              <div class="header-user-avatar nav-to-profile">
+                <img src="assets/leon_walker_avatar.png" alt="Leon Walker">
+              </div>
+            </div>
+          </header>
+
+          <div class="stylist-main-grid">
+            
+            <!-- HERO TOP ROW -->
+            <div class="stylist-hero-panel">
+              
+              <!-- LEFT: Avatar double ring -->
+              <div class="stylist-portrait-col">
+                <div class="portrait-glow-wrapper">
+                  <div class="portrait-glowing-ring"></div>
+                  <div class="portrait-glowing-ring-outer"></div>
+                  <div class="portrait-inner-avatar">
+                    <img src="assets/hero_home_model.png" alt="AI Stylist model avatar">
+                  </div>
+                </div>
+                <div class="stylist-status-tag">
+                  <span></span>ONLINE
+                </div>
+              </div>
+
+              <!-- CENTER: Chat display & input -->
+              <div class="stylist-interaction-col">
+                <div class="ai-greeting">
+                  <h3>Hey Leon! 👋 <span class="text-gradient">I’m your AI Stylist</span></h3>
+                  <p>Tell me what you need and I’ll create the perfect look for you.</p>
+                </div>
+
+                <div class="ai-stylist-chat-box" id="stylist-chat-box">
+                  <div class="chat-bubble assistant">
+                    Hello Leon! I'm here to refine your look. Choose a suggestion below or type your style prompt.
+                  </div>
+                </div>
+
+                <div class="ai-suggestion-row">
+                  <div class="suggestion-chip">Style me for a date night</div>
+                  <div class="suggestion-chip">What matches black cargos?</div>
+                  <div class="suggestion-chip">Airport look under ₹5000</div>
+                  <div class="suggestion-chip">Looks for a gym session</div>
+                </div>
+
+                <div class="ai-input-bar-wrapper">
+                  <i data-lucide="sparkles" class="search-icon"></i>
+                  <input type="text" placeholder="Ask me anything about fashion…" id="stylist-chat-input">
+                  <div class="input-actions-right">
+                    <span class="input-badge-enter">Enter</span>
+                    <button class="btn-send-chat" id="btn-stylist-send" aria-label="Send Message">
+                      <i data-lucide="arrow-up" style="width: 16px; height: 16px;"></i>
+                    </button>
+                  </div>
+                </div>
+
+                <div class="ai-hero-quick-actions">
+                  <button class="btn-quick-feat active"><i data-lucide="trending-up"></i>Trend Analysis</button>
+                  <button class="btn-quick-feat"><i data-lucide="shirt"></i>Outfit Generator</button>
+                  <button class="btn-quick-feat"><i data-lucide="palette"></i>Color Advice</button>
+                  <button class="btn-quick-feat"><i data-lucide="scissors"></i>Fit Advice</button>
+                  <button class="btn-quick-feat"><i data-lucide="sparkles"></i>Grooming Tips</button>
+                </div>
+              </div>
+
+              <!-- RIGHT: Stacked glowing cards -->
+              <div class="stylist-stats-col">
+                <div class="glowing-stats-card">
+                  <h4><i data-lucide="lightbulb"></i>AI Stylist Tip</h4>
+                  <p>Fit is the foundation of style. Never wear clothes that don't fit perfectly to maintain high shoulder silhouettes.</p>
+                </div>
+
+                <div class="glowing-stats-card highlight">
+                  <h4><i data-lucide="activity"></i>Today’s Style Mood</h4>
+                  <div class="mood-value" id="style-mood-value">Confident Minimalist</div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- SECTION 1: CHOOSE OCCASION -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Choose Occasion</h2>
+                <span class="section-badge">Matrix Select</span>
+              </div>
+              <div class="stylist-matrix-grid">
+                <button class="matrix-card-btn active"><i data-lucide="wine"></i>Date Night</button>
+                <button class="matrix-card-btn"><i data-lucide="glass-water"></i>Party</button>
+                <button class="matrix-card-btn"><i data-lucide="plane"></i>Airport</button>
+                <button class="matrix-card-btn"><i data-lucide="graduation-cap"></i>College</button>
+                <button class="matrix-card-btn"><i data-lucide="briefcase"></i>Office</button>
+                <button class="matrix-card-btn"><i data-lucide="dumbbell"></i>Gym</button>
+                <button class="matrix-card-btn"><i data-lucide="gem"></i>Wedding</button>
+                <button class="matrix-card-btn"><i data-lucide="palmtree"></i>Vacation</button>
+                <button class="matrix-card-btn"><i data-lucide="plus"></i>More</button>
+              </div>
+            </div>
+
+            <!-- SECTION 2: SELECT YOUR MOOD -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Select Your Mood</h2>
+                <span class="section-badge">Interactive Tones</span>
+              </div>
+              <div class="ai-suggestion-row">
+                <button class="suggestion-chip select-mood-btn active">Confident</button>
+                <button class="suggestion-chip select-mood-btn">Elegant</button>
+                <button class="suggestion-chip select-mood-btn">Mysterious</button>
+                <button class="suggestion-chip select-mood-btn">Streetwear</button>
+                <button class="suggestion-chip select-mood-btn">Luxury</button>
+                <button class="suggestion-chip select-mood-btn">Soft</button>
+                <button class="suggestion-chip select-mood-btn">Dominant</button>
+                <button class="suggestion-chip select-mood-btn">Minimal</button>
+              </div>
+            </div>
+
+            <!-- SECTION 3: AI OUTFIT GENERATOR -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>AI Outfit Generator</h2>
+                <span class="section-badge">Synthesis Lab</span>
+              </div>
+              <div class="outfit-generator-workspace">
+                
+                <!-- LEFT PANEL: Settings -->
+                <div class="glass-panel generator-config-card">
+                  <div class="config-budget-slider-wrapper">
+                    <div class="slider-val-row">
+                      <span>BUDGET RANGE</span>
+                      <span class="val" id="budget-val-indicator">₹6,000</span>
+                    </div>
+                    <input type="range" min="1000" max="15000" value="6000" class="budget-range-slider" id="budget-slider">
+                  </div>
+
+                  <div class="config-input-group">
+                    <label>Weather Condition</label>
+                    <select>
+                      <option>Warm & Clear (28°C)</option>
+                      <option>Cool Breeze (18°C)</option>
+                      <option>Rainy Outcast</option>
+                      <option>Extreme Winter (8°C)</option>
+                    </select>
+                  </div>
+
+                  <div class="config-input-group">
+                    <label>Season</label>
+                    <select>
+                      <option>Spring / Summer</option>
+                      <option>Autumn / Winter</option>
+                    </select>
+                  </div>
+
+                  <div class="config-input-group">
+                    <label>Style Personality</label>
+                    <select>
+                      <option>Minimalist Tech</option>
+                      <option>Classic Elegance</option>
+                      <option>Street Dominator</option>
+                      <option>Cyber Goth</option>
+                    </select>
+                  </div>
+
+                  <div class="config-input-group">
+                    <label>Body Silhouette</label>
+                    <select>
+                      <option>Trapezoid (Athletic)</option>
+                      <option>Inverted Triangle</option>
+                      <option>Rectangle</option>
+                      <option>Oval / Rounded</option>
+                    </select>
+                  </div>
+
+                  <div class="config-input-group">
+                    <label>Color Preference</label>
+                    <div class="color-pref-selection-row">
+                      <div class="color-dot-node active" style="background: #000;" data-color="black"></div>
+                      <div class="color-dot-node" style="background: #ffffff; border: 1px solid #ddd;" data-color="white"></div>
+                      <div class="color-dot-node" style="background: #4B5563;" data-color="gray"></div>
+                      <div class="color-dot-node" style="background: #1E3A8A;" data-color="navy"></div>
+                      <div class="color-dot-node" style="background: #78350F;" data-color="brown"></div>
+                      <div class="color-dot-node" style="background: #064E3B;" data-color="forest"></div>
+                    </div>
+                  </div>
+
+                  <button class="btn btn-primary btn-generate-styled" id="btn-generate-look">
+                    <span>Generate My Look</span>
+                    <i data-lucide="zap"></i>
+                  </button>
+                </div>
+
+                <!-- CENTER PANEL: Flat-Lay Display -->
+                <div class="glass-panel generator-display-stage">
+                  <div class="generator-laser-sweep" id="generator-laser"></div>
+                  
+                  <div class="flatlay-layout-grid">
+                    <div class="flatlay-node-item large-span">
+                      <img src="assets/product_relaxed_pants.png" alt="Black Tech Trousers" class="img-tint-mono" style="max-height: 250px;">
+                      <h5>Tech Pants</h5>
+                      <span class="flatlay-pulse-pin"></span>
+                    </div>
+
+                    <div class="flatlay-node-item">
+                      <img src="assets/product_linen_overshirt.png" alt="Luxury Overshirt" class="img-tint-sunset">
+                      <h5>Overshirt</h5>
+                      <span class="flatlay-pulse-pin"></span>
+                    </div>
+
+                    <div class="flatlay-node-item accessory-node">
+                      <img src="assets/product_luxury_boots.png" alt="Leather Boots" class="img-tint-cool">
+                      <h5>Boots</h5>
+                      <span class="flatlay-pulse-pin"></span>
+                    </div>
+
+                    <div class="flatlay-node-item">
+                      <img src="assets/product_minimal_slides.png" alt="Minimal Slides" class="img-tint-sunset">
+                      <h5>Sandals</h5>
+                    </div>
+
+                    <div class="flatlay-node-item accessory-node">
+                      <img src="assets/user_avatar.png" alt="Aesthetic Perfume Bottle" style="border-radius: 8px;">
+                      <h5>Oud Intense</h5>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- RIGHT PANEL: Breakdown details list -->
+                <div class="glass-panel generator-breakdown-card">
+                  <div class="breakdown-header-details">
+                    <h3>Synthesized Outfit</h3>
+                    <div class="meta">
+                      <span>Leon Silhouette v2</span>
+                      <span class="score" id="breakdown-fit-score">95% Fit Match</span>
+                    </div>
+
+                    <div class="breakdown-items-list-box">
+                      <div class="breakdown-item-row">
+                        <span class="name" id="breakdown-item-jacket">Midnight Tech Overshirt</span>
+                        <span class="price" id="breakdown-price-jacket">₹2,499</span>
+                      </div>
+                      <div class="breakdown-item-row">
+                        <span class="name" id="breakdown-item-tee">Heavyweight White Tee</span>
+                        <span class="price" id="breakdown-price-tee">₹999</span>
+                      </div>
+                      <div class="breakdown-item-row">
+                        <span class="name" id="breakdown-item-pants">Relaxed Tech Pants</span>
+                        <span class="price" id="breakdown-price-pants">₹1,599</span>
+                      </div>
+                      <div class="breakdown-item-row">
+                        <span class="name" id="breakdown-item-shoes">Luxury Leather Boots</span>
+                        <span class="price" id="breakdown-price-shoes">₹2,299</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="breakdown-total-bar">
+                      <span class="label-text">ESTIMATED TOTAL</span>
+                      <span class="price-val" id="breakdown-total-price">₹7,396</span>
+                    </div>
+                    <button class="btn btn-primary btn-shop-flatlay"><i data-lucide="shopping-cart"></i>Shop This Entire Look</button>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- SECTION 4 & 5: STYLE SCORES & WARDROBE MATCHES -->
+            <div class="scores-matches-split-container">
+              
+              <!-- SECTION 4: AI STYLE SCORES -->
+              <div class="stylist-section-container">
+                <div class="stylist-section-header">
+                  <h2>AI Style Scores</h2>
+                  <span class="section-badge">Vector Radar</span>
+                </div>
+                <div class="glass-panel scores-radar-widget-panel">
+                  <div class="scores-radar-graphic-area">
+                    <div class="radar-overall-value-center">
+                      <h3 id="radar-overall-val">93</h3>
+                      <span>Overall</span>
+                    </div>
+                    <svg class="radar-svg-canvas" viewBox="0 0 220 220">
+                      <!-- Radar Grid Rings -->
+                      <g class="radar-grid-rings">
+                        <polygon points="110,10 200,75 165,175 55,175 20,75"></polygon>
+                        <polygon points="110,40 170,85 145,150 75,150 50,85"></polygon>
+                        <polygon points="110,70 140,95 125,125 95,125 80,95"></polygon>
+                      </g>
+                      <!-- Radar Axes Lines -->
+                      <g class="radar-grid-lines">
+                        <line x1="110" y1="110" x2="110" y2="10"></line>
+                        <line x1="110" y1="110" x2="200" y2="75"></line>
+                        <line x1="110" y1="110" x2="165" y2="175"></line>
+                        <line x1="110" y1="110" x2="55" y2="175"></line>
+                        <line x1="110" y1="110" x2="20" y2="75"></line>
+                      </g>
+                      <!-- Value Polygon -->
+                      <g class="radar-fill-area">
+                        <polygon id="radar-score-polygon" points="110,35 175,85 165,160 55,155 45,100"></polygon>
+                      </g>
+                      <!-- Labels text coordinates -->
+                      <text x="110" y="8" text-anchor="middle" class="radar-text-label">CONFIDENCE</text>
+                      <text x="204" y="78" text-anchor="start" class="radar-text-label">ELEGANCE</text>
+                      <text x="170" y="188" text-anchor="start" class="radar-text-label">LUXURY</text>
+                      <text x="50" y="188" text-anchor="end" class="radar-text-label">BALANCE</text>
+                      <text x="16" y="78" text-anchor="end" class="radar-text-label">ATTRACTIVE</text>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- SECTION 5: WARDROBE MATCHES -->
+              <div class="stylist-section-container">
+                <div class="stylist-section-header">
+                  <h2>Wardrobe Matches</h2>
+                  <span class="section-badge">Owned Assets</span>
+                </div>
+                <div class="glass-panel wardrobe-matches-panel-card">
+                  <div class="wardrobe-matches-cards-row">
+                    <div class="wardrobe-mini-card">
+                      <div class="img-container">
+                        <img src="assets/product_relaxed_pants.png" alt="Tech Cargo Pants" class="img-tint-sunset">
+                      </div>
+                      <h4>Relaxed Joggers</h4>
+                      <span class="status">Match 95%</span>
+                    </div>
+
+                    <div class="wardrobe-mini-card">
+                      <div class="img-container">
+                        <img src="assets/product_minimal_hoodie.png" alt="Black Tech Hoodie" class="img-tint-sunset">
+                      </div>
+                      <h4>Midnight Hoodie</h4>
+                      <span class="status">Match 88%</span>
+                    </div>
+
+                    <div class="wardrobe-mini-card">
+                      <div class="img-container">
+                        <img src="assets/product_linen_overshirt.png" alt="Watch accessory" class="img-tint-sunset">
+                      </div>
+                      <h4>Beige Overshirt</h4>
+                      <span class="status">Match 92%</span>
+                    </div>
+
+                    <div class="wardrobe-mini-card">
+                      <div class="img-container">
+                        <img src="assets/product_white_sneakers.png" alt="Minimal Sneakers">
+                      </div>
+                      <h4>White Sneakers</h4>
+                      <span class="status">Match 96%</span>
+                    </div>
+                  </div>
+                  <button class="btn btn-secondary btn-shop-flatlay" style="margin-top: 18px; padding: 10px;"><i data-lucide="plus"></i>View All Suggested Matches</button>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- SECTION 6: BODY & COLOR ANALYSIS -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Body & Color Analysis</h2>
+                <span class="section-badge">AI Metrics</span>
+              </div>
+              <div class="analysis-dashboard-grid">
+                
+                <div class="analysis-detail-box">
+                  <div class="icon-wrap"><i data-lucide="user"></i></div>
+                  <h3>Body Silhouette</h3>
+                  <p>Trapezoid athletic build. Well-balanced shoulders and waist ratios, supporting tailored fits and structured jackets.</p>
+                </div>
+
+                <div class="analysis-detail-box">
+                  <div class="icon-wrap" style="color: #10B981; background: rgba(16, 185, 129, 0.05);"><i data-lucide="palette"></i></div>
+                  <h3>Best Contrast Colors</h3>
+                  <p>Cool winter palette. Midnight black, slate gray, neutral sand beige, and rich velvet ruby red complement your skin undertone.</p>
+                  <div class="color-tag-bubbles">
+                    <div class="color-analysis-bubble" style="background: #000;"></div>
+                    <div class="color-analysis-bubble" style="background: #4B5563;"></div>
+                    <div class="color-analysis-bubble" style="background: #D1D5DB;"></div>
+                    <div class="color-analysis-bubble" style="background: #7F1D1D;"></div>
+                  </div>
+                </div>
+
+                <div class="analysis-detail-box">
+                  <div class="icon-wrap" style="color: #EF4444; background: rgba(239, 68, 68, 0.05);"><i data-lucide="slash"></i></div>
+                  <h3>Avoid Colors</h3>
+                  <p>Highly saturated neon yellows, pastel pinks, and bright orange tints washing out natural low-contrast facial shadows.</p>
+                  <div class="color-tag-bubbles">
+                    <div class="color-analysis-bubble" style="background: #FBBF24;"></div>
+                    <div class="color-analysis-bubble" style="background: #F472B6;"></div>
+                    <div class="color-analysis-bubble" style="background: #F97316;"></div>
+                  </div>
+                </div>
+
+                <div class="analysis-detail-box">
+                  <div class="icon-wrap"><i data-lucide="scissors"></i></div>
+                  <h3>Best Fit Style</h3>
+                  <p>Relaxed-draped trousers paired with drop-shoulder structured jackets to enhance shoulder widths while maintaining movement flexibility.</p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- SECTION 7: CELEBRITY / AESTHETIC MODE -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Celebrity / Aesthetic Mode</h2>
+                <span class="section-badge">Style Presets</span>
+              </div>
+              <div class="aesthetic-carousel-viewport">
+                <div class="aesthetic-carousel-row">
+                  <div class="aesthetic-circle-node" data-preset="old-money">
+                    <div class="circle-avatar-wrap">
+                      <div class="circle-inner-image"><img src="assets/looks_casual_com.png" alt="Old Money"></div>
+                    </div>
+                    <span class="label">Old Money</span>
+                  </div>
+
+                  <div class="aesthetic-circle-node" data-preset="korean-minimal">
+                    <div class="circle-avatar-wrap">
+                      <div class="circle-inner-image"><img src="assets/looks_urban_mini.png" alt="Korean Minimal"></div>
+                    </div>
+                    <span class="label">Korean Minimal</span>
+                  </div>
+
+                  <div class="aesthetic-circle-node" data-preset="mafia-style">
+                    <div class="circle-avatar-wrap">
+                      <div class="circle-inner-image"><img src="assets/looks_night_ele.png" alt="Mafia Style"></div>
+                    </div>
+                    <span class="label">Mafia Style</span>
+                  </div>
+
+                  <div class="aesthetic-circle-node" data-preset="tech-billionaire">
+                    <div class="circle-avatar-wrap">
+                      <div class="circle-inner-image"><img src="assets/hero_home_model.png" alt="Tech Billionaire"></div>
+                    </div>
+                    <span class="label">Tech Billionaire</span>
+                  </div>
+
+                  <div class="aesthetic-circle-node active" data-preset="streetwear">
+                    <div class="circle-avatar-wrap">
+                      <div class="circle-inner-image"><img src="assets/looks_street_dom.png" alt="Streetwear"></div>
+                    </div>
+                    <span class="label">Streetwear</span>
+                  </div>
+
+                  <div class="aesthetic-circle-node" data-preset="rockstar">
+                    <div class="circle-avatar-wrap">
+                      <div class="circle-inner-image"><img src="assets/looks_night_ele.png" alt="Rockstar"></div>
+                    </div>
+                    <span class="label">Rockstar</span>
+                  </div>
+
+                  <div class="aesthetic-circle-node" data-preset="anime-mc">
+                    <div class="circle-avatar-wrap">
+                      <div class="circle-inner-image"><img src="assets/looks_casual_com.png" alt="Anime MC"></div>
+                    </div>
+                    <span class="label">Anime MC</span>
+                  </div>
+
+                  <div class="aesthetic-circle-node" data-preset="luxury-ceo">
+                    <div class="circle-avatar-wrap">
+                      <div class="circle-inner-image"><img src="assets/looks_urban_mini.png" alt="Luxury CEO"></div>
+                    </div>
+                    <span class="label">Luxury CEO</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 8: STYLE IMPROVEMENT TIPS -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Style Improvement Tips</h2>
+                <span class="section-badge">AI Editorial</span>
+              </div>
+              <div class="tips-dashboard-layout">
+                <div class="tips-editorial-card">
+                  <h3>Master Subtle Textures</h3>
+                  <p>Avoid plain flat polyester fabrics. Layer textured heavy-knit cotton, waffle weaves, and brushed linen to inject sophisticated depth into solid black outfits.</p>
+                </div>
+                <div class="tips-editorial-card">
+                  <h3>Rule of Thirds Proportion</h3>
+                  <p>Tuck undercoats and adjust trouser rises to create a visual 1:2 height ratio. This elongates legs and builds a highly attractive editorial silhouette.</p>
+                </div>
+                <div class="tips-editorial-card">
+                  <h3>Anchor with Contrast</h3>
+                  <p>When wearing monochromatic black or deep purple coordinates, break up outlines using premium accessories like a silver curb chain or high-sole white sneakers.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 9: COMPARE OUTFITS -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Compare Outfits</h2>
+                <span class="section-badge">A/B Testing</span>
+              </div>
+              <div class="outfits-compare-grid">
+                
+                <!-- Left outfit -->
+                <div class="outfit-comparison-panel">
+                  <div class="img-box">
+                    <img src="assets/looks_urban_mini.png" alt="Urban Minimal Outfit">
+                  </div>
+                  <div class="comparison-panel-details">
+                    <h3>Urban Minimalist</h3>
+                    <p>Tech Trench + Trousers</p>
+                    <div class="panel-scores-block">
+                      <div class="score-progress-bar-row">
+                        <div class="row-meta"><span>Confidence</span><span class="v">95%</span></div>
+                        <div class="score-progress-bar-track"><div class="score-progress-bar-fill" style="width: 95%;"></div></div>
+                      </div>
+                      <div class="score-progress-bar-row">
+                        <div class="row-meta"><span>Luxury Index</span><span class="v">92%</span></div>
+                        <div class="score-progress-bar-track"><div class="score-progress-bar-fill" style="width: 92%;"></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- VS Circle -->
+                <div class="comparison-vs-divider">
+                  <span>VS</span>
+                </div>
+
+                <!-- Right outfit -->
+                <div class="outfit-comparison-panel">
+                  <div class="img-box">
+                    <img src="assets/looks_street_dom.png" alt="Streetwear Outfit">
+                  </div>
+                  <div class="comparison-panel-details">
+                    <h3>Street Dominator</h3>
+                    <p>Cargo Vest + Knitwear</p>
+                    <div class="panel-scores-block">
+                      <div class="score-progress-bar-row">
+                        <div class="row-meta"><span>Confidence</span><span class="v">91%</span></div>
+                        <div class="score-progress-bar-track"><div class="score-progress-bar-fill" style="width: 91%;"></div></div>
+                      </div>
+                      <div class="score-progress-bar-row">
+                        <div class="row-meta"><span>Luxury Index</span><span class="v">86%</span></div>
+                        <div class="score-progress-bar-track"><div class="score-progress-bar-fill" style="width: 86%;"></div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- SECTION 10: STYLE EVOLUTION -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Style Evolution</h2>
+                <span class="section-badge">Timeline Tracker</span>
+              </div>
+              <div class="evolution-timeline-grid">
+                
+                <div class="evolution-step-card active">
+                  <div class="evolution-node-dot"><i data-lucide="circle-dot"></i></div>
+                  <h3>Current You</h3>
+                  <p>Casual and loose coordinates. Heavy reliance on street silhouettes and athletic jackets.</p>
+                </div>
+
+                <div class="evolution-step-card">
+                  <div class="evolution-node-dot"><i data-lucide="chevron-right"></i></div>
+                  <h3>3 Months</h3>
+                  <p>Transition to tailored trousers, minimal linen shirts, and high-fashion watch integrations.</p>
+                </div>
+
+                <div class="evolution-step-card">
+                  <div class="evolution-node-dot"><i data-lucide="sparkles"></i></div>
+                  <h3>6 Months</h3>
+                  <p>Complete integration of quiet luxury palettes, custom blazers, and double-breasted tech trench coats.</p>
+                </div>
+
+                <div class="evolution-step-card">
+                  <div class="evolution-node-dot"><i data-lucide="crown"></i></div>
+                  <h3>Future You</h3>
+                  <p>Perfect symmetry, absolute fit confidence, curated color profiles, and complete style DNA optimization.</p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- SECTION 11: TRENDING NOW -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Trending Now</h2>
+                <span class="section-badge">Growth Indices</span>
+              </div>
+              <div class="trending-list-wrapper">
+                <div class="trending-row-widget">
+                  <div class="trending-widget-info">
+                    <h4>Oversized Blazers</h4>
+                    <p>Formal Outings / Luxury Wear</p>
+                  </div>
+                  <span class="trending-growth-badge">+34%</span>
+                </div>
+
+                <div class="trending-row-widget">
+                  <div class="trending-widget-info">
+                    <h4>Wide Tech Cargos</h4>
+                    <p>College / Street culture</p>
+                  </div>
+                  <span class="trending-growth-badge">+28%</span>
+                </div>
+
+                <div class="trending-row-widget">
+                  <div class="trending-widget-info">
+                    <h4>Minimal White Sneakers</h4>
+                    <p>Daily Staples / Outings</p>
+                  </div>
+                  <span class="trending-growth-badge">+41%</span>
+                </div>
+
+                <div class="trending-row-widget">
+                  <div class="trending-widget-info">
+                    <h4>Neutral Sand Tones</h4>
+                    <p>Quiet Luxury / Resort aesthetics</p>
+                  </div>
+                  <span class="trending-growth-badge">+19%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- SECTION 12: SAVED CONVERSATIONS -->
+            <div class="stylist-section-container">
+              <div class="stylist-section-header">
+                <h2>Saved Conversations</h2>
+                <span class="section-badge">AI Chats Library</span>
+              </div>
+              <div class="chats-list-dashboard">
+                <div class="saved-chat-item-box">
+                  <div class="content">
+                    <i data-lucide="message-square" class="chat-icon"></i>
+                    <span class="title">Style me for birthday party</span>
+                  </div>
+                  <i data-lucide="chevron-right" class="arrow"></i>
+                </div>
+
+                <div class="saved-chat-item-box">
+                  <div class="content">
+                    <i data-lucide="message-square" class="chat-icon"></i>
+                    <span class="title">Best winter outfits</span>
+                  </div>
+                  <i data-lucide="chevron-right" class="arrow"></i>
+                </div>
+
+                <div class="saved-chat-item-box">
+                  <div class="content">
+                    <i data-lucide="message-square" class="chat-icon"></i>
+                    <span class="title">What matches black cargos?</span>
+                  </div>
+                  <i data-lucide="chevron-right" class="arrow"></i>
+                </div>
+
+                <div class="saved-chat-item-box">
+                  <div class="content">
+                    <i data-lucide="message-square" class="chat-icon"></i>
+                    <span class="title">Looks under ₹5000</span>
+                  </div>
+                  <i data-lucide="chevron-right" class="arrow"></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- BOTTOM QUICK ACTION BAR -->
+            <div class="stylist-quick-actions-bar">
+              <button class="btn-bottom-quick"><i data-lucide="mic"></i>Voice Stylist</button>
+              <button class="btn-bottom-quick"><i data-lucide="camera"></i>Photo Upload</button>
+              <button class="btn-bottom-quick"><i data-lucide="calendar"></i>Event Styling</button>
+              <button class="btn-bottom-quick active"><i data-lucide="compass"></i>Daily Style Pick</button>
+              <button class="btn-bottom-quick"><i data-lucide="shopping-bag"></i>Shop With AI</button>
+              <button class="btn-bottom-quick"><i data-lucide="wind"></i>Trend Forecast</button>
+              <button class="btn-bottom-quick"><i data-lucide="ruler"></i>Fit & Size Guide</button>
+              <button class="btn-bottom-quick"><i data-lucide="sparkles"></i>Grooming Guide</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
 
     </main>
 
@@ -1030,6 +3510,10 @@
   </div>
 
   <!-- Scripts -->
-  <script src="app.js"></script>
+  <script src="app.js?v=4"></script>
+  <script src="wardrobe.js?v=4"></script>
+  <script src="looks.js?v=4"></script>
+  <script src="recommendations.js?v=4"></script>
+  <script src="stylist.js?v=4"></script>
 </body>
 </html>

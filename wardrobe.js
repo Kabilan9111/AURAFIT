@@ -63,24 +63,16 @@ document.addEventListener('DOMContentLoaded', () => {
   // Real-time search inputs
   searchInput.addEventListener('input', applyFilters);
 
-  /* ==========================================================================
-     2. Keyboard Hotkey (Ctrl + K Focus Search)
-     ========================================================================== */
-  document.addEventListener('keydown', (e) => {
-    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-      e.preventDefault();
-      searchInput.focus();
-    }
-  });
+  // Hotkey handled globally in app.js
 
   /* ==========================================================================
      3. Wishlist Toggle and Live Count Updates
      ========================================================================== */
-  const heartButtons = document.querySelectorAll('.heart-wish-btn');
-  const wishlistCounter = document.getElementById('wishlist-counter-value');
+  const heartButtons = document.querySelectorAll('#page-wardrobe .heart-wish-btn');
+  const wishlistCounter = document.querySelector('#page-wardrobe #wishlist-counter-value');
 
   function updateWishlistBadge() {
-    const activeHearts = document.querySelectorAll('.heart-wish-btn.active').length;
+    const activeHearts = document.querySelectorAll('#page-wardrobe .heart-wish-btn.active').length;
     wishlistCounter.textContent = activeHearts;
     
     // Add micro-animation bounce
@@ -125,64 +117,64 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* ==========================================================================
-     5. Pro Upgrade Modal Functionality
+      5. Pro Upgrade Modal Functionality (Only register if not running inside index.html SPA)
      ========================================================================== */
-  const modalUpgrade = document.getElementById('modal-pro-upgrade');
-  const btnModalClose = document.getElementById('modal-close');
-  const btnUpgradeSidebar = document.getElementById('btn-upgrade-sidebar');
-  const btnModalCheckout = document.getElementById('btn-modal-checkout');
-  const priceCards = document.querySelectorAll('.modal-price-card');
+  const isSPA = document.getElementById('page-home') !== null;
 
-  function openUpgradeModal() {
-    modalUpgrade.style.display = 'flex';
-    modalUpgrade.style.opacity = '0';
-    setTimeout(() => {
-      modalUpgrade.style.opacity = '1';
-      modalUpgrade.style.transition = 'opacity 0.25s ease';
-    }, 10);
-  }
+  if (!isSPA) {
+    const modalUpgrade = document.getElementById('modal-pro-upgrade');
+    const btnModalClose = document.getElementById('modal-close');
+    const btnUpgradeSidebar = document.getElementById('btn-upgrade-sidebar');
+    const btnModalCheckout = document.getElementById('btn-modal-checkout');
+    const priceCards = document.querySelectorAll('.modal-price-card');
 
-  function closeUpgradeModal() {
-    modalUpgrade.style.opacity = '0';
-    setTimeout(() => {
-      modalUpgrade.style.display = 'none';
-    }, 250);
-  }
+    const openUpgradeModal = () => {
+      if (modalUpgrade) {
+        modalUpgrade.classList.add('active');
+      }
+    };
 
-  if (btnUpgradeSidebar) {
-    btnUpgradeSidebar.addEventListener('click', openUpgradeModal);
-  }
+    const closeUpgradeModal = () => {
+      if (modalUpgrade) {
+        modalUpgrade.classList.remove('active');
+      }
+    };
 
-  if (btnModalClose) {
-    btnModalClose.addEventListener('click', closeUpgradeModal);
-  }
-
-  // Close on backdrop click
-  window.addEventListener('click', (e) => {
-    if (e.target === modalUpgrade) {
-      closeUpgradeModal();
+    if (btnUpgradeSidebar) {
+      btnUpgradeSidebar.addEventListener('click', openUpgradeModal);
     }
-  });
 
-  if (btnModalCheckout) {
-    btnModalCheckout.addEventListener('click', () => {
-      alert('Thank you for choosing AURAFIT Pro! Proceeding to premium checkout synthesis.');
-      closeUpgradeModal();
+    if (btnModalClose) {
+      btnModalClose.addEventListener('click', closeUpgradeModal);
+    }
+
+    // Close on backdrop click
+    window.addEventListener('click', (e) => {
+      if (e.target === modalUpgrade) {
+        closeUpgradeModal();
+      }
+    });
+
+    if (btnModalCheckout) {
+      btnModalCheckout.addEventListener('click', () => {
+        alert('Thank you for choosing AURAFIT Pro! Proceeding to premium checkout synthesis.');
+        closeUpgradeModal();
+      });
+    }
+
+    // Price card select styling toggles
+    priceCards.forEach(card => {
+      card.addEventListener('click', () => {
+        priceCards.forEach(c => c.classList.remove('active'));
+        card.classList.add('active');
+      });
+    });
+
+    // Mock Avatar Clicks
+    document.querySelectorAll('.nav-to-profile').forEach(el => {
+      el.addEventListener('click', () => {
+        alert('User Profile: Leon Walker\nStatus: Premium Tier Member\nBio: Luxury Minimalist Stylist');
+      });
     });
   }
-
-  // Price card select styling toggles
-  priceCards.forEach(card => {
-    card.addEventListener('click', () => {
-      priceCards.forEach(c => c.classList.remove('active'));
-      card.classList.add('active');
-    });
-  });
-
-  // Mock Avatar Clicks
-  document.querySelectorAll('.nav-to-profile').forEach(el => {
-    el.addEventListener('click', () => {
-      alert('User Profile: Leon Walker\nStatus: Premium Tier Member\nBio: Luxury Minimalist Stylist');
-    });
-  });
 });

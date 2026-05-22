@@ -74,28 +74,22 @@
             </a>
           </li>
           <li>
-            <a href="#" class="nav-item" id="nav-stylist">
+            <a href="stylist.html" class="nav-item" id="nav-stylist">
               <i data-lucide="sparkles"></i>
               <span>AI Stylist</span>
               <span class="badge-premium-glow">AI</span>
             </a>
           </li>
           <li>
-            <a href="#" class="nav-item" id="nav-looks">
+            <a href="looks.html" class="nav-item" id="nav-looks">
               <i data-lucide="images"></i>
               <span>Looks</span>
             </a>
           </li>
           <li>
-            <a href="#" class="nav-item" id="nav-recommendations">
+            <a href="recommendations.html" class="nav-item" id="nav-recommendations">
               <i data-lucide="thumbs-up"></i>
               <span>Recommendations</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-item" id="nav-community">
-              <i data-lucide="users"></i>
-              <span>Community</span>
             </a>
           </li>
           <li>
@@ -144,12 +138,12 @@
           <!-- WARDROBE HEADER -->
           <header class="header-container">
             <div class="header-heading-center">
-              <h1>My Wardrobe 👔</h1>
+              <h1>My Wardrobe 👕</h1>
               <p>Organize your favorite looks and fashion collections.</p>
             </div>
 
-            <!-- Top Center Search Bar -->
-            <div class="header-search-bar">
+            <!-- Top Center Search Bar with Cyber Glow -->
+            <div class="header-search-bar futuristic-search-glow">
               <i data-lucide="search" class="search-icon"></i>
               <input type="text" placeholder="Search outfits, shirts, shoes, styles..." id="wardrobe-search-input">
               <span class="search-shortcut">Ctrl K</span>
@@ -162,7 +156,7 @@
               </button>
               <button class="header-btn" id="btn-wishlist-header" aria-label="Wishlist">
                 <i data-lucide="heart" fill="currentColor"></i>
-                <span class="wishlist-count-badge" id="wishlist-counter-value">3</span>
+                <span class="wishlist-count-badge" id="wishlist-counter-value">9</span>
               </button>
               <button class="header-btn" aria-label="Settings" id="btn-settings-wardrobe">
                 <i data-lucide="settings"></i>
@@ -183,7 +177,7 @@
               <div class="wardrobe-filters-container">
                 <!-- Row 1: Item types -->
                 <div class="filter-row filter-row-primary" id="wardrobe-primary-filters">
-                  <button class="filter-btn-pill active" data-item-type="all">All Items</button>
+                  <button class="filter-btn-pill active" data-item-type="all">All</button>
                   <button class="filter-btn-pill" data-item-type="shirts">Shirts</button>
                   <button class="filter-btn-pill" data-item-type="t-shirts">T-Shirts</button>
                   <button class="filter-btn-pill" data-item-type="shoes">Shoes</button>
@@ -203,109 +197,127 @@
                   <button class="filter-style-chip" data-style-type="luxury">Luxury</button>
                   <button class="filter-style-chip" data-style-type="gym">Gym</button>
                   <button class="filter-style-chip" data-style-type="oversized">Oversized</button>
+                  <button class="filter-settings-btn" aria-label="Filter Settings">
+                    <i data-lucide="sliders-horizontal"></i>
+                  </button>
                 </div>
               </div>
 
-              <!-- MAIN PRODUCT GRID -->
+              <!-- MAIN PRODUCT GRID - EXACTLY 20 LUXURY FASHION CARDS -->
               <div class="wardrobe-product-grid" id="wardrobe-items-grid">
                 
                 <!-- SHIRTS -->
-                <!-- Card 1 -->
+                <!-- Card 1: Beige Linen Shirt -->
                 <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="casual college outing">
-                  <div class="p-card-image-wrap">
-                    <img src="assets/product_linen_overshirt.png" alt="Korean Linen Overshirt">
-                    <span class="badge-match-pct">95% Match</span>
+                  <div class="p-card-image-wrap img-beige-tint">
+                    <img src="assets/product_linen_overshirt.png" alt="Beige Linen Shirt">
+                    <span class="badge-match-pct glow-green">95% Match</span>
                     <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
                   </div>
                   <div class="p-card-body">
-                    <span class="p-card-category">SHIRT — KOREAN FIT</span>
-                    <h4>Korean Linen Overshirt</h4>
+                    <span class="p-card-category">SHIRT — PREMIUM LINEN</span>
+                    <h4>Beige Linen Shirt</h4>
                     <div class="p-price-row">
                       <span class="price-num">₹3,499</span>
                       <span class="original-price">₹4,500</span>
                     </div>
-                    <span class="p-saved-date">Saved May 18</span>
+                    <div class="p-card-metadata">
+                      <span>95% AI Compatibility</span>
+                      <span>Saved May 18 • 14 wears</span>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="party luxury dating">
-                  <div class="p-card-image-wrap">
-                    <img src="assets/product_satin_shirt.png" alt="Midnight Satin Shirt">
-                    <span class="badge-match-pct">93% Match</span>
+                <!-- Card 2: Black Luxury Shirt -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="luxury formal dating">
+                  <div class="p-card-image-wrap img-dark-sepia">
+                    <img src="assets/product_satin_shirt.png" alt="Black Luxury Shirt">
+                    <span class="badge-match-pct glow-purple">93% Match</span>
                     <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
                   </div>
                   <div class="p-card-body">
-                    <span class="p-card-category">SHIRT — LUXURY SATIN</span>
-                    <h4>Midnight Satin Shirt</h4>
+                    <span class="p-card-category">SHIRT — LUXURY BLACK</span>
+                    <h4>Black Luxury Shirt</h4>
                     <div class="p-price-row">
                       <span class="price-num">₹4,899</span>
                       <span class="original-price">₹6,200</span>
                     </div>
-                    <span class="p-saved-date">Saved May 18</span>
+                    <div class="p-card-metadata">
+                      <span>93% AI Compatibility</span>
+                      <span>Saved May 18 • 8 wears</span>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Card 3 -->
+                <!-- Card 3: White Korean Fit Shirt -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="casual dating oversized">
+                  <div class="p-card-image-wrap img-bright-contrast">
+                    <img src="assets/product_linen_overshirt.png" alt="White Korean Fit Shirt">
+                    <span class="badge-match-pct glow-green">96% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHIRT — KOREAN FIT</span>
+                    <h4>White Korean Fit Shirt</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹3,200</span>
+                      <span class="original-price">₹4,200</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>96% AI Compatibility</span>
+                      <span>Saved May 17 • 18 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 4: Oversized Street Shirt -->
                 <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="streetwear oversized">
-                  <div class="p-card-image-wrap">
-                    <img src="assets/product_linen_overshirt.png" alt="Oversized Utility Shirt" style="filter: brightness(0.7) contrast(1.1);">
-                    <span class="badge-match-pct">91% Match</span>
+                  <div class="p-card-image-wrap img-grunge-dark">
+                    <img src="assets/product_linen_overshirt.png" alt="Oversized Street Shirt">
+                    <span class="badge-match-pct glow-purple">91% Match</span>
                     <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
                   </div>
                   <div class="p-card-body">
                     <span class="p-card-category">SHIRT — OVERSIZED STREET</span>
-                    <h4>Oversized Utility Shirt</h4>
+                    <h4>Oversized Street Shirt</h4>
                     <div class="p-price-row">
                       <span class="price-num">₹3,999</span>
                       <span class="original-price">₹5,200</span>
                     </div>
-                    <span class="p-saved-date">Saved May 15</span>
-                  </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="casual outing">
-                  <div class="p-card-image-wrap">
-                    <img src="assets/product_linen_overshirt.png" alt="Classic Linen Overshirt" style="filter: hue-rotate(50deg);">
-                    <span class="badge-match-pct">88% Match</span>
-                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
-                  </div>
-                  <div class="p-card-body">
-                    <span class="p-card-category">SHIRT — LINEN CASUAL</span>
-                    <h4>Classic Linen Overshirt</h4>
-                    <div class="p-price-row">
-                      <span class="price-num">₹4,200</span>
-                      <span class="original-price">₹5,500</span>
+                    <div class="p-card-metadata">
+                      <span>91% AI Compatibility</span>
+                      <span>Saved May 15 • 22 wears</span>
                     </div>
-                    <span class="p-saved-date">Saved May 12</span>
                   </div>
                 </div>
 
-                <!-- Card 5 -->
-                <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="party dating">
-                  <div class="p-card-image-wrap">
-                    <img src="assets/product_satin_shirt.png" alt="Club Black Satin Shirt" style="filter: hue-rotate(240deg) brightness(0.8);">
-                    <span class="badge-match-pct">89% Match</span>
+                <!-- Card 5: Satin Party Shirt -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shirts" data-style-type="party luxury dating">
+                  <div class="p-card-image-wrap img-party-purple">
+                    <img src="assets/product_satin_shirt.png" alt="Satin Party Shirt">
+                    <span class="badge-match-pct glow-purple">89% Match</span>
                     <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
                   </div>
                   <div class="p-card-body">
-                    <span class="p-card-category">SHIRT — PARTY SHIRT</span>
-                    <h4>Club Black Satin Shirt</h4>
+                    <span class="p-card-category">SHIRT — SATIN PARTY</span>
+                    <h4>Satin Party Shirt</h4>
                     <div class="p-price-row">
                       <span class="price-num">₹4,599</span>
                       <span class="original-price">₹5,800</span>
                     </div>
-                    <span class="p-saved-date">Saved May 10</span>
+                    <div class="p-card-metadata">
+                      <span>89% AI Compatibility</span>
+                      <span>Saved May 10 • 6 wears</span>
+                    </div>
                   </div>
                 </div>
 
                 <!-- T-SHIRTS -->
-                <!-- Card 6 -->
-                <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="casual gym streetwear">
-                  <div class="p-card-image-wrap">
-                    <img src="assets/product_minimal_hoodie.png" alt="Minimal Black Tee" style="filter: brightness(0.6);">
-                    <span class="badge-match-pct">94% Match</span>
+                <!-- Card 6: Minimal Black Tee -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="casual gym">
+                  <div class="p-card-image-wrap img-matte-dark">
+                    <img src="assets/product_minimal_hoodie.png" alt="Minimal Black Tee">
+                    <span class="badge-match-pct glow-green">94% Match</span>
                     <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
                   </div>
                   <div class="p-card-body">
@@ -315,243 +327,306 @@
                       <span class="price-num">₹1,899</span>
                       <span class="original-price">₹2,499</span>
                     </div>
-                    <span class="p-saved-date">Saved May 19</span>
+                    <div class="p-card-metadata">
+                      <span>94% AI Compatibility</span>
+                      <span>Saved May 19 • 30 wears</span>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Card 7 -->
+                <!-- Card 7: Oversized Graphic Tee -->
                 <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="streetwear oversized college">
                   <div class="p-card-image-wrap">
-                    <img src="assets/product_graphic_tee.png" alt="Vintage Washed Graphic Tee">
-                    <span class="badge-match-pct">92% Match</span>
+                    <img src="assets/product_graphic_tee.png" alt="Oversized Graphic Tee">
+                    <span class="badge-match-pct glow-green">92% Match</span>
                     <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
                   </div>
                   <div class="p-card-body">
                     <span class="p-card-category">TEE — OVERSIZED GRAPHIC</span>
-                    <h4>Vintage Washed Graphic Tee</h4>
+                    <h4>Oversized Graphic Tee</h4>
                     <div class="p-price-row">
                       <span class="price-num">₹2,499</span>
                       <span class="original-price">₹3,500</span>
                     </div>
-                    <span class="p-saved-date">Saved May 19</span>
+                    <div class="p-card-metadata">
+                      <span>92% AI Compatibility</span>
+                      <span>Saved May 19 • 15 wears</span>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Card 8 -->
-                <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="gym streetwear">
-                  <div class="p-card-image-wrap">
-                    <img src="assets/product_minimal_hoodie.png" alt="AeroFit Compression Tee" style="filter: hue-rotate(180deg) brightness(0.7);">
-                    <span class="badge-match-pct">87% Match</span>
+                <!-- Card 8: Gym Fit Compression Tee -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="gym">
+                  <div class="p-card-image-wrap img-blue-performance">
+                    <img src="assets/product_minimal_hoodie.png" alt="Gym Fit Compression Tee">
+                    <span class="badge-match-pct glow-purple">87% Match</span>
                     <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
                   </div>
                   <div class="p-card-body">
                     <span class="p-card-category">TEE — COMPRESSION FITNESS</span>
-                    <h4>AeroFit Compression Tee</h4>
+                    <h4>Gym Fit Compression Tee</h4>
                     <div class="p-price-row">
                       <span class="price-num">₹2,199</span>
                       <span class="original-price">₹2,999</span>
                     </div>
-                    <span class="p-saved-date">Saved May 14</span>
-                  </div>
-                </div>
-
-                <!-- Card 9 -->
-                <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="casual college">
-                  <div class="p-card-image-wrap">
-                    <img src="assets/product_graphic_tee.png" alt="Washed Slate Tee" style="filter: brightness(0.85) contrast(0.95);">
-                    <span class="badge-match-pct">86% Match</span>
-                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
-                  </div>
-                  <div class="p-card-body">
-                    <span class="p-card-category">TEE — VINTAGE WASHED</span>
-                    <h4>Washed Slate Tee</h4>
-                    <div class="p-price-row">
-                      <span class="price-num">₹1,999</span>
-                      <span class="original-price">₹2,800</span>
+                    <div class="p-card-metadata">
+                      <span>87% AI Compatibility</span>
+                      <span>Saved May 14 • 12 wears</span>
                     </div>
-                    <span class="p-saved-date">Saved May 11</span>
                   </div>
                 </div>
 
-                <!-- Card 10 -->
+                <!-- Card 9: Casual College Tee -->
                 <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="college casual">
-                  <div class="p-card-image-wrap">
-                    <img src="assets/product_graphic_tee.png" alt="College Varsity Tee" style="filter: hue-rotate(120deg) brightness(0.8);">
-                    <span class="badge-match-pct">90% Match</span>
+                  <div class="p-card-image-wrap img-cyan-varsity">
+                    <img src="assets/product_graphic_tee.png" alt="Casual College Tee">
+                    <span class="badge-match-pct glow-green">90% Match</span>
                     <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
                   </div>
                   <div class="p-card-body">
                     <span class="p-card-category">TEE — COLLEGE CASUAL</span>
-                    <h4>College Varsity Tee</h4>
+                    <h4>Casual College Tee</h4>
                     <div class="p-price-row">
                       <span class="price-num">₹2,299</span>
                       <span class="original-price">₹3,200</span>
                     </div>
-                    <span class="p-saved-date">Saved May 08</span>
+                    <div class="p-card-metadata">
+                      <span>90% AI Compatibility</span>
+                      <span>Saved May 08 • 16 wears</span>
+                    </div>
                   </div>
                 </div>
 
-                <!-- SHOES -->
-                <!-- Card 11 -->
-                <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="casual college streetwear">
+                <!-- Card 10: Vintage Washed Tee -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="t-shirts" data-style-type="streetwear casual college">
+                  <div class="p-card-image-wrap img-washed-faded">
+                    <img src="assets/product_graphic_tee.png" alt="Vintage Washed Tee">
+                    <span class="badge-match-pct glow-purple">86% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">TEE — VINTAGE WASHED</span>
+                    <h4>Vintage Washed Tee</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹1,999</span>
+                      <span class="original-price">₹2,800</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>86% AI Compatibility</span>
+                      <span>Saved May 11 • 20 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- SNEAKERS & SHOES -->
+                <!-- Card 11: Minimal White Sneakers -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="casual streetwear college">
                   <div class="p-card-image-wrap">
-                    <img src="assets/product_white_sneakers.png" alt="Classic White Sneakers">
-                    <span class="badge-match-pct">96% Match</span>
+                    <img src="assets/product_white_sneakers.png" alt="Minimal White Sneakers">
+                    <span class="badge-match-pct glow-green">96% Match</span>
                     <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
                   </div>
                   <div class="p-card-body">
                     <span class="p-card-category">SHOES — WHITE SNEAKER</span>
-                    <h4>Classic White Sneakers</h4>
+                    <h4>Minimal White Sneakers</h4>
                     <div class="p-price-row">
                       <span class="price-num">₹6,800</span>
                       <span class="original-price">₹8,900</span>
                     </div>
-                    <span class="p-saved-date">Saved May 20</span>
-                  </div>
-                </div>
-
-                <!-- Card 12 -->
-                <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="streetwear outing">
-                  <div class="p-card-image-wrap">
-                    <img src="assets/product_white_sneakers.png" alt="Alpha Chunky Sneakers" style="filter: hue-rotate(280deg) brightness(0.85);">
-                    <span class="badge-match-pct">92% Match</span>
-                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
-                  </div>
-                  <div class="p-card-body">
-                    <span class="p-card-category">SHOES — CHUNKY STREET</span>
-                    <h4>Alpha Chunky Sneakers</h4>
-                    <div class="p-price-row">
-                      <span class="price-num">₹8,999</span>
-                      <span class="original-price">₹12,000</span>
+                    <div class="p-card-metadata">
+                      <span>96% AI Compatibility</span>
+                      <span>Saved May 20 • 45 wears</span>
                     </div>
-                    <span class="p-saved-date">Saved May 17</span>
                   </div>
                 </div>
 
-                <!-- Card 13 -->
+                <!-- Card 12: Luxury Black Boots -->
                 <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="luxury formal dating">
                   <div class="p-card-image-wrap">
-                    <img src="assets/product_luxury_boots.png" alt="Chelsea Leather Boots">
-                    <span class="badge-match-pct">90% Match</span>
+                    <img src="assets/product_luxury_boots.png" alt="Luxury Black Boots">
+                    <span class="badge-match-pct glow-green">90% Match</span>
                     <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
                   </div>
                   <div class="p-card-body">
                     <span class="p-card-category">SHOES — LEATHER BOOTS</span>
-                    <h4>Chelsea Leather Boots</h4>
+                    <h4>Luxury Black Boots</h4>
                     <div class="p-price-row">
                       <span class="price-num">₹12,499</span>
                       <span class="original-price">₹16,500</span>
                     </div>
-                    <span class="p-saved-date">Saved May 16</span>
+                    <div class="p-card-metadata">
+                      <span>90% AI Compatibility</span>
+                      <span>Saved May 16 • 5 wears</span>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Card 14 -->
+                <!-- Card 13: Chunky Street Sneakers -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="streetwear outing">
+                  <div class="p-card-image-wrap img-chunky-violet">
+                    <img src="assets/product_white_sneakers.png" alt="Chunky Street Sneakers">
+                    <span class="badge-match-pct glow-purple">92% Match</span>
+                    <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SHOES — CHUNKY STREET</span>
+                    <h4>Chunky Street Sneakers</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹8,999</span>
+                      <span class="original-price">₹12,000</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>92% AI Compatibility</span>
+                      <span>Saved May 17 • 24 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 14: Formal Leather Shoes -->
                 <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="formal luxury">
-                  <div class="p-card-image-wrap">
-                    <img src="assets/product_luxury_boots.png" alt="Oxford Leather Shoes" style="filter: sepia(0.8) brightness(0.5) contrast(1.2);">
-                    <span class="badge-match-pct">85% Match</span>
+                  <div class="p-card-image-wrap img-polished-sepia">
+                    <img src="assets/product_luxury_boots.png" alt="Formal Leather Shoes">
+                    <span class="badge-match-pct glow-purple">85% Match</span>
                     <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
                   </div>
                   <div class="p-card-body">
                     <span class="p-card-category">SHOES — FORMAL SHOES</span>
-                    <h4>Oxford Leather Shoes</h4>
+                    <h4>Formal Leather Shoes</h4>
                     <div class="p-price-row">
                       <span class="price-num">₹9,500</span>
                       <span class="original-price">₹14,000</span>
                     </div>
-                    <span class="p-saved-date">Saved May 05</span>
+                    <div class="p-card-metadata">
+                      <span>85% AI Compatibility</span>
+                      <span>Saved May 05 • 3 wears</span>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Card 15 -->
+                <!-- Card 15: Casual Slip-ons -->
                 <div class="luxury-product-card wardrobe-card" data-item-type="shoes" data-style-type="casual outing">
-                  <div class="p-card-image-wrap">
-                    <img src="assets/product_white_sneakers.png" alt="Urban Knit Slip-Ons" style="filter: brightness(0.5) grayscale(0.5);">
-                    <span class="badge-match-pct">87% Match</span>
+                  <div class="p-card-image-wrap img-charcoal-knit">
+                    <img src="assets/product_white_sneakers.png" alt="Casual Slip-ons">
+                    <span class="badge-match-pct glow-purple">87% Match</span>
                     <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
                   </div>
                   <div class="p-card-body">
                     <span class="p-card-category">SHOES — SLIP-ONS</span>
-                    <h4>Urban Knit Slip-Ons</h4>
+                    <h4>Casual Slip-ons</h4>
                     <div class="p-price-row">
                       <span class="price-num">₹3,499</span>
                       <span class="original-price">₹4,999</span>
                     </div>
-                    <span class="p-saved-date">Saved May 02</span>
+                    <div class="p-card-metadata">
+                      <span>87% AI Compatibility</span>
+                      <span>Saved May 02 • 10 wears</span>
+                    </div>
                   </div>
                 </div>
 
                 <!-- SLIPPERS -->
-                <!-- Card 16 -->
+                <!-- Card 16: Minimal Slides -->
                 <div class="luxury-product-card wardrobe-card" data-item-type="slippers" data-style-type="casual gym">
                   <div class="p-card-image-wrap">
-                    <img src="assets/product_minimal_slides.png" alt="Matte Black Slides">
-                    <span class="badge-match-pct">93% Match</span>
+                    <img src="assets/product_minimal_slides.png" alt="Minimal Slides">
+                    <span class="badge-match-pct glow-green">93% Match</span>
                     <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
                   </div>
                   <div class="p-card-body">
                     <span class="p-card-category">SLIPPERS — MINIMAL SLIDES</span>
-                    <h4>Matte Black Slides</h4>
+                    <h4>Minimal Slides</h4>
                     <div class="p-price-row">
                       <span class="price-num">₹2,499</span>
                       <span class="original-price">₹3,500</span>
                     </div>
-                    <span class="p-saved-date">Saved May 18</span>
+                    <div class="p-card-metadata">
+                      <span>93% AI Compatibility</span>
+                      <span>Saved May 18 • 38 wears</span>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Card 17 -->
+                <!-- Card 17: Luxury Home Slippers -->
                 <div class="luxury-product-card wardrobe-card" data-item-type="slippers" data-style-type="luxury">
-                  <div class="p-card-image-wrap">
-                    <img src="assets/product_minimal_slides.png" alt="Plush Velvet Slippers" style="filter: hue-rotate(240deg) brightness(0.6);">
-                    <span class="badge-match-pct">89% Match</span>
+                  <div class="p-card-image-wrap img-velvet-ruby">
+                    <img src="assets/product_minimal_slides.png" alt="Luxury Home Slippers">
+                    <span class="badge-match-pct glow-purple">89% Match</span>
                     <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
                   </div>
                   <div class="p-card-body">
                     <span class="p-card-category">SLIPPERS — LUXURY SLIPPERS</span>
-                    <h4>Plush Velvet Slippers</h4>
+                    <h4>Luxury Home Slippers</h4>
                     <div class="p-price-row">
                       <span class="price-num">₹3,200</span>
                       <span class="original-price">₹4,500</span>
                     </div>
-                    <span class="p-saved-date">Saved May 15</span>
+                    <div class="p-card-metadata">
+                      <span>89% AI Compatibility</span>
+                      <span>Saved May 15 • 11 wears</span>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Card 18 -->
+                <!-- Card 18: Beach Slippers -->
                 <div class="luxury-product-card wardrobe-card" data-item-type="slippers" data-style-type="casual outing">
-                  <div class="p-card-image-wrap">
-                    <img src="assets/product_minimal_slides.png" alt="EVA Beach Slippers" style="filter: hue-rotate(80deg) brightness(0.9);">
-                    <span class="badge-match-pct">86% Match</span>
+                  <div class="p-card-image-wrap img-sunny-teal">
+                    <img src="assets/product_minimal_slides.png" alt="Beach Slippers">
+                    <span class="badge-match-pct glow-purple">86% Match</span>
                     <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
                   </div>
                   <div class="p-card-body">
                     <span class="p-card-category">SLIPPERS — BEACH SLIPPERS</span>
-                    <h4>EVA Beach Slippers</h4>
+                    <h4>Beach Slippers</h4>
                     <div class="p-price-row">
                       <span class="price-num">₹1,599</span>
                       <span class="original-price">₹2,200</span>
                     </div>
-                    <span class="p-saved-date">Saved May 12</span>
+                    <div class="p-card-metadata">
+                      <span>86% AI Compatibility</span>
+                      <span>Saved May 12 • 7 wears</span>
+                    </div>
                   </div>
                 </div>
 
-                <!-- Card 19 -->
+                <!-- Card 19: Casual Daily Wear -->
+                <div class="luxury-product-card wardrobe-card" data-item-type="slippers" data-style-type="casual">
+                  <div class="p-card-image-wrap img-sand-sepia">
+                    <img src="assets/product_minimal_slides.png" alt="Casual Daily Wear">
+                    <span class="badge-match-pct glow-green">88% Match</span>
+                    <button class="heart-wish-btn"><i data-lucide="heart"></i></button>
+                  </div>
+                  <div class="p-card-body">
+                    <span class="p-card-category">SLIPPERS — DAILY CASUAL</span>
+                    <h4>Casual Daily Wear</h4>
+                    <div class="p-price-row">
+                      <span class="price-num">₹1,850</span>
+                      <span class="original-price">₹2,500</span>
+                    </div>
+                    <div class="p-card-metadata">
+                      <span>88% AI Compatibility</span>
+                      <span>Saved May 08 • 29 wears</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 20: Streetwear Slides -->
                 <div class="luxury-product-card wardrobe-card" data-item-type="slippers" data-style-type="streetwear oversized">
-                  <div class="p-card-image-wrap">
-                    <img src="assets/product_minimal_slides.png" alt="Apex Street Slides" style="filter: hue-rotate(180deg) brightness(0.75);">
-                    <span class="badge-match-pct">91% Match</span>
+                  <div class="p-card-image-wrap img-dark-violet-glow">
+                    <img src="assets/product_minimal_slides.png" alt="Streetwear Slides">
+                    <span class="badge-match-pct glow-purple">91% Match</span>
                     <button class="heart-wish-btn active"><i data-lucide="heart" fill="currentColor"></i></button>
                   </div>
                   <div class="p-card-body">
                     <span class="p-card-category">SLIPPERS — STREET SLIDES</span>
-                    <h4>Apex Street Slides</h4>
+                    <h4>Streetwear Slides</h4>
                     <div class="p-price-row">
                       <span class="price-num">₹2,800</span>
                       <span class="original-price">₹3,800</span>
                     </div>
-                    <span class="p-saved-date">Saved May 09</span>
+                    <div class="p-card-metadata">
+                      <span>91% AI Compatibility</span>
+                      <span>Saved May 09 • 19 wears</span>
+                    </div>
                   </div>
                 </div>
 
@@ -572,7 +647,7 @@
                   <div class="stat-icon-wrap"><i data-lucide="shirt"></i></div>
                   <div class="stat-texts">
                     <strong class="stat-count-num">52</strong>
-                    <span class="stat-label-text">Shirts & Tees</span>
+                    <span class="stat-label-text">Shirts</span>
                   </div>
                 </div>
 
@@ -596,7 +671,7 @@
                   <div class="stat-icon-wrap"><i data-lucide="line-chart"></i></div>
                   <div class="stat-texts">
                     <strong class="stat-count-num">94%</strong>
-                    <span class="stat-label-text">Style Consistency</span>
+                    <span class="stat-label-text">Style Consistency %</span>
                   </div>
                 </div>
 
@@ -604,10 +679,10 @@
 
             </div>
 
-            <!-- COLUMN 3: RIGHT PANEL (Wardrobe Analytics) -->
+            <!-- COLUMN 3: RIGHT PANEL (Wardrobe Analytics Insights) -->
             <aside class="right-insights-panel wardrobe-right-panel">
               
-              <!-- YOUR FASHION IDENTITY -->
+              <!-- SECTION 1: YOUR FASHION IDENTITY -->
               <section class="glass-panel fashion-identity-card">
                 <div class="dna-header">
                   <h3>Your Fashion Identity</h3>
@@ -615,7 +690,7 @@
                 </div>
                 
                 <div class="dna-main-desc">
-                  <h4>Luxury Minimalist</h4>
+                  <h4 class="text-neon-glow-purple">Luxury Minimalist</h4>
                   <p>Your dominant wardrobe vibe</p>
                 </div>
 
@@ -659,17 +734,17 @@
                     <div class="svg-ring-wrap">
                       <svg class="score-ring-svg" viewBox="0 0 36 36">
                         <path class="score-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                        <path class="score-fill ring-purple" stroke-dasharray="74, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" style="filter: hue-rotate(90deg);"/>
+                        <path class="score-fill ring-neon-purple-glow" stroke-dasharray="74, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
                       </svg>
                       <div class="score-label-num">74%</div>
                     </div>
-                    <span class="ring-title-label">Party Style</span>
+                    <span class="ring-title-label">Party Score</span>
                   </div>
 
                 </div>
               </section>
 
-              <!-- MOST WORN CATEGORIES -->
+              <!-- SECTION 2: MOST WORN CATEGORIES -->
               <section class="glass-panel most-worn-categories-card">
                 <h3>Most Worn Categories</h3>
                 
@@ -677,118 +752,118 @@
                   <!-- Bar 1 -->
                   <div class="dna-bar-item">
                     <div class="bar-labels">
-                      <span>Oversized Shirts</span>
+                      <span>Shirts</span>
                       <strong>42%</strong>
                     </div>
                     <div class="dna-progress-track">
-                      <div class="dna-progress-fill" style="width: 42%;"></div>
+                      <div class="dna-progress-fill glow-track-fill" style="width: 42%;"></div>
                     </div>
                   </div>
 
                   <!-- Bar 2 -->
                   <div class="dna-bar-item">
                     <div class="bar-labels">
-                      <span>White Sneakers</span>
+                      <span>Sneakers</span>
                       <strong>28%</strong>
                     </div>
                     <div class="dna-progress-track">
-                      <div class="dna-progress-fill" style="width: 28%;"></div>
+                      <div class="dna-progress-fill glow-track-fill" style="width: 28%;"></div>
                     </div>
                   </div>
 
                   <!-- Bar 3 -->
                   <div class="dna-bar-item">
                     <div class="bar-labels">
-                      <span>Linen Shirts</span>
+                      <span>Oversized Fits</span>
                       <strong>18%</strong>
                     </div>
                     <div class="dna-progress-track">
-                      <div class="dna-progress-fill" style="width: 18%;"></div>
+                      <div class="dna-progress-fill glow-track-fill" style="width: 18%;"></div>
                     </div>
                   </div>
 
                   <!-- Bar 4 -->
                   <div class="dna-bar-item">
                     <div class="bar-labels">
-                      <span>Minimal Slides</span>
+                      <span>Dark Aesthetic</span>
                       <strong>12%</strong>
                     </div>
                     <div class="dna-progress-track">
-                      <div class="dna-progress-fill" style="width: 12%;"></div>
+                      <div class="dna-progress-fill glow-track-fill" style="width: 12%;"></div>
                     </div>
                   </div>
                 </div>
               </section>
 
-              <!-- AI WARDROBE SUGGESTIONS -->
+              <!-- SECTION 3: AI WARDROBE SUGGESTIONS -->
               <section class="glass-panel wardrobe-suggestions-card">
                 <h3>AI Wardrobe Suggestions</h3>
                 
                 <div class="suggestions-stack-compact">
                   
-                  <div class="suggestion-item-card">
+                  <div class="suggestion-item-card suggestion-glow-hover">
                     <div class="s-icon"><i data-lucide="leaf"></i></div>
                     <div class="s-details">
                       <h4>Earth-Tone Recommendations</h4>
-                      <p>You should add more earth-tone shirts.</p>
+                      <p>Add more earth-tone shirts</p>
                     </div>
                   </div>
 
-                  <div class="suggestion-item-card">
+                  <div class="suggestion-item-card suggestion-glow-hover">
                     <div class="s-icon"><i data-lucide="layers"></i></div>
                     <div class="s-details">
                       <h4>Matching Essentials</h4>
-                      <p>Minimal white sneakers pair with 78% of your wardrobe.</p>
+                      <p>White sneakers pair with 78% wardrobe</p>
                     </div>
                   </div>
 
-                  <div class="suggestion-item-card">
+                  <div class="suggestion-item-card suggestion-glow-hover">
                     <div class="s-icon"><i data-lucide="sparkles"></i></div>
                     <div class="s-details">
                       <h4>Accessory Suggestions</h4>
-                      <p>Minimalist gold chains fit perfectly with luxury satin shirts.</p>
+                      <p>Add layered accessories</p>
                     </div>
                   </div>
 
                 </div>
               </section>
 
-              <!-- RECENTLY ADDED -->
+              <!-- SECTION 4: RECENTLY ADDED -->
               <section class="glass-panel recently-added-card">
                 <h3>Recently Added</h3>
                 
                 <div class="recently-added-scroller">
                   
-                  <div class="compact-product-card">
-                    <img src="assets/product_satin_shirt.png" alt="Satin Shirt" class="p-thumb">
+                  <div class="compact-product-card compact-glow-hover">
+                    <img src="assets/product_linen_overshirt.png" alt="Beige Linen Shirt" class="p-thumb">
                     <div class="p-details">
-                      <h4>Luxury Satin Shirt</h4>
-                      <span class="p-price">₹4,899</span>
+                      <h4>Beige Linen Shirt</h4>
+                      <span class="p-price">₹3,499</span>
                     </div>
                     <div class="p-meta">
-                      <span class="p-match-pct">93%</span>
+                      <span class="p-match-pct-small">95%</span>
                     </div>
                   </div>
 
-                  <div class="compact-product-card">
-                    <img src="assets/product_luxury_boots.png" alt="Chelsea Boots" class="p-thumb">
+                  <div class="compact-product-card compact-glow-hover">
+                    <img src="assets/product_white_sneakers.png" alt="White Sneakers" class="p-thumb">
                     <div class="p-details">
-                      <h4>Chelsea Boots</h4>
+                      <h4>Minimal White Sneakers</h4>
+                      <span class="p-price">₹6,800</span>
+                    </div>
+                    <div class="p-meta">
+                      <span class="p-match-pct-small">96%</span>
+                    </div>
+                  </div>
+
+                  <div class="compact-product-card compact-glow-hover">
+                    <img src="assets/product_luxury_boots.png" alt="Black Boots" class="p-thumb">
+                    <div class="p-details">
+                      <h4>Luxury Black Boots</h4>
                       <span class="p-price">₹12,499</span>
                     </div>
                     <div class="p-meta">
-                      <span class="p-match-pct">90%</span>
-                    </div>
-                  </div>
-
-                  <div class="compact-product-card">
-                    <img src="assets/product_minimal_slides.png" alt="slides" class="p-thumb">
-                    <div class="p-details">
-                      <h4>Minimal Slides</h4>
-                      <span class="p-price">₹2,499</span>
-                    </div>
-                    <div class="p-meta">
-                      <span class="p-match-pct">87%</span>
+                      <span class="p-match-pct-small">90%</span>
                     </div>
                   </div>
 
@@ -871,6 +946,6 @@
   </div>
 
   <!-- Scripts -->
-  <script src="wardrobe.js"></script>
+  <script src="wardrobe.js?v=4"></script>
 </body>
 </html>

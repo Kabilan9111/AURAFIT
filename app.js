@@ -13,19 +13,37 @@ document.addEventListener('DOMContentLoaded', () => {
      ========================================================================== */
   const navHome = document.getElementById('nav-home');
   const navTryOn = document.getElementById('nav-tryon');
+  const navWardrobe = document.getElementById('nav-wardrobe');
+  const navLooks = document.getElementById('nav-looks');
+  const navRecommendations = document.getElementById('nav-recommendations');
+  const navStylist = document.getElementById('nav-stylist');
   const navItems = document.querySelectorAll('.nav-item');
   const pages = document.querySelectorAll('.page-content');
 
   // Helper to switch page views
   function switchToPage(pageId, navId) {
     pages.forEach(p => p.classList.remove('active'));
-    document.getElementById(pageId).classList.add('active');
+    const targetPage = document.getElementById(pageId);
+    if (targetPage) targetPage.classList.add('active');
 
     navItems.forEach(item => item.classList.remove('active'));
-    document.getElementById(navId).classList.add('active');
+    const targetNav = document.getElementById(navId);
+    if (targetNav) targetNav.classList.add('active');
 
     // Smooth scroll top on switch
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Update URL hash without pushing redundant history states
+    const hash = pageId.replace('page-', '');
+    if (hash === 'home') {
+      if (window.location.hash) {
+        history.replaceState(null, null, ' ');
+      }
+    } else {
+      if (window.location.hash !== `#${hash}`) {
+        history.replaceState(null, null, `#${hash}`);
+      }
+    }
   }
 
   navHome.addEventListener('click', (e) => {
@@ -38,12 +56,40 @@ document.addEventListener('DOMContentLoaded', () => {
     switchToPage('page-tryon', 'nav-tryon');
   });
 
+  if (navWardrobe) {
+    navWardrobe.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchToPage('page-wardrobe', 'nav-wardrobe');
+    });
+  }
+
+  if (navLooks) {
+    navLooks.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchToPage('page-looks', 'nav-looks');
+    });
+  }
+
+  if (navRecommendations) {
+    navRecommendations.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchToPage('page-recommendations', 'nav-recommendations');
+    });
+  }
+
+  if (navStylist) {
+    navStylist.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchToPage('page-stylist', 'nav-stylist');
+    });
+  }
+
   // Other stub nav links
   navItems.forEach(item => {
-    if (item.id !== 'nav-home' && item.id !== 'nav-tryon') {
+    if (item.id !== 'nav-home' && item.id !== 'nav-tryon' && item.id !== 'nav-wardrobe' && item.id !== 'nav-looks' && item.id !== 'nav-recommendations' && item.id !== 'nav-stylist') {
       item.addEventListener('click', (e) => {
         e.preventDefault();
-        alert(`Navigation to "${item.querySelector('span').innerText}" simulated.`);
+        // Placeholder links do not trigger alerts, just prevent default behavior
       });
     }
   });
@@ -58,7 +104,12 @@ document.addEventListener('DOMContentLoaded', () => {
     if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
       e.preventDefault();
       const homePageActive = document.getElementById('page-home').classList.contains('active');
-      if (homePageActive) {
+      const wardrobePageActive = document.getElementById('page-wardrobe') && document.getElementById('page-wardrobe').classList.contains('active');
+      
+      if (wardrobePageActive) {
+        const wSearch = document.getElementById('wardrobe-search-input');
+        if (wSearch) wSearch.focus();
+      } else if (homePageActive) {
         searchInput.focus();
       } else {
         switchToPage('page-home', 'nav-home');
@@ -667,4 +718,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load initial score rings values
   updateScoreRings(92, 89, 87);
+
+  // Dynamic Routing fallback for URL hash landing
+  const initialHash = window.location.hash;
+  if (initialHash === '#wardrobe' || initialHash === '#page-wardrobe') {
+    switchToPage('page-wardrobe', 'nav-wardrobe');
+  } else if (initialHash === '#tryon' || initialHash === '#page-tryon') {
+    switchToPage('page-tryon', 'nav-tryon');
+  } else if (initialHash === '#looks' || initialHash === '#page-looks') {
+    switchToPage('page-looks', 'nav-looks');
+  } else if (initialHash === '#recommendations' || initialHash === '#page-recommendations') {
+    switchToPage('page-recommendations', 'nav-recommendations');
+  } else if (initialHash === '#stylist' || initialHash === '#page-stylist') {
+    switchToPage('page-stylist', 'nav-stylist');
+  }
 });

@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AURAFIT — My Looks</title>
+  
+  <!-- Google Fonts (Inter + Outfit) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="looks.css">
+</head>
+<body>
+
+  <!-- Background Cinema Neon Ambient Lighting Orbs -->
+  <div class="glow-orb orb-top-left"></div>
+  <div class="glow-orb orb-center-right"></div>
+  <div class="glow-orb orb-bottom-left"></div>
+  <div class="glow-orb orb-bottom-right"></div>
+
+  <!-- Master Grid Wrapper -->
+  <div class="dashboard-wrapper">
+    
+    <!-- LEFT SIDEBAR -->
+    <aside class="sidebar-container" id="left-sidebar">
+      <!-- Logo Section -->
+      <div class="sidebar-brand">
+        <div class="logo-icon-wrapper">
+          <svg class="logo-svg" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M20 2L38 32H2L20 2Z" stroke="url(#logo-grad)" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M20 10L30 27H10L20 10Z" fill="url(#logo-grad-inner)"/>
+            <circle cx="20" cy="22" r="3" fill="#ffffff" class="logo-pulse"/>
+            <defs>
+              <linearGradient id="logo-grad" x1="2" y1="2" x2="38" y2="32" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#A855F7"/>
+                <stop offset="1" stop-color="#7B2FF7"/>
+              </linearGradient>
+              <linearGradient id="logo-grad-inner" x1="10" y1="10" x2="30" y2="27" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#A855F7" stop-opacity="0.8"/>
+                <stop offset="1" stop-color="#7B2FF7" stop-opacity="0.3"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        <span class="logo-text">AURA<span class="text-neon-purple">FIT</span></span>
+      </div>
+
+      <!-- Navigation links -->
+      <nav class="sidebar-nav">
+        <ul>
+          <li>
+            <a href="index.html" class="nav-item" id="nav-home">
+              <i data-lucide="layout-dashboard"></i>
+              <span>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="index.html" class="nav-item" id="nav-tryon">
+              <i data-lucide="shirt"></i>
+              <span>Try On</span>
+            </a>
+          </li>
+          <li>
+            <a href="wardrobe.html" class="nav-item" id="nav-wardrobe">
+              <i data-lucide="folder-heart"></i>
+              <span>Wardrobe</span>
+            </a>
+          </li>
+          <li>
+            <a href="stylist.html" class="nav-item" id="nav-stylist">
+              <i data-lucide="sparkles"></i>
+              <span>AI Stylist</span>
+              <span class="badge-premium-glow">AI</span>
+            </a>
+          </li>
+          <li>
+            <a href="looks.html" class="nav-item active" id="nav-looks">
+              <i data-lucide="images"></i>
+              <span>Looks</span>
+            </a>
+          </li>
+          <li>
+            <a href="recommendations.html" class="nav-item" id="nav-recommendations">
+              <i data-lucide="thumbs-up"></i>
+              <span>Recommendations</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" class="nav-item" id="nav-profile">
+              <i data-lucide="user-cog"></i>
+              <span>Profile</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Sidebar Upgrade Card -->
+      <div class="upgrade-card-wrapper">
+        <div class="upgrade-card">
+          <div class="upgrade-glow-bg"></div>
+          <div class="upgrade-icon">
+            <i data-lucide="crown"></i>
+          </div>
+          <h4>AURAFIT PRO</h4>
+          <p>Unlock premium features and unlimited try-ons.</p>
+          <button class="btn btn-primary btn-upgrade-pro" id="btn-upgrade-sidebar">
+            <span>Upgrade Now</span>
+            <i data-lucide="zap"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- User Profile Card -->
+      <div class="sidebar-user-card" id="user-profile-trigger">
+        <img src="assets/leon_walker_avatar.png" alt="Leon Walker" class="user-avatar-img">
+        <div class="user-info">
+          <h4>Leon Walker</h4>
+          <p>Premium Member</p>
+        </div>
+        <div class="user-status-dot"></div>
+      </div>
+    </aside>
+
+    <!-- CONTENT DISPLAY PAGES -->
+    <main class="main-pages-viewport">
+      
+      <!-- MY LOOKS PAGE -->
+      <div id="page-looks" class="page-content active">
+        <div class="main-layout-container">
+          
+          <!-- LOOKS HEADER -->
+          <header class="header-container">
+            <div class="header-heading-center">
+              <h1>My Looks ✨</h1>
+              <p>Curated outfits, moodboards and style ideas for every occasion.</p>
+            </div>
+
+            <!-- Top Search Bar with Cyber Glow -->
+            <div class="header-search-bar futuristic-search-glow">
+              <i data-lucide="search" class="search-icon"></i>
+              <input type="text" placeholder="Search looks, moods, styles…" id="looks-search-input">
+              <span class="search-shortcut">Ctrl K</span>
+            </div>
+
+            <div class="header-actions">
+              <button class="header-btn" id="btn-notifications-looks" aria-label="Notifications">
+                <i data-lucide="bell"></i>
+                <span class="notification-dot"></span>
+              </button>
+              <button class="header-btn" id="btn-wishlist-header" aria-label="Wishlist">
+                <i data-lucide="heart" fill="currentColor"></i>
+                <span class="wishlist-count-badge" id="wishlist-counter-value">9</span>
+              </button>
+              <button class="header-btn" aria-label="Settings" id="btn-settings-looks">
+                <i data-lucide="settings"></i>
+              </button>
+              <div class="header-user-avatar nav-to-profile">
+                <img src="assets/leon_walker_avatar.png" alt="Leon Walker">
+              </div>
+            </div>
+          </header>
+
+          <!-- NAV CONTROLS: Segmented Tabs & Filters -->
+          <div class="looks-nav-controls">
+            <!-- Segmented Tabs -->
+            <div class="looks-tab-bar">
+              <button class="looks-tab-btn active" data-tab-type="all-looks">All Looks</button>
+              <button class="looks-tab-btn" data-tab-type="saved-looks">Saved Looks</button>
+              <button class="looks-tab-btn" data-tab-type="recent">Recent</button>
+              <button class="looks-tab-btn" data-tab-type="trending">Trending</button>
+            </div>
+
+            <!-- Filter Pills Row -->
+            <div class="looks-filter-row">
+              <button class="looks-filter-pill active" data-style-type="all">All</button>
+              <button class="looks-filter-pill" data-style-type="casual">Casual</button>
+              <button class="looks-filter-pill" data-style-type="streetwear">Streetwear</button>
+              <button class="looks-filter-pill" data-style-type="formal">Formal</button>
+              <button class="looks-filter-pill" data-style-type="luxury">Luxury</button>
+              <button class="looks-filter-pill" data-style-type="party">Party</button>
+              <button class="looks-filter-pill" data-style-type="gym">Gym</button>
+              <button class="looks-filter-pill" data-style-type="college">College</button>
+              <button class="looks-filter-pill" data-style-type="datenight">Date Night</button>
+            </div>
+          </div>
+
+          <!-- MAIN LOOKS GRID WORKSPACE -->
+          <div class="looks-main-grid">
+
+            <!-- 1. FEATURED LOOKS -->
+            <section class="looks-section-container">
+              <div class="looks-section-header">
+                <h2>Featured Looks</h2>
+                <span class="section-count">4 Curated</span>
+              </div>
+
+              <div class="featured-looks-grid">
+                
+                <!-- Card 1: Urban Minimalist -->
+                <div class="featured-look-card" data-style-type="casual luxury college" data-tab-type="all-looks recent">
+                  <div class="featured-card-img-wrapper">
+                    <img src="assets/looks_urban_mini.png" alt="Urban Minimalist">
+                    <span class="featured-match-badge">95% Match</span>
+                  </div>
+                  <div class="featured-card-content">
+                    <div class="featured-card-text">
+                      <h3>Urban Minimalist</h3>
+                      <p>Structured tech trench coat, dark-charcoal turtleneck, and sleek cyber-metallic accessories.</p>
+                    </div>
+                    <div class="featured-card-footer">
+                      <div class="featured-likes">
+                        <i data-lucide="heart"></i>
+                        <span>1.4K Likes</span>
+                      </div>
+                      <div class="featured-card-actions">
+                        <button class="looks-action-btn" aria-label="Bookmark"><i data-lucide="bookmark"></i></button>
+                        <button class="looks-action-btn" aria-label="Like"><i data-lucide="heart"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 2: Night Elegance -->
+                <div class="featured-look-card" data-style-type="formal luxury datenight" data-tab-type="all-looks trending">
+                  <div class="featured-card-img-wrapper">
+                    <img src="assets/looks_night_ele.png" alt="Night Elegance" class="img-tint-sunset">
+                    <span class="featured-match-badge">92% Match</span>
+                  </div>
+                  <div class="featured-card-content">
+                    <div class="featured-card-text">
+                      <h3>Night Elegance</h3>
+                      <p>Plush velvet deep purple tuxedo jacket with an open-collar premium satin silk shirt.</p>
+                    </div>
+                    <div class="featured-card-footer">
+                      <div class="featured-likes">
+                        <i data-lucide="heart"></i>
+                        <span>2.8K Likes</span>
+                      </div>
+                      <div class="featured-card-actions">
+                        <button class="looks-action-btn" aria-label="Bookmark"><i data-lucide="bookmark"></i></button>
+                        <button class="looks-action-btn" aria-label="Like"><i data-lucide="heart"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 3: Street Dominator -->
+                <div class="featured-look-card" data-style-type="streetwear party" data-tab-type="all-looks recent trending">
+                  <div class="featured-card-img-wrapper">
+                    <img src="assets/looks_street_dom.png" alt="Street Dominator">
+                    <span class="featured-match-badge">94% Match</span>
+                  </div>
+                  <div class="featured-card-content">
+                    <div class="featured-card-text">
+                      <h3>Street Dominator</h3>
+                      <p>Futuristic tactical heavy-strap utility cargo vest paired with an oversized dark technical hoodie.</p>
+                    </div>
+                    <div class="featured-card-footer">
+                      <div class="featured-likes">
+                        <i data-lucide="heart"></i>
+                        <span>3.1K Likes</span>
+                      </div>
+                      <div class="featured-card-actions">
+                        <button class="looks-action-btn" aria-label="Bookmark"><i data-lucide="bookmark"></i></button>
+                        <button class="looks-action-btn" aria-label="Like"><i data-lucide="heart"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 4: Casual Comfort -->
+                <div class="featured-look-card" data-style-type="casual college" data-tab-type="all-looks recent">
+                  <div class="featured-card-img-wrapper">
+                    <img src="assets/looks_casual_com.png" alt="Casual Comfort">
+                    <span class="featured-match-badge">89% Match</span>
+                  </div>
+                  <div class="featured-card-content">
+                    <div class="featured-card-text">
+                      <h3>Casual Comfort</h3>
+                      <p>Premium oversized heavy knit sweater in deep violet-gray with relaxed dark trousers.</p>
+                    </div>
+                    <div class="featured-card-footer">
+                      <div class="featured-likes">
+                        <i data-lucide="heart"></i>
+                        <span>1.9K Likes</span>
+                      </div>
+                      <div class="featured-card-actions">
+                        <button class="looks-action-btn" aria-label="Bookmark"><i data-lucide="bookmark"></i></button>
+                        <button class="looks-action-btn" aria-label="Like"><i data-lucide="heart"></i></button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+            <!-- 2. LOOKBOOKS SECTION -->
+            <section class="looks-section-container">
+              <div class="looks-section-header">
+                <h2>Lookbooks</h2>
+                <span class="section-count">8 Collections</span>
+              </div>
+
+              <div class="lookbooks-grid">
+                
+                <!-- Card 1: Summer Essentials -->
+                <div class="lookbook-card" data-style-type="casual college">
+                  <img src="assets/looks_casual_com.png" alt="Summer Essentials" class="lookbook-bg-img img-tint-sunset">
+                  <div class="lookbook-overlay">
+                    <h3>Summer Essentials</h3>
+                    <div class="lookbook-info">
+                      <span class="lookbook-count">6 Looks</span>
+                      <span class="lookbook-arrow">View <i data-lucide="arrow-right" style="width:12px;height:12px;margin-left:4px;"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 2: Monochrome Mood -->
+                <div class="lookbook-card" data-style-type="formal streetwear luxury">
+                  <img src="assets/looks_urban_mini.png" alt="Monochrome Mood" class="lookbook-bg-img img-tint-mono">
+                  <div class="lookbook-overlay">
+                    <h3>Monochrome Mood</h3>
+                    <div class="lookbook-info">
+                      <span class="lookbook-count">12 Looks</span>
+                      <span class="lookbook-arrow">View <i data-lucide="arrow-right" style="width:12px;height:12px;margin-left:4px;"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 3: Date Night Edit -->
+                <div class="lookbook-card" data-style-type="formal luxury datenight">
+                  <img src="assets/looks_night_ele.png" alt="Date Night Edit" class="lookbook-bg-img img-tint-warm">
+                  <div class="lookbook-overlay">
+                    <h3>Date Night Edit</h3>
+                    <div class="lookbook-info">
+                      <span class="lookbook-count">8 Looks</span>
+                      <span class="lookbook-arrow">View <i data-lucide="arrow-right" style="width:12px;height:12px;margin-left:4px;"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 4: Streetwear Culture -->
+                <div class="lookbook-card" data-style-type="streetwear party">
+                  <img src="assets/looks_street_dom.png" alt="Streetwear Culture" class="lookbook-bg-img img-tint-neon">
+                  <div class="lookbook-overlay">
+                    <h3>Streetwear Culture</h3>
+                    <div class="lookbook-info">
+                      <span class="lookbook-count">15 Looks</span>
+                      <span class="lookbook-arrow">View <i data-lucide="arrow-right" style="width:12px;height:12px;margin-left:4px;"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 5: Gym Grind -->
+                <div class="lookbook-card" data-style-type="gym">
+                  <img src="assets/looks_street_dom.png" alt="Gym Grind" class="lookbook-bg-img img-tint-cool">
+                  <div class="lookbook-overlay">
+                    <h3>Gym Grind</h3>
+                    <div class="lookbook-info">
+                      <span class="lookbook-count">5 Looks</span>
+                      <span class="lookbook-arrow">View <i data-lucide="arrow-right" style="width:12px;height:12px;margin-left:4px;"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 6: Luxury Staples -->
+                <div class="lookbook-card" data-style-type="luxury formal">
+                  <img src="assets/looks_urban_mini.png" alt="Luxury Staples" class="lookbook-bg-img img-tint-vintage">
+                  <div class="lookbook-overlay">
+                    <h3>Luxury Staples</h3>
+                    <div class="lookbook-info">
+                      <span class="lookbook-count">10 Looks</span>
+                      <span class="lookbook-arrow">View <i data-lucide="arrow-right" style="width:12px;height:12px;margin-left:4px;"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 7: Daily Casual -->
+                <div class="lookbook-card" data-style-type="casual college">
+                  <img src="assets/looks_casual_com.png" alt="Daily Casual" class="lookbook-bg-img img-tint-emerald">
+                  <div class="lookbook-overlay">
+                    <h3>Daily Casual</h3>
+                    <div class="lookbook-info">
+                      <span class="lookbook-count">9 Looks</span>
+                      <span class="lookbook-arrow">View <i data-lucide="arrow-right" style="width:12px;height:12px;margin-left:4px;"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Card 8: Airport Fit -->
+                <div class="lookbook-card" data-style-type="casual streetwear">
+                  <img src="assets/looks_casual_com.png" alt="Airport Fit" class="lookbook-bg-img img-tint-mono">
+                  <div class="lookbook-overlay">
+                    <h3>Airport Fit</h3>
+                    <div class="lookbook-info">
+                      <span class="lookbook-count">7 Looks</span>
+                      <span class="lookbook-arrow">View <i data-lucide="arrow-right" style="width:12px;height:12px;margin-left:4px;"></i></span>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+            <!-- 3. SAVED LOOKS SECTION -->
+            <section class="looks-section-container">
+              <div class="looks-section-header">
+                <h2>Saved Looks</h2>
+                <span class="section-count">5 Saved</span>
+              </div>
+
+              <div class="saved-looks-grid">
+                
+                <!-- Saved 1: Airport Fit -->
+                <div class="saved-look-card" data-style-type="casual streetwear" data-tab-type="all-looks saved-looks recent">
+                  <div class="saved-card-img-wrapper">
+                    <img src="assets/looks_casual_com.png" alt="Airport Fit" class="img-tint-cool">
+                    <span class="saved-card-badge">AIRPORT</span>
+                    <button class="saved-card-heart-btn active" aria-label="Saved"><i data-lucide="heart" style="width:14px;height:14px;"></i></button>
+                    <span class="saved-card-match">91% Fit</span>
+                  </div>
+                  <div class="saved-card-content">
+                    <h4>Airport Fit</h4>
+                    <span class="saved-card-date">Saved May 18</span>
+                  </div>
+                </div>
+
+                <!-- Saved 2: Daily Casual -->
+                <div class="saved-look-card" data-style-type="casual college" data-tab-type="all-looks saved-looks">
+                  <div class="saved-card-img-wrapper">
+                    <img src="assets/looks_casual_com.png" alt="Daily Casual" class="img-tint-warm">
+                    <span class="saved-card-badge">DAILY</span>
+                    <button class="saved-card-heart-btn active" aria-label="Saved"><i data-lucide="heart" style="width:14px;height:14px;"></i></button>
+                    <span class="saved-card-match">88% Fit</span>
+                  </div>
+                  <div class="saved-card-content">
+                    <h4>Daily Casual</h4>
+                    <span class="saved-card-date">Saved May 16</span>
+                  </div>
+                </div>
+
+                <!-- Saved 3: Black Aesthetic -->
+                <div class="saved-look-card" data-style-type="streetwear luxury formal" data-tab-type="all-looks saved-looks trending">
+                  <div class="saved-card-img-wrapper">
+                    <img src="assets/looks_urban_mini.png" alt="Black Aesthetic" class="img-tint-mono">
+                    <span class="saved-card-badge">AESTHETIC</span>
+                    <button class="saved-card-heart-btn active" aria-label="Saved"><i data-lucide="heart" style="width:14px;height:14px;"></i></button>
+                    <span class="saved-card-match">96% Fit</span>
+                  </div>
+                  <div class="saved-card-content">
+                    <h4>Black Aesthetic</h4>
+                    <span class="saved-card-date">Saved May 14</span>
+                  </div>
+                </div>
+
+                <!-- Saved 4: Cafe Look -->
+                <div class="saved-look-card" data-style-type="casual college datenight" data-tab-type="all-looks saved-looks recent">
+                  <div class="saved-card-img-wrapper">
+                    <img src="assets/looks_casual_com.png" alt="Cafe Look" class="img-tint-vintage">
+                    <span class="saved-card-badge">CAFE</span>
+                    <button class="saved-card-heart-btn active" aria-label="Saved"><i data-lucide="heart" style="width:14px;height:14px;"></i></button>
+                    <span class="saved-card-match">90% Fit</span>
+                  </div>
+                  <div class="saved-card-content">
+                    <h4>Cafe Look</h4>
+                    <span class="saved-card-date">Saved May 12</span>
+                  </div>
+                </div>
+
+                <!-- Saved 5: Weekend Vibes -->
+                <div class="saved-look-card" data-style-type="streetwear party" data-tab-type="all-looks saved-looks recent trending">
+                  <div class="saved-card-img-wrapper">
+                    <img src="assets/looks_street_dom.png" alt="Weekend Vibes" class="img-tint-neon">
+                    <span class="saved-card-badge">WEEKEND</span>
+                    <button class="saved-card-heart-btn active" aria-label="Saved"><i data-lucide="heart" style="width:14px;height:14px;"></i></button>
+                    <span class="saved-card-match">93% Fit</span>
+                  </div>
+                  <div class="saved-card-content">
+                    <h4>Weekend Vibes</h4>
+                    <span class="saved-card-date">Saved May 10</span>
+                  </div>
+                </div>
+
+              </div>
+            </section>
+
+            <!-- BOTTOM STATS BAR -->
+            <div class="looks-stats-bar">
+              <div class="looks-stat-widget">
+                <span class="looks-stat-label">Saved Looks</span>
+                <span class="looks-stat-value">42 <span>Looks</span></span>
+              </div>
+              <div class="looks-stat-widget">
+                <span class="looks-stat-label">Outfit Ideas</span>
+                <span class="looks-stat-value">128 <span>Styles</span></span>
+              </div>
+              <div class="looks-stat-widget">
+                <span class="looks-stat-label">Style Accuracy</span>
+                <span class="looks-stat-value">87% <span>Match</span></span>
+              </div>
+              <div class="looks-stat-widget">
+                <span class="looks-stat-label">Lookbooks</span>
+                <span class="looks-stat-value">7 <span>Active</span></span>
+              </div>
+              <div class="looks-stat-widget">
+                <span class="looks-stat-label">Total Likes</span>
+                <span class="looks-stat-value">12K <span>Likes</span></span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- UPGRADE TO PRO NEON GLASS MODAL -->
+  <div class="modal-overlay" id="modal-pro-upgrade">
+    <div class="modal-content glass-panel">
+      <button class="modal-close-btn" id="modal-close" aria-label="Close modal">
+        <i data-lucide="x"></i>
+      </button>
+      
+      <div class="modal-header">
+        <div class="modal-badge-wrapper">
+          <i data-lucide="crown" class="badge-icon"></i>
+          <span>AURAFIT PRO</span>
+        </div>
+        <h2>Elevate Your Fashion Reality</h2>
+        <p>Gain access to the world's most advanced clothing synthesis engine.</p>
+      </div>
+
+      <div class="modal-body-perks">
+        <div class="perk-item">
+          <div class="perk-icon-wrap"><i data-lucide="check" class="perk-check"></i></div>
+          <div class="perk-details">
+            <h3>Unlimited Real-Time Try-Ons</h3>
+            <p>Style clothing variations instantly without any rate limits.</p>
+          </div>
+        </div>
+
+        <div class="perk-item">
+          <div class="perk-icon-wrap"><i data-lucide="check" class="perk-check"></i></div>
+          <div class="perk-details">
+            <h3>Cinema-Grade Backdrop Synthesis</h3>
+            <p>Transport yourself into premium environments like luxury villas or yacht decks.</p>
+          </div>
+        </div>
+
+        <div class="perk-item">
+          <div class="perk-icon-wrap"><i data-lucide="check" class="perk-check"></i></div>
+          <div class="perk-details">
+            <h3>Personal AI Stylist Consultations</h3>
+            <p>24/7 fashion styling consultations regarding fit, contrast, and matching.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-footer-pricing">
+        <div class="modal-price-card active">
+          <div class="price-badge">BEST VALUE</div>
+          <span class="plan-period">ANNUAL BILLING</span>
+          <div class="plan-price-num">₹299<span>/mo</span></div>
+          <span class="plan-bill-detail">Billed yearly (₹3,588)</span>
+        </div>
+
+        <div class="modal-price-card">
+          <span class="plan-period">MONTHLY BILLING</span>
+          <div class="plan-price-num">₹399<span>/mo</span></div>
+          <span class="plan-bill-detail">Cancel subscription anytime</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary modal-action-btn" id="btn-modal-checkout">
+        <span>Upgrade My Style Now</span>
+        <i data-lucide="arrow-right"></i>
+      </button>
+      <p class="modal-secure-text"><i data-lucide="lock" class="sec-lock-icon"></i> Secured with 256-bit SSL encryption. Cancel anytime.</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="looks.js?v=4"></script>
+</body>
+</html>
