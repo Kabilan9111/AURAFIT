@@ -57,14 +57,18 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
       typing.remove();
       
-      // Determine response keyword
+      // Use AuraInsights for profile-aware replies; fall back to static answers
+      let reply;
       const cleaned = msgText.toLowerCase();
-      let reply = botAnswers.default;
-      if (cleaned.includes('date')) reply = botAnswers['date night'];
-      else if (cleaned.includes('cargo')) reply = botAnswers['black cargos'];
-      else if (cleaned.includes('airport')) reply = botAnswers['airport'];
-      else if (cleaned.includes('gym')) reply = botAnswers.gym;
-
+      if (window.AuraInsights && window.AuraState) {
+        reply = AuraInsights.getChatResponse(msgText, AuraState.styleProfile);
+      } else {
+        if (cleaned.includes('date'))    reply = botAnswers['date night'];
+        else if (cleaned.includes('cargo'))   reply = botAnswers['black cargos'];
+        else if (cleaned.includes('airport')) reply = botAnswers['airport'];
+        else if (cleaned.includes('gym'))     reply = botAnswers.gym;
+        else                                  reply = botAnswers.default;
+      }
       addChatBubble('assistant', reply);
     }, 1200);
   }
@@ -211,6 +215,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const presetKey = node.getAttribute('data-preset');
       const preset = aestheticPresets[presetKey];
 
+      // Track selection in AuraState (builds style profile)
+      if (window.AuraState && presetKey) {
+        AuraState.trackAesthetic(presetKey);
+      }
+
       if (preset && radarPolygon && overallScoreEl && moodValueEl) {
         // Morph radar polygon shape
         radarPolygon.setAttribute('points', preset.points);
@@ -231,6 +240,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Update mood label
         moodValueEl.innerText = preset.mood;
+
+        // Refresh live insights based on updated profile
+        refreshInsights();
       }
     });
   });
@@ -284,4 +296,27 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   });
+
+  /* ==========================================================================
+     6. Live Style Insights — inject dynamic sentences into checklist
+     ========================================================================== */
+  function refreshInsights() {
+    if (!window.AuraInsights || !window.AuraState) return;
+    const profile  = AuraState.styleProfile;
+    const insights = AuraInsights.get(4, profile);
+    // Target the suitability checklist items on the stylist page
+    const items = document.querySelectorAll(
+      '#page-stylist .suitability-checklist .item-text, ' +
+      '#page-stylist .insight-item-text, ' +
+      '#page-stylist .checklist-item span'
+    );
+    if (!items.length) return;
+    insights.forEach((txt, i) => {
+      if (items[i]) items[i].textContent = txt;
+    });
+  }
+
+  // Initial render + re-render whenever profile updates
+  refreshInsights();
+  window.addEventListener('aura:statechange', refreshInsights);
 });

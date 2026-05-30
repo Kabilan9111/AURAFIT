@@ -13,7 +13,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   
   <!-- Stylesheet -->
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=9">
   <link rel="stylesheet" href="wardrobe.css">
   <link rel="stylesheet" href="looks.css">
   <link rel="stylesheet" href="recommendations.css">
@@ -628,355 +628,312 @@
 
             </aside>
 
-          </div>
-        </div>
-      </div>
+          </div><!-- /.workspace-grid -->
+        </div><!-- /.main-layout-container -->
+      </div><!-- /#page-home -->
 
       <!-- ==========================================================================
-           PAGE 2: TRY ON WORKSPACE (TOGGLED VIA SIDEBAR LINK)
+           PAGE 2: TRY ON WORKSPACE — AI IDENTITY ANALYSIS ENGINE
            ========================================================================== -->
-      <div id="page-tryon" class="page-content">
-        <div class="main-layout-container">
+      <div id="page-tryon" class="page-content tryon-v2">
+
+        <!-- ══ STAGE HEADER LABELS ══ -->
+        <div class="tryon-top-header">
+          <div class="header-left-col">
+            <h3 class="header-title">BEFORE</h3>
+            <p class="header-sub">Upload & analyze your photo</p>
+          </div>
+          <div class="header-center-col">
+            <h3 class="header-title header-after">AFTER</h3>
+            <p class="header-sub">AI generated try-on</p>
+          </div>
+          <div class="header-right-col">
+            <span class="click-hint-arrow">Click to see<br>your AI Style Report <svg width="30" height="20" viewBox="0 0 50 20" fill="none" stroke="currentColor"><path d="M0,10 Q20,10 40,10" stroke-dasharray="3 3"/><path d="M35,5 L40,10 L35,15"/></svg></span>
+            <button class="btn-style-info-glass" id="btn-open-style-info">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              Style Info
+            </button>
+          </div>
+        </div>
+
+        <!-- ══ MAIN 3-COLUMN GRID ══ -->
+        <div class="tryon-main-grid target-match-grid">
           
-          <!-- TRY ON HEADER -->
-          <header class="header-container" id="top-header">
-            <div class="header-heading-center">
-              <h1>AI Try-On <span class="sparkle-emoji">✨</span></h1>
-              <p>See how outfits look on you before you buy.</p>
-            </div>
-
-            <div class="header-actions">
-              <button class="btn btn-ghost" id="btn-how-it-works">How it works</button>
-              <button class="header-btn" id="btn-notifications" aria-label="Notifications">
-                <i data-lucide="bell"></i>
-                <span class="notification-dot"></span>
-              </button>
-              <div class="header-user-avatar nav-to-profile">
-                <img src="assets/leon_walker_avatar.png" alt="Leon Walker">
-              </div>
-            </div>
-          </header>
-
-          <!-- THREE COLUMN WORKSPACE GRID -->
-          <div class="workspace-grid">
-            
-            <!-- COLUMN 1: LEFT CONFIG PANEL (Upload & Details) -->
-            <section class="glass-panel left-main-panel" id="left-config-panel">
-              <!-- Upload Area -->
-              <div class="upload-area-card" id="drop-zone">
+          <!-- LEFT PANEL -->
+          <aside class="target-left-panel">
+            <div class="panel-section">
+              <h4 class="section-label">1. UPLOAD YOUR PHOTO</h4>
+              <div class="upload-dashed-box" id="drop-zone">
                 <input type="file" id="file-input" accept="image/*" class="file-input-hidden">
-                <div class="upload-icon-pulse">
-                  <i data-lucide="cloud-lightning" class="neon-icon"></i>
-                </div>
-                <h3>Upload Full Body Photo</h3>
-                <p class="file-type-info">PNG, JPG up to 10MB</p>
-                <div class="drag-active-text">Drop your image here</div>
-                
-                <div class="upload-buttons-row">
-                  <button class="btn btn-primary" id="btn-upload-image">Upload Image</button>
-                  <button class="btn btn-secondary" id="btn-use-camera">
-                    <i data-lucide="camera"></i>
-                    <span>Use Camera</span>
-                  </button>
-                </div>
-
-                <!-- Try-On: Upload success indicator -->
-                <div id="tryon-upload-success-tag" aria-live="polite"></div>
-              </div>
-
-              <!-- Details -->
-              <div class="body-details-section">
-                <h3 class="section-subtitle">Your Details</h3>
-                
-                <div class="metrics-row">
-                  <div class="metric-input-group">
-                    <label for="select-height">Height</label>
-                    <div class="select-wrapper">
-                      <select id="select-height" name="height">
-                        <option value="165">165 cm (5'5")</option>
-                        <option value="170">170 cm (5'7")</option>
-                        <option value="175">175 cm (5'9")</option>
-                        <option value="180" selected>180 cm (5'11")</option>
-                        <option value="185">185 cm (6'1")</option>
-                        <option value="190">190 cm (6'3")</option>
-                      </select>
-                      <i data-lucide="chevron-down"></i>
-                    </div>
-                  </div>
-
-                  <div class="metric-input-group">
-                    <label for="select-bodytype">Body Type</label>
-                    <div class="select-wrapper">
-                      <select id="select-bodytype" name="bodytype">
-                        <option value="ectomorph">Lean (Ectomorph)</option>
-                        <option value="mesomorph" selected>Athletic (Mesomorph)</option>
-                        <option value="endomorph">Solid (Endomorph)</option>
-                        <option value="rectangular">Rectangular</option>
-                      </select>
-                      <i data-lucide="chevron-down"></i>
-                    </div>
-                  </div>
-                </div>
-
-                <div class="metric-input-group">
-                  <span class="label-heading">Skin Tone</span>
-                  <div class="skintone-chips-row">
-                    <button class="skin-chip active" style="background-color: #F8D5B1;" data-skin="fair" title="Fair"></button>
-                    <button class="skin-chip" style="background-color: #E2B28B;" data-skin="medium" title="Medium"></button>
-                    <button class="skin-chip" style="background-color: #C68E65;" data-skin="olive" title="Olive"></button>
-                    <button class="skin-chip" style="background-color: #8C5638;" data-skin="tan" title="Tan"></button>
-                    <button class="skin-chip" style="background-color: #4F2E1B;" data-skin="dark" title="Deep Dark"></button>
-                  </div>
-                </div>
-
-                <div class="metric-input-group">
-                  <span class="label-heading">Gender</span>
-                  <div class="gender-toggle-container">
-                    <button class="gender-tab active" data-gender="male">Male</button>
-                    <button class="gender-tab" data-gender="female">Female</button>
-                  </div>
-                </div>
-
-                <div class="toggle-control-group">
-                  <div class="toggle-info">
-                    <h4>Auto Detect</h4>
-                    <p>Auto analyze measurements from photo</p>
-                  </div>
-                  <label class="switch-toggle" for="switch-autodetect">
-                    <input type="checkbox" id="switch-autodetect" checked>
-                    <span class="slider-toggle"></span>
-                  </label>
+                <div class="upload-content">
+                  <svg class="cloud-icon" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.5 19C19.985 19 22 16.985 22 14.5C22 12.13 20.17 10.2 17.85 10.02C17.38 7.18 14.93 5 12 5C9.07 5 6.62 7.18 6.15 10.02C3.83 10.2 2 12.13 2 14.5C2 16.985 4.015 19 6.5 19H17.5Z"/><path d="M12 15V9"/><path d="M9 12L12 9L15 12"/></svg>
+                  <p>Drag & drop your photo here<br>or</p>
+                  <button class="btn-upload-solid" id="btn-upload-image">Choose File</button>
+                  <p class="file-hint">JPG, PNG up to 10MB</p>
                 </div>
               </div>
-            </section>
-
-            <!-- COLUMN 2: CENTER MAIN PREVIEW AREA -->
-            <div class="center-main-preview-workspace">
-              
-              <section class="glass-panel preview-stage-card" id="panel-preview">
-                <!-- Top tabs -->
-                <div class="preview-tabs-header">
-                  <div class="view-mode-tabs">
-                    <button class="mode-tab active" data-mode="outfit">Select Outfit</button>
-                    <button class="mode-tab" data-mode="results">Results</button>
-                  </div>
-                  
-                  <div class="category-tabs-wrapper">
-                    <button class="cat-tab active" data-category="all">All</button>
-                    <button class="cat-tab" data-category="casual">Casual</button>
-                    <button class="cat-tab" data-category="streetwear">Streetwear</button>
-                    <button class="cat-tab" data-category="luxury">Luxury</button>
-                    <button class="cat-tab" data-category="gym">Gym</button>
-                    <button class="cat-tab" data-category="formal">Formal</button>
-                    <button class="cat-tab" data-category="party">Party</button>
-                    <button class="cat-tab" data-category="oversized">Oversized</button>
-                  </div>
-                </div>
-
-                <!-- Center viewport -->
-                <div class="preview-stage-viewport" id="stage-viewport">
-                  <div class="laser-scanner" id="scanner-laser"></div>
-                  <div class="scanning-overlay-text" id="scanner-text">
-                    <div class="scanner-spinner"></div>
-                    <span>PROJECTIONS: DETECTING MATERIAL GRAINS...</span>
-                  </div>
-
-                  <img src="assets/black_model_hoodie.png" alt="Leon Fitted: Hoodie, Joggers and Sneakers" class="hero-fitted-image" id="hero-display-image">
-                  
-                  <div class="badge-best-match">
-                    <i data-lucide="award"></i>
-                    <span>Best Match</span>
-                  </div>
-
-                  <div class="stage-top-right-actions">
-                    <button class="stage-action-btn active" id="btn-wishlist-hero" aria-label="Add to Wishlist">
-                      <i data-lucide="heart" fill="currentColor"></i>
-                    </button>
-                    <button class="stage-action-btn" id="btn-share-hero" aria-label="Share Look">
-                      <i data-lucide="share-2"></i>
-                    </button>
-                  </div>
-
-                  <button class="btn btn-secondary btn-fullscreen-overlay" id="btn-fullscreen">
-                    <i data-lucide="maximize-2"></i>
-                    <span>View Fullscreen</span>
-                  </button>
-                </div>
-
-                <!-- Bottom Carousel -->
-                <div class="look-selector-carousel-container">
-                  <span class="carousel-title">Alternate Configurations</span>
-                  <div class="look-carousel-track" id="look-carousel-track">
-                    
-                    <div class="look-card active" data-outfit-id="1">
-                      <img src="assets/black_model_hoodie.png" alt="Config 1">
-                      <div class="card-glow-outline"></div>
-                      <span class="match-score-badge">92%</span>
-                    </div>
-                    
-                    <div class="look-card" data-outfit-id="2">
-                      <img src="assets/model_brown_jacket.png" alt="Config 2">
-                      <div class="card-glow-outline"></div>
-                      <span class="match-score-badge">87%</span>
-                    </div>
-
-                    <div class="look-card" data-outfit-id="3">
-                      <img src="assets/model_black_polo.png" alt="Config 3">
-                      <div class="card-glow-outline"></div>
-                      <span class="match-score-badge">85%</span>
-                    </div>
-
-                    <div class="look-card" data-outfit-id="4">
-                      <img src="assets/model_black_hoodie.png" alt="Config 4">
-                      <div class="card-glow-outline"></div>
-                      <span class="match-score-badge">82%</span>
-                    </div>
-
-                    <div class="look-card" data-outfit-id="5">
-                      <img src="assets/black_model_hoodie.png" alt="Config 5" style="filter: hue-rotate(120deg);">
-                      <div class="card-glow-outline"></div>
-                      <span class="match-score-badge">78%</span>
-                    </div>
-
-                  </div>
-                </div>
-
-                <!-- Bottom stats bar -->
-                <div class="preview-analytics-footer">
-                  <div class="analytics-badges-group">
-                    <div class="indicator-badge">
-                      <div class="badge-ring"></div>
-                      <span>Fit Confidence</span>
-                    </div>
-                    <div class="indicator-badge">
-                      <div class="badge-ring"></div>
-                      <span>Style Score</span>
-                    </div>
-                    <div class="indicator-badge">
-                      <div class="badge-ring"></div>
-                      <span>Great Choice</span>
-                    </div>
-                  </div>
-                  <p class="analytics-explanation-text">This outfit matches your body type and personal style.</p>
-                  <button class="btn btn-outline-purple" id="btn-try-another">Try Another</button>
-                </div>
-
-              </section>
-
             </div>
 
-            <!-- COLUMN 3: RIGHT PANEL (AI Insights) -->
-            <section class="glass-panel right-insights-panel" id="insights-panel">
-              <div class="insights-header">
-                <h2>AI Style Insights</h2>
-                <p class="section-subtitle-minor">Why this look works for you</p>
+            <div class="panel-section ai-analysis-section">
+              <h4 class="section-label">2. AI ANALYSIS <svg class="sparkle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2v20m10-10H2m15.5 7.5L6.5 6.5m11-11l-11 11"/></svg></h4>
+              <div class="analysis-list">
+                <div class="al-item"><div class="al-icon skin-icon"></div><span>Skin Tone</span><strong>Warm Medium</strong></div>
+                <div class="al-item"><div class="al-icon face-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 2c-4 0-7 4-7 10s3 10 7 10 7-4 7-10-3-10-7-10z"/></svg></div><span>Face Shape</span><strong>Oval</strong></div>
+                <div class="al-item"><div class="al-icon body-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="4" y="2" width="16" height="20" rx="2"/></svg></div><span>Body Type</span><strong>Athletic</strong></div>
+                <div class="al-item"><div class="al-icon vibe-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div><span>Vibe</span><strong>Confident</strong></div>
+                <div class="al-item"><div class="al-icon personality-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><span>Personality</span><strong>Ambitious</strong></div>
               </div>
+            </div>
 
-              <ul class="suitability-checklist">
-                <li class="checked-item">
-                  <div class="checkmark-circle"><i data-lucide="check" class="green-check-icon"></i></div>
-                  <span class="item-text">Black tones balance your skin tone</span>
-                </li>
-                <li class="checked-item">
-                  <div class="checkmark-circle"><i data-lucide="check" class="green-check-icon"></i></div>
-                  <span class="item-text">Relaxed fit complements your frame</span>
-                </li>
-                <li class="checked-item">
-                  <div class="checkmark-circle"><i data-lucide="check" class="green-check-icon"></i></div>
-                  <span class="item-text">Minimalist style enhances your vibe</span>
-                </li>
-                <li class="checked-item">
-                  <div class="checkmark-circle"><i data-lucide="check" class="green-check-icon"></i></div>
-                  <span class="item-text">Perfect for night out or casual events</span>
-                </li>
-              </ul>
+            <button class="btn-generate-target" id="btn-generate-look">Generate AI Look ✨</button>
+            <div class="compat-hidden-controls" aria-hidden="true" style="display: none;">
+              <select id="select-height" name="height"><option value="180" selected>180</option></select>
+              <select id="select-bodytype" name="bodytype"><option value="mesomorph" selected>Athletic</option></select>
+              <select id="select-occasion" class="pref-select"><option value="night-out" selected>Night Out</option></select>
+              <select id="select-style" class="pref-select"><option value="luxury" selected>Luxury</option></select>
+              <select id="select-fit" class="pref-select"><option value="fitted" selected>Fitted</option></select>
+              <button id="btn-upload-outfit"></button>
+              <button id="btn-select-store"></button>
+            </div>
+          </aside>
 
-              <div class="score-rings-container">
-                <div class="score-ring-box">
-                  <div class="svg-ring-wrap">
-                    <svg class="score-ring-svg" viewBox="0 0 36 36">
-                      <path class="score-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                      <path class="score-fill ring-purple" stroke-dasharray="92, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" id="ring-style-score"/>
-                    </svg>
-                    <div class="score-label-num" id="lbl-style-score">92%</div>
-                  </div>
-                  <span class="ring-title-label">Style Score</span>
-                </div>
-
-                <div class="score-ring-box">
-                  <div class="svg-ring-wrap">
-                    <svg class="score-ring-svg" viewBox="0 0 36 36">
-                      <path class="score-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                      <path class="score-fill ring-green" stroke-dasharray="89, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" id="ring-confidence-score"/>
-                    </svg>
-                    <div class="score-label-num" id="lbl-confidence-score">89%</div>
-                  </div>
-                  <span class="ring-title-label">Confidence</span>
-                </div>
-
-                <div class="score-ring-box">
-                  <div class="svg-ring-wrap">
-                    <svg class="score-ring-svg" viewBox="0 0 36 36">
-                      <path class="score-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831"/>
-                      <path class="score-fill ring-blue" stroke-dasharray="87, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" id="ring-accuracy-score"/>
-                    </svg>
-                    <div class="score-label-num" id="lbl-accuracy-score">87%</div>
-                  </div>
-                  <span class="ring-title-label">Match Accuracy</span>
+          <!-- CENTER PANEL -->
+          <main class="target-center-panel" id="stage-viewport">
+            <div class="image-inner-wrap">
+              <img src="assets/black_model_hoodie.png" alt="AI Model" class="center-main-image" id="hero-display-image">
+              
+              <div class="center-overlay top-left">
+                <div class="target-badge-match">
+                  <span class="pct">92%</span>
+                  <span class="lbl">Best Match</span>
                 </div>
               </div>
 
-              <div class="recommendations-container">
-                <h3 class="rec-title-compact">You Might Also Like</h3>
-                <div class="products-recs-stack">
-                  
-                  <div class="compact-product-card" data-target-outfit="5">
-                    <img src="assets/product_cargo_pants.png" alt="Cargo Pants" class="p-thumb">
-                    <div class="p-details">
-                      <h4>Cargo Pants</h4>
-                      <span class="p-price">₹4,250</span>
-                    </div>
-                    <div class="p-meta">
-                      <span class="p-match-pct">94%</span>
-                      <button class="btn-heart-wishlist active"><i data-lucide="heart" fill="currentColor"></i></button>
-                    </div>
-                  </div>
-
-                  <div class="compact-product-card" data-target-outfit="4">
-                    <img src="assets/product_minimal_hoodie.png" alt="Minimal Hoodie" class="p-thumb">
-                    <div class="p-details">
-                      <h4>Minimal Hoodie</h4>
-                      <span class="p-price">₹3,999</span>
-                    </div>
-                    <div class="p-meta">
-                      <span class="p-match-pct">91%</span>
-                      <button class="btn-heart-wishlist"><i data-lucide="heart"></i></button>
-                    </div>
-                  </div>
-
-                  <div class="compact-product-card" data-target-outfit="1">
-                    <img src="assets/product_white_sneakers.png" alt="White Sneakers" class="p-thumb">
-                    <div class="p-details">
-                      <h4>White Sneakers</h4>
-                      <span class="p-price">₹6,800</span>
-                    </div>
-                    <div class="p-meta">
-                      <span class="p-match-pct">89%</span>
-                      <button class="btn-heart-wishlist"><i data-lucide="heart"></i></button>
-                    </div>
-                  </div>
-
-                </div>
-                <button class="btn btn-primary btn-save-look" id="btn-save-look">
-                  <i data-lucide="bookmark"></i>
-                  <span>Save Look</span>
+              <div class="center-overlay top-right">
+                <button class="target-btn-expand" id="btn-fullscreen">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6m-6 12h6v-6M9 21H3v-6M9 3H3v6"/></svg>
                 </button>
               </div>
-            </section>
 
+              <div class="center-overlay mid-left">
+                <button class="target-nav-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="15 18 9 12 15 6"/></svg></button>
+              </div>
+              
+              <div class="center-overlay mid-right">
+                <button class="target-nav-arrow"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="9 18 15 12 9 6"/></svg></button>
+              </div>
+
+              <div class="center-overlay bottom-carousel">
+                <div class="target-carousel">
+                  <div class="t-card active"><img src="assets/black_model_hoodie.png"><div class="t-badge">92%</div></div>
+                  <div class="t-card"><img src="assets/model_brown_jacket.png"><div class="t-badge">87%</div></div>
+                  <div class="t-card"><img src="assets/model_black_polo.png"><div class="t-badge">85%</div></div>
+                  <div class="t-card"><img src="assets/model_black_hoodie.png"><div class="t-badge">82%</div></div>
+                  <div class="t-card"><img src="assets/black_model_hoodie.png" style="filter:hue-rotate(120deg)"><div class="t-badge">78%</div></div>
+                </div>
+              </div>
+            </div>
+          </main>
+
+          <!-- RIGHT PANEL -->
+          <aside class="target-right-panel">
+            <div class="target-card overall-match-card">
+              <h4 class="card-title">OVERALL MATCH</h4>
+              <div class="ring-container">
+                <svg class="target-ring-svg" viewBox="0 0 100 100">
+                  <defs><linearGradient id="tRingGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#a855f7"/><stop offset="100%" stop-color="#4c1d95"/></linearGradient></defs>
+                  <circle cx="50" cy="50" r="40" stroke="#1e1b4b" stroke-width="8" fill="none"/>
+                  <circle cx="50" cy="50" r="40" stroke="url(#tRingGrad)" stroke-width="8" fill="none" stroke-dasharray="230 251" stroke-linecap="round" style="transform:rotate(-90deg);transform-origin:center"/>
+                  <text x="50" y="58" text-anchor="middle" fill="#fff" font-size="24" font-weight="700">92%</text>
+                </svg>
+                <div class="elite-lbl">Elite Match</div>
+              </div>
+            </div>
+
+            <div class="target-card key-scores-card">
+              <h4 class="card-title">KEY SCORES</h4>
+              <div class="ks-list">
+                <div class="ks-row"><span>Attractiveness</span><div class="ks-bar"><div class="ks-fill" style="width:94%"></div></div><span class="pct">94%</span></div>
+                <div class="ks-row"><span>Confidence Boost</span><div class="ks-bar"><div class="ks-fill" style="width:91%"></div></div><span class="pct">91%</span></div>
+                <div class="ks-row"><span>Style Harmony</span><div class="ks-bar"><div class="ks-fill" style="width:90%"></div></div><span class="pct">90%</span></div>
+                <div class="ks-row"><span>Fit Accuracy</span><div class="ks-bar"><div class="ks-fill" style="width:93%"></div></div><span class="pct">93%</span></div>
+              </div>
+            </div>
+
+            <div class="target-card shop-card-block">
+              <h4 class="card-title">SHOP THE LOOK <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" style="margin-left: 5px; opacity: 0.6"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></h4>
+              <div class="t-shop-grid">
+                <div class="s-item"><img src="assets/model_brown_jacket.png"><div class="s-info"><div class="s-name">Zara Jacket</div><div class="s-price">₹5,990</div></div></div>
+                <div class="s-item"><img src="assets/model_black_polo.png"><div class="s-info"><div class="s-name">H&M Shirt</div><div class="s-price">₹1,499</div></div></div>
+                <div class="s-item"><img src="assets/product_cargo_pants.png"><div class="s-info"><div class="s-name">Mango Pants</div><div class="s-price">₹2,999</div></div></div>
+                <div class="s-item"><img src="assets/product_white_sneakers.png"><div class="s-info"><div class="s-name">Nike Shoes</div><div class="s-price">₹2,999</div></div></div>
+                <div class="s-item"><img src="assets/product_linen_overshirt.png"><div class="s-info"><div class="s-name">Watch</div><div class="s-price">₹4,999</div></div></div>
+                <div class="s-item"><img src="assets/hero_home_model.png"><div class="s-info"><div class="s-name">Sunglasses</div><div class="s-price">₹1,799</div></div></div>
+              </div>
+              <button class="btn-target-cart"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg> Add Entire Look to Cart</button>
+            </div>
+          </aside>
+        </div><!-- /.target-match-grid -->
+
+        <!-- ══ BOTTOM AREA ══ -->
+        <div class="target-bottom-area">
+          <div class="trust-badges-row">
+            <div class="t-badge-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg> <span><strong>Free Delivery</strong><br>On Orders Above ₹999</span></div>
+            <div class="t-badge-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21.5 2v6h-6M2.5 22v-6h6M2 11.5a10 10 0 0 1 18.8-4.3M22 12.5a10 10 0 0 1-18.8 4.3"/></svg> <span><strong>Easy Returns</strong><br>Within 30 Days</span></div>
+            <div class="t-badge-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg> <span><strong>Secure Payment</strong><br>100% Protected</span></div>
+          </div>
+          
+          <div class="stats-footer-row">
+            <div class="sf-stat"><div class="sf-icon"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><div class="sf-text"><span>Style Mission</span><strong>Level 4: Style Elevation</strong><div class="sf-bar"><div class="sf-fill" style="width:60%"></div></div></div><div class="sf-sub">320 / 500 XP</div></div>
+            <div class="sf-stat"><div class="sf-icon bg-teal"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div><div class="sf-text"><span>Looks Created</span><strong>24</strong><div class="sf-sub">+8 this week</div></div></div>
+            <div class="sf-stat"><div class="sf-icon bg-blue"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#60a5fa" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="sf-text"><span>Try-Ons</span><strong>18</strong><div class="sf-sub">+5 this week</div></div></div>
+            <div class="sf-stat"><div class="sf-icon bg-orange"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fb923c" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="sf-text"><span>Style Streak</span><strong>7 Days</strong><div class="sf-sub">Keep going!</div></div></div>
+            
+            <button class="btn-target-perfect">Get Your Perfect Look ✨</button>
+          </div>
         </div>
-      </div>
-    </div> <!-- Close #page-tryon -->
+
+        <!-- ══ STYLE INFO SLIDE-OVER MODAL ══ -->
+        <div class="style-info-modal-overlay" id="style-info-modal">
+          <div class="style-info-modal-content glass-panel">
+            <div class="style-info-header">
+              <h2>AI Fashion Intelligence</h2>
+              <button class="btn-close-modal" id="btn-close-style-info">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              </button>
+            </div>
+            <div class="style-info-body">
+              
+              <div class="info-section">
+                <h3>SECTION 1 — FASHION IDENTITY</h3>
+                <ul class="fashion-identity-list">
+                  <li class="active"><strong>Luxury Minimalist</strong> <span class="pct">92%</span></li>
+                  <li>Urban Executive <span class="pct">88%</span></li>
+                  <li>Modern Gentleman <span class="pct">84%</span></li>
+                  <li>Street Elite <span class="pct">78%</span></li>
+                  <li>Smart Casual Leader <span class="pct">74%</span></li>
+                </ul>
+              </div>
+
+              <div class="info-section">
+                <h3>SECTION 2 — AI STYLE INSIGHTS</h3>
+                <ul class="insights-checklist">
+                  <li><i data-lucide="check-circle" class="check-icon"></i> Dark colors increase visual authority</li>
+                  <li><i data-lucide="check-circle" class="check-icon"></i> Structured fits improve proportions</li>
+                  <li><i data-lucide="check-circle" class="check-icon"></i> Monochrome outfits create a cleaner silhouette</li>
+                  <li><i data-lucide="check-circle" class="check-icon"></i> Neutral shades match skin tone</li>
+                  <li><i data-lucide="check-circle" class="check-icon"></i> Layered outfits improve style depth</li>
+                  <li><i data-lucide="check-circle" class="check-icon"></i> Tailored fits create a more premium appearance</li>
+                  <li><i data-lucide="check-circle" class="check-icon"></i> Proper contrast improves visual presence</li>
+                </ul>
+              </div>
+
+              <div class="info-section">
+                <h3>SECTION 3 — PERSONAL STYLE ANALYSIS</h3>
+                <div class="personal-analysis-grid">
+                  <div class="pa-item"><span>Skin Tone:</span> <strong>Warm Medium</strong></div>
+                  <div class="pa-item"><span>Face Shape:</span> <strong>Oval</strong></div>
+                  <div class="pa-item"><span>Body Shape:</span> <strong>Athletic</strong></div>
+                  <div class="pa-item"><span>Body Type:</span> <strong>Mesomorph</strong></div>
+                  <div class="pa-item"><span>Height Estimate:</span> <strong>180cm</strong></div>
+                  <div class="pa-item"><span>Shoulder Width:</span> <strong>Broad</strong></div>
+                  <div class="pa-item"><span>Build Type:</span> <strong>Lean Athletic</strong></div>
+                  <div class="pa-item"><span>Hair Type:</span> <strong>Wavy</strong></div>
+                  <div class="pa-item"><span>Hair Length:</span> <strong>Medium</strong></div>
+                  <div class="pa-item"><span>Beard Style:</span> <strong>Clean Shaven</strong></div>
+                  <div class="pa-item"><span>Age Range:</span> <strong>25-30</strong></div>
+                  <div class="pa-item"><span>Fashion Personality:</span> <strong>Ambitious</strong></div>
+                  <div class="pa-item"><span>Style Confidence:</span> <strong>87%</strong></div>
+                  <div class="pa-item"><span>Color Compatibility:</span> <strong>High</strong></div>
+                  <div class="pa-item"><span>Luxury Score:</span> <strong>92%</strong></div>
+                  <div class="pa-item"><span>Streetwear Score:</span> <strong>85%</strong></div>
+                  <div class="pa-item"><span>Formal Score:</span> <strong>88%</strong></div>
+                </div>
+              </div>
+
+              <div class="info-section">
+                <h3>SECTION 4 — COLOR RECOMMENDATIONS</h3>
+                <div class="color-recs">
+                  <div class="color-col">
+                    <h4>Best Colors</h4>
+                    <div class="color-tags">
+                      <span class="ctag" style="background:#000;color:#fff;">Black</span>
+                      <span class="ctag" style="background:#333;color:#fff;">Charcoal</span>
+                      <span class="ctag" style="background:#000080;color:#fff;">Navy</span>
+                      <span class="ctag" style="background:#556b2f;color:#fff;">Olive</span>
+                      <span class="ctag" style="background:#f5f5dc;color:#000;">Beige</span>
+                      <span class="ctag" style="background:#fff;color:#000;border:1px solid #ccc">White</span>
+                      <span class="ctag" style="background:#5c4033;color:#fff;">Dark Brown</span>
+                    </div>
+                  </div>
+                  <div class="color-col">
+                    <h4>Avoid</h4>
+                    <div class="color-tags avoid-tags">
+                      <span class="ctag avoid">Neon Green</span>
+                      <span class="ctag avoid">Bright Yellow</span>
+                      <span class="ctag avoid">Overly Saturated Colors</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info-section">
+                <h3>SECTION 5 — OUTFIT STRATEGY</h3>
+                <div class="strategy-grid">
+                  <div class="strat-col">
+                    <h4>Best Occasions</h4>
+                    <ul>
+                      <li>Date Night</li>
+                      <li>Business Casual</li>
+                      <li>Evening Events</li>
+                      <li>Luxury Gatherings</li>
+                      <li>Premium Social Events</li>
+                    </ul>
+                  </div>
+                  <div class="strat-col">
+                    <h4>Best Fits</h4>
+                    <ul>
+                      <li>Tailored</li>
+                      <li>Slim Fit</li>
+                      <li>Structured Layers</li>
+                      <li>Luxury Casual</li>
+                      <li>Minimalist Fashion</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="info-section">
+                <h3>SECTION 6 — STYLE GROWTH SUGGESTIONS</h3>
+                <ul class="growth-list">
+                  <li>Add more earth tones</li>
+                  <li>Use structured jackets</li>
+                  <li>Invest in premium sneakers</li>
+                  <li>Reduce oversized graphics</li>
+                  <li>Improve layering combinations</li>
+                  <li>Introduce luxury accessories</li>
+                </ul>
+              </div>
+
+              <div class="info-section highlight-section">
+                <h3>SECTION 7 — WHY THIS MATCH WORKS</h3>
+                <div class="match-reason-box">
+                  <div class="match-reason-score">92% Match</div>
+                  <ul class="match-reason-list">
+                    <li><i data-lucide="check" class="check-icon"></i> Black complements warm medium skin tone</li>
+                    <li><i data-lucide="check" class="check-icon"></i> Structured jacket balances shoulder proportions</li>
+                    <li><i data-lucide="check" class="check-icon"></i> Slim-fit trousers enhance height perception</li>
+                    <li><i data-lucide="check" class="check-icon"></i> Monochrome palette creates premium appearance</li>
+                    <li><i data-lucide="check" class="check-icon"></i> Smart casual aesthetic matches personality profile</li>
+                  </ul>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /#page-tryon -->
 
       <div id="page-wardrobe" class="page-content">
         <div class="main-layout-container">
@@ -3529,8 +3486,14 @@
   </div>
 
   <!-- Scripts -->
+  <!-- AURAFIT AI Engine Modules (load order matters) -->
+  <script src="outfits.js?v=2"></script>
+  <script src="aura-state.js?v=2"></script>
+  <script src="aura-engine.js?v=2"></script>
+  <script src="aura-insights.js?v=2"></script>
   <script src="upload-handler.js?v=1"></script>
-  <script src="app.js?v=4"></script>
+  <script src="aura-skin-analyzer.js?v=2"></script>
+  <script src="app.js?v=7"></script>
   <script src="wardrobe.js?v=4"></script>
   <script src="looks.js?v=4"></script>
   <script src="recommendations.js?v=4"></script>

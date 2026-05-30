@@ -312,6 +312,12 @@ document.addEventListener('DOMContentLoaded', () => {
   let isScanning = false;
   let currentOutfitId = '1';
 
+  // ─── Uploaded Image State ─────────────────────────────────────────────────
+  // Single source of truth. Persists across outfit switches, tab changes,
+  // renders, and page refreshes. Only overwritten on a new successful upload.
+  const TRYON_IMAGE_KEY = 'aurafit_tryon_image';
+  let activeUploadedImageURL = localStorage.getItem(TRYON_IMAGE_KEY) || null;
+
   // Config Dataset for Carousel Outfits
   const configurations = {
     '1': {
@@ -382,16 +388,33 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   // Set percentage rings using SVG stroke-dashoffset
+  // Works for both old path-based rings and new circle-based rings in v2 layout
   function updateScoreRings(styleScore, confidence, accuracy) {
     if (!lblStyleScore) return; // safety
-    lblStyleScore.innerText = `${styleScore}%`;
-    ringStyleScore.setAttribute('stroke-dasharray', `${styleScore}, 100`);
 
-    lblConfidenceScore.innerText = `${confidence}%`;
-    ringConfidenceScore.setAttribute('stroke-dasharray', `${confidence}, 100`);
+    // Update main style score ring (v2: circle element with stroke-dasharray)
+    lblStyleScore.textContent = `${styleScore}%`;
+    if (ringStyleScore) {
+      // v2 uses a <circle> with stroke-dasharray as "score 100"
+      const ringCircumference = 175.9; // 2 * pi * 28
+      const dash = (styleScore / 100) * ringCircumference;
+      ringStyleScore.setAttribute('stroke-dasharray', `${dash.toFixed(1)} ${ringCircumference}`);
+    }
 
-    lblAccuracyScore.innerText = `${accuracy}%`;
-    ringAccuracyScore.setAttribute('stroke-dasharray', `${accuracy}, 100`);
+    // v2 has confidence/accuracy as hidden compat elements (text nodes)
+    if (lblConfidenceScore) lblConfidenceScore.textContent = `${confidence}%`;
+    if (lblAccuracyScore)   lblAccuracyScore.textContent   = `${accuracy}%`;
+    if (ringConfidenceScore) ringConfidenceScore.setAttribute('stroke-dasharray', `${confidence}, 100`);
+    if (ringAccuracyScore)   ringAccuracyScore.setAttribute('stroke-dasharray',   `${accuracy}, 100`);
+
+    // Also update the Style Potential ring in studio panel
+    const potRing = document.getElementById('potential-ring-fill');
+    const potText = document.getElementById('potential-pct-text');
+    if (potRing && potText) {
+      const potDash = (styleScore / 100) * 175.9;
+      potRing.setAttribute('stroke-dasharray', `${potDash.toFixed(1)} 175.9`);
+      potText.textContent = `${styleScore}%`;
+    }
   }
 
   // Update configuration details
@@ -408,8 +431,9 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
 
-    heroDisplayImage.src = config.image;
-    heroDisplayImage.style.filter = config.filter;
+    // Use uploaded photo as priority; fall back to preset placeholder
+    heroDisplayImage.src = activeUploadedImageURL || config.image;
+    heroDisplayImage.style.filter = activeUploadedImageURL ? '' : config.filter;
 
     updateScoreRings(config.styleScore, config.confidence, config.accuracy);
 
@@ -496,7 +520,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (gender === 'female') {
           heroDisplayImage.style.filter = 'hue-rotate(180deg) saturate(1.2)';
         } else {
-          heroDisplayImage.style.filter = configurations[currentOutfitId].filter;
+          // Restore filter: if user has uploaded a photo, keep it filterless
+          heroDisplayImage.style.filter = activeUploadedImageURL ? '' : configurations[currentOutfitId].filter;
         }
         const styleShift = Math.floor(Math.random() * 4) + 91;
         updateScoreRings(styleShift, styleShift - 1, styleShift - 3);
@@ -534,40 +559,311 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // ─── Try-On Upload Handler (powered by shared AuraUpload module) ──────────
   async function handleTryOnUpload(file) {
+    // Store the file reference — we'll re-analyze after upload completes
+    let capturedDataURL = null;
+
     await AuraUpload.uploadImageFile(file, {
       onPreview: (dataURL) => {
-        heroDisplayImage.src = dataURL;
+        // Lock state immediately — show the user's photo right away
+        capturedDataURL        = dataURL;
+        activeUploadedImageURL = dataURL;
+        if (window.AuraState) AuraState.setActiveUserImage(dataURL);
+        heroDisplayImage.src   = dataURL;
         heroDisplayImage.style.filter = '';
+
+        // ── v2: Show user photo preview in studio panel ──
+        const studioPhoto = document.getElementById('studio-user-photo');
+        if (studioPhoto) studioPhoto.src = dataURL;
+        const emptyState   = document.getElementById('photo-empty-state');
+        const previewState = document.getElementById('photo-preview-state');
+        if (emptyState)   emptyState.classList.add('hidden');
+        if (previewState) previewState.classList.remove('hidden');
+
+        // ── v2: Start wireframe animation ──
+        const facePlaceholder = document.getElementById('face-placeholder');
+        const faceWireframe   = document.getElementById('face-wireframe');
+        if (facePlaceholder) facePlaceholder.classList.add('hidden');
+        if (faceWireframe)   faceWireframe.classList.remove('hidden');
+
+        // ── v2: Reset analysis status ──
+        const analysisStatus = document.getElementById('ai-analysis-status');
+        if (analysisStatus) analysisStatus.textContent = 'Scanning your features...';
+        const detectionAttrs = document.getElementById('detection-attributes');
+        if (detectionAttrs) detectionAttrs.classList.add('hidden');
       },
       onLoadingStart: () => {
         dropZone.classList.add('uploading');
         scannerLaser.classList.add('scanning');
         scannerText.classList.add('active');
         const label = scannerText.querySelector('span');
-        if (label) label.innerHTML = 'UPLOADING TO AI CLOUD...';
+        if (label) label.innerHTML = 'UPLOADING IMAGE...';
       },
       onLoadingEnd: () => {
         dropZone.classList.remove('uploading');
-        scannerLaser.classList.remove('scanning');
-        scannerText.classList.remove('active');
+        // NOTE: we intentionally keep the laser/text running here
+        // so the AI analysis sequence plays right after upload ends
         fileInput.value = '';
       },
-      onSuccess: (cloudURL) => {
+      onSuccess: async (cloudURL) => {
+        // Upgrade from local dataURL to permanent Cloudinary URL
+        activeUploadedImageURL = cloudURL;
+        localStorage.setItem(TRYON_IMAGE_KEY, cloudURL);
+        if (window.AuraState) AuraState.setActiveUserImage(cloudURL);
         heroDisplayImage.src = cloudURL;
-        const randScore = Math.floor(Math.random() * 6) + 91;
-        updateScoreRings(randScore, randScore - 3, randScore - 5);
-        updateActiveConfiguration('1');
+
+        // Show success badge
         const successTag = document.getElementById('tryon-upload-success-tag');
         if (successTag) {
           successTag.textContent = '✓ Synced to Cloud';
           successTag.classList.add('visible');
           setTimeout(() => successTag.classList.remove('visible'), 3000);
         }
+
+        // Run full AI analysis pipeline after cloud upload succeeds
+        // Use the dataURL for canvas analysis (safer than Cloudinary CORS)
+        await runAIAnalysisPipeline(capturedDataURL || cloudURL);
       },
-      onError: () => {
-        heroDisplayImage.src = 'assets/black_model_hoodie.png';
+      onError: async () => {
+        // Keep existing image visible; still run analysis on the dataURL preview
+        if (!activeUploadedImageURL && capturedDataURL) {
+          activeUploadedImageURL = capturedDataURL;
+          heroDisplayImage.src  = capturedDataURL;
+        } else if (!activeUploadedImageURL) {
+          heroDisplayImage.src = 'assets/black_model_hoodie.png';
+        }
+        // Still run AI analysis on local preview even when cloud fails
+        if (capturedDataURL) {
+          await runAIAnalysisPipeline(capturedDataURL);
+        }
       },
     });
+  }
+
+  // ─── FULL AI ANALYSIS PIPELINE ──────────────────────────────────────────────────
+  /**
+   * Master AI analysis sequence. Runs after upload completes.
+   * Steps:
+   *  1. Animated multi-step scanner sequence
+   *  2. Skin tone detection (Canvas pixel analysis)
+   *  3. Auto-select skin chip
+   *  4. Update insights checklist with skin-tone-aware copy
+   *  5. Recalculate & animate score rings
+   *  6. Dynamically update "You Might Also Like" recommendations
+   */
+  async function runAIAnalysisPipeline(imageURL) {
+    if (!imageURL) return;
+
+    const scanLabel = scannerText ? scannerText.querySelector('span') : null;
+
+    // ── Phase 1: Scanning animation sequence ─────────────────────────
+    scannerLaser.classList.add('scanning');
+    scannerText.classList.add('active');
+    if (scanLabel) scanLabel.innerHTML = 'ANALYZING SKIN HUE PROFILE...';
+
+    // Run detection while animation plays
+    const tonePromise = window.AuraSkinAnalyzer
+      ? AuraSkinAnalyzer.detect(imageURL)
+      : Promise.resolve(null);
+
+    // Let the scanner run for at least 900ms so user sees it
+    await new Promise(r => setTimeout(r, 900));
+    if (scanLabel) scanLabel.innerHTML = 'MAPPING BODY PROPORTIONS...';
+    await new Promise(r => setTimeout(r, 700));
+    if (scanLabel) scanLabel.innerHTML = 'CALCULATING STYLE MATCH SCORE...';
+    await new Promise(r => setTimeout(r, 600));
+
+    // Await skin tone result (should already be done by now)
+    const tone = await tonePromise;
+
+    // Hide scanner
+    scannerLaser.classList.remove('scanning');
+    scannerText.classList.remove('active');
+
+    // ── Phase 2: Apply skin tone results ──────────────────────────
+    if (tone) {
+      console.log('[AURAFIT AI] ✓ Skin tone detected:', tone);
+
+      // Store in state
+      if (window.AuraState) AuraState.setSkinTone(tone);
+
+      // Auto-select matching skin chip with a pop animation
+      skinChips.forEach(c => c.classList.remove('active'));
+      const matchingChip = [...skinChips].find(c => c.dataset.skin === tone);
+      if (matchingChip) {
+        matchingChip.classList.add('active');
+        matchingChip.style.transform = 'scale(1.5)';
+        matchingChip.style.transition = 'transform 0.25s cubic-bezier(0.34,1.56,0.64,1)';
+        setTimeout(() => { matchingChip.style.transform = ''; }, 350);
+      }
+
+      // Flash detection badge
+      const toneLabel = tone.charAt(0).toUpperCase() + tone.slice(1);
+      triggerMiniAnalysisScan(`✓ SKIN TONE DETECTED: ${toneLabel.toUpperCase()}`);
+
+      // ── v2: Show AI detection attributes ──
+      updateDetectionAttributes(tone);
+
+      // Update checklist with skin-tone-aware insights
+      updateInsightsForSkinTone(tone);
+
+      // Recalculate scores
+      const newScore = computeSkinAwareScore(tone);
+      updateScoreRings(newScore, newScore - 3, newScore - 5);
+
+      // Update "Shop This Look" with skin-tone-ranked outfits
+      updateRecommendationCards(tone);
+
+    } else {
+      console.log('[AURAFIT AI] Skin detection inconclusive — using generic scores.');
+      // Still update scores and recommendations generically
+      const fallbackScore = Math.floor(Math.random() * 6) + 91;
+      updateScoreRings(fallbackScore, fallbackScore - 3, fallbackScore - 5);
+      updateActiveConfiguration('1');
+      updateRecommendationCards(null);
+      // v2: show generic attributes
+      updateDetectionAttributes(null);
+    }
+  }
+
+  /**
+   * Populate the suitability checklist with skin-tone-aware insights.
+   * Blends skin-specific sentences with current outfit insights.
+   */
+  function updateInsightsForSkinTone(tone) {
+    if (!checklistItems || !checklistItems.length) return;
+
+    const config       = configurations[currentOutfitId] || configurations['1'];
+    const baseInsights = config.insights || [];
+
+    const skinInsights = (window.AuraInsights && window.AuraInsights.getBySkinTone)
+      ? AuraInsights.getBySkinTone(tone, 2)
+      : [];
+
+    const blended = [
+      skinInsights[0] || baseInsights[0],
+      baseInsights[1] || skinInsights[1],
+      skinInsights[1] || baseInsights[2],
+      baseInsights[3] || baseInsights[2],
+    ];
+
+    checklistItems.forEach((el, i) => {
+      if (!blended[i]) return;
+      el.style.opacity    = '0';
+      el.style.transition = 'opacity 0.35s ease';
+      setTimeout(() => {
+        el.textContent  = blended[i];
+        el.style.opacity = '1';
+      }, i * 120 + 150);
+    });
+  }
+
+  /**
+   * Dynamically render the "You Might Also Like" recommendation cards
+   * using AuraEngine ranked outfits filtered by the detected skin tone.
+   * Falls back to generic engine feed when tone is null.
+   */
+  function updateRecommendationCards(tone) {
+    const container = document.getElementById('products-recs-stack');
+    const title     = document.getElementById('rec-title-compact');
+    if (!container || !window.AuraEngine || !window.AuraOutfits) return;
+
+    // Get top outfits from engine, filter/prioritise by skin tone
+    const feed = AuraEngine.getFeed(20);
+    let picks;
+
+    if (tone) {
+      // Prioritise outfits that explicitly match the detected tone
+      const matched   = feed.filter(o => {
+        const sm = o.skinToneMatch || [];
+        return sm.includes('all') || sm.includes(tone);
+      });
+      const unmatched = feed.filter(o => {
+        const sm = o.skinToneMatch || [];
+        return !sm.includes('all') && !sm.includes(tone);
+      });
+      picks = [...matched, ...unmatched].slice(0, 3);
+    } else {
+      picks = feed.slice(0, 3);
+    }
+
+    if (!picks.length) return;
+
+    // Price map (cosmetic — adds realism)
+    const PRICES = {
+      luxury: '₹8,999', formal: '₹5,499', streetwear: '₹3,299',
+      casual: '₹2,799', gym: '₹2,199', monochrome: '₹3,599',
+      oversized: '₹2,499', hoodies: '₹2,999', sneakers: '₹6,800',
+      party: '₹4,799'
+    };
+
+    // Update title
+    if (title) {
+      title.textContent = tone
+        ? `Matched For You — ${tone.charAt(0).toUpperCase() + tone.slice(1)} Tone`
+        : 'You Might Also Like';
+    }
+
+    // Rebuild card HTML
+    container.innerHTML = picks.map((outfit, idx) => {
+      const price  = PRICES[outfit.category] || '₹3,499';
+      const pct    = Math.min(99, outfit.engineScore || (90 - idx * 3));
+      const isLiked = window.AuraState && AuraState.isLiked(outfit.id);
+      const heartFill = isLiked ? 'fill="currentColor"' : '';
+      const heartActive = isLiked ? 'active' : '';
+
+      // Map outfit ID to a carousel config ID for click navigation
+      const configIdMap = {
+        'out_001': '1', 'out_023': '1', 'out_027': '1', 'out_031': '1',
+        'out_002': '4', 'out_015': '4', 'out_029': '4', 'out_033': '4',
+        'out_012': '2', 'out_010': '2', 'out_026': '2', 'out_019': '2',
+        'out_008': '3', 'out_016': '3', 'out_020': '3', 'out_024': '3',
+      };
+      const targetConfig = configIdMap[outfit.id] || String((idx % 5) + 1);
+
+      return `
+        <div class="compact-product-card" data-target-outfit="${targetConfig}" data-outfit-id="${outfit.id}">
+          <img src="${outfit.image}" alt="${outfit.name}" class="p-thumb" onerror="this.src='assets/black_model_hoodie.png'">
+          <div class="p-details">
+            <h4>${outfit.name}</h4>
+            <span class="p-price">${price}</span>
+          </div>
+          <div class="p-meta">
+            <span class="p-match-pct">${pct}%</span>
+            <button class="btn-heart-wishlist ${heartActive}" data-outfit-id="${outfit.id}">
+              <i data-lucide="heart" ${heartFill}></i>
+            </button>
+          </div>
+        </div>`;
+    }).join('');
+
+    // Re-init Lucide icons for the newly rendered cards
+    if (window.lucide) lucide.createIcons();
+
+    // Re-bind click handlers for the new cards
+    container.querySelectorAll('.compact-product-card').forEach(card => {
+      card.addEventListener('click', () => {
+        const targetOutfitId = card.dataset.targetOutfit;
+        triggerMiniAnalysisScan('RENDERING RECOMMENDED APPAREL...');
+        setTimeout(() => updateActiveConfiguration(targetOutfitId), 500);
+      });
+    });
+  }
+
+  /**
+   * Compute a skin-tone-aware style score using AuraEngine.
+   */
+  function computeSkinAwareScore(tone) {
+    if (!window.AuraEngine || !window.AuraOutfits) {
+      return Math.floor(Math.random() * 6) + 91;
+    }
+    const feed = AuraEngine.getFeed(10);
+    const compatible = feed.filter(o => {
+      const sm = o.skinToneMatch || [];
+      return sm.includes('all') || sm.includes(tone);
+    });
+    if (!compatible.length) return Math.floor(Math.random() * 6) + 91;
+    const topScore = compatible[0].engineScore || 70;
+    return Math.min(99, Math.max(85, Math.round(topScore * 0.12 + 84)));
   }
 
   dropZone.addEventListener('drop', (e) => {
@@ -580,10 +876,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (fileInput.files.length > 0) handleTryOnUpload(fileInput.files[0]);
   });
 
+  // Use Camera — triggers native camera on mobile; falls back to file picker on desktop
+  const cameraInput = document.getElementById('camera-input');
+
   btnUseCamera.addEventListener('click', (e) => {
     e.stopPropagation();
-    simulateCameraScan();
+    if (cameraInput) cameraInput.click();
   });
+
+  // Camera capture runs through the same upload pipeline as the file picker
+  if (cameraInput) {
+    cameraInput.addEventListener('change', () => {
+      if (cameraInput.files.length > 0) {
+        handleTryOnUpload(cameraInput.files[0]);
+        cameraInput.value = '';
+      }
+    });
+  }
 
   function simulateAIScan(fileName) {
     if (isScanning) return;
@@ -603,11 +912,12 @@ document.addEventListener('DOMContentLoaded', () => {
       scannerText.classList.remove('active');
       const randScore = Math.floor(Math.random() * 6) + 91;
       updateScoreRings(randScore, randScore - 3, randScore - 5);
+      // updateActiveConfiguration already guards against overwriting activeUploadedImageURL
       updateActiveConfiguration('1');
-      alert(`AI Try-On synthesis successful! Rendered outfit models onto new profile frame.`);
     }, 3600);
   }
 
+  // simulateCameraScan: animation only — image state is managed by activeUploadedImageURL
   function simulateCameraScan() {
     if (isScanning) return;
     isScanning = true;
@@ -626,40 +936,92 @@ document.addEventListener('DOMContentLoaded', () => {
       scannerText.classList.remove('active');
       const randScore = Math.floor(Math.random() * 5) + 93;
       updateScoreRings(randScore, randScore - 2, randScore - 4);
+      // updateActiveConfiguration already guards against overwriting activeUploadedImageURL
       updateActiveConfiguration('2');
-      alert(`Camera silhouette projection successfully calibrated fit score at ${randScore}% precision!`);
     }, 3200);
   }
 
   function triggerMiniAnalysisScan(customLabelText) {
     const calcOverlay = document.createElement('div');
     calcOverlay.className = 'scanning-overlay-text active';
-    calcOverlay.style.background = 'rgba(3, 3, 6, 0.5)';
-    calcOverlay.innerHTML = `<div class="scanner-spinner" style="width: 24px; height: 24px;"></div><span style="font-size: 0.72rem; letter-spacing:0.05em;">${customLabelText}</span>`;
+    calcOverlay.style.background = 'rgba(3, 3, 6, 0.6)';
+    calcOverlay.innerHTML = `<div class="scanner-spinner" style="width:20px;height:20px;"></div><span style="font-size:0.65rem;letter-spacing:0.1em;">${customLabelText}</span>`;
     stageViewport.appendChild(calcOverlay);
-    setTimeout(() => { calcOverlay.remove(); }, 1000);
+    setTimeout(() => { calcOverlay.remove(); }, 1200);
   }
 
-  // Wishlist and fullscreen and stubs
+  // ── v2: Update AI detection attribute display ──────────────────────────────
+  function updateDetectionAttributes(tone) {
+    const TONE_MAP = {
+      fair:   { skin: 'Fair / Light', vibe: 'Refreshing', personality: 'Approachable' },
+      medium: { skin: 'Warm Beige',   vibe: 'Balanced',   personality: 'Versatile'    },
+      olive:  { skin: 'Olive Warm',   vibe: 'Magnetic',   personality: 'Bold'         },
+      tan:    { skin: 'Rich Tan',     vibe: 'Energetic',  personality: 'Confident'    },
+      dark:   { skin: 'Deep Mocha',   vibe: 'Dominant',   personality: 'Ambitious'    },
+    };
+    const data = TONE_MAP[tone] || { skin: 'Warm Neutral', vibe: 'Confident', personality: 'Ambitious' };
+
+    const bodyTypeEl = document.getElementById('select-bodytype');
+    const heightEl   = document.getElementById('select-height');
+    const bodyMap    = { ectomorph: 'Lean', mesomorph: 'Athletic', endomorph: 'Solid', rectangular: 'Rectangular' };
+    const bodyType   = bodyMap[bodyTypeEl?.value] || 'Athletic';
+    const height     = heightEl?.value || '180';
+    const faceShapes = ['Oval', 'Square', 'Heart', 'Diamond', 'Oblong'];
+    const faceShape  = faceShapes[Math.floor(Math.random() * faceShapes.length)];
+
+    const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+    setVal('val-face-shape', faceShape);
+    setVal('val-skin-tone',  data.skin);
+    setVal('val-body-type',  `${bodyType} (${height}cm)`);
+    setVal('val-vibe',       data.vibe);
+    setVal('val-personality', data.personality);
+
+    const detectionAttrs = document.getElementById('detection-attributes');
+    const analysisStatus = document.getElementById('ai-analysis-status');
+    if (detectionAttrs) {
+      detectionAttrs.classList.remove('hidden');
+      // Stagger fade-in
+      detectionAttrs.querySelectorAll('.detect-attr').forEach((el, i) => {
+        el.style.opacity = '0';
+        el.style.transition = 'opacity 0.3s ease';
+        setTimeout(() => { el.style.opacity = '1'; }, i * 120 + 100);
+      });
+    }
+    if (analysisStatus) analysisStatus.textContent = `✓ Analysis complete — ${faceShape} face detected`;
+
+    // Update archetype + potential text
+    const archetypes = ['Urban Executive', 'Quiet Luxury', 'Modern Alpha', 'Street Strategist', 'Elite Minimalist'];
+    const archDescs  = [
+      'You naturally align with structured modern silhouettes and understated luxury aesthetics that signal authority.',
+      'Your presence communicates wealth without announcement — refined, effortless, unshakeable.',
+      'You project command through clean lines and premium fabrics. Others notice you before you speak.',
+      'You blend cultural intelligence with urban edge, creating a look that\'s both tactical and stylish.',
+      'Every element you wear is intentional. You achieve maximum impact through restraint and precision.',
+    ];
+    const archIdx = ['fair','medium','olive','tan','dark'].indexOf(tone) % archetypes.length;
+    const archName = archetypes[Math.max(0, archIdx)];
+    const archDesc = archDescs[Math.max(0, archIdx)];
+    const archNameEl = document.getElementById('tryon-archetype-name');
+    const archDescEl = document.getElementById('tryon-archetype-desc');
+    if (archNameEl) { archNameEl.style.opacity='0'; setTimeout(()=>{archNameEl.textContent=archName;archNameEl.style.transition='opacity 0.4s';archNameEl.style.opacity='1';},300); }
+    if (archDescEl) { archDescEl.style.opacity='0'; setTimeout(()=>{archDescEl.textContent=archDesc;archDescEl.style.transition='opacity 0.4s';archDescEl.style.opacity='1';},500); }
+  }
+
+  // Wishlist and fullscreen
   btnWishlistHero.addEventListener('click', () => {
     btnWishlistHero.classList.toggle('active');
-    if (btnWishlistHero.classList.contains('active')) {
-      btnWishlistHero.querySelector('i').setAttribute('fill', 'currentColor');
-      alert('Outfit saved to your Wishlist!');
-    } else {
-      btnWishlistHero.querySelector('i').removeAttribute('fill');
-    }
   });
 
   btnShareHero.addEventListener('click', () => {
-    alert('Share Link: Copied to clipboard! Share your virtual fit matrix.');
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(window.location.href);
+      triggerMiniAnalysisScan('✓ LINK COPIED TO CLIPBOARD');
+    }
   });
 
   btnFullscreen.addEventListener('click', () => {
     if (!document.fullscreenElement) {
-      stageViewport.requestFullscreen().catch(err => {
-        alert(`Error enabling fullscreen: ${err.message}`);
-      });
+      stageViewport.requestFullscreen().catch(() => {});
     } else {
       document.exitFullscreen();
     }
@@ -669,32 +1031,140 @@ document.addEventListener('DOMContentLoaded', () => {
     let nextId = parseInt(currentOutfitId) + 1;
     if (nextId > 5) nextId = 1;
     triggerMiniAnalysisScan('SELECTING ALTERNATIVE FIT...');
-    setTimeout(() => {
-      updateActiveConfiguration(nextId.toString());
-    }, 400);
+    setTimeout(() => { updateActiveConfiguration(nextId.toString()); }, 400);
   });
 
-  btnSaveLook.addEventListener('click', () => {
-    btnSaveLook.innerHTML = '<span>Saving Config Matrix...</span>';
-    setTimeout(() => {
-      btnSaveLook.innerHTML = '<i data-lucide="check"></i> <span>Look Saved Successfully!</span>';
-      lucide.createIcons();
+  // ── v2: Prev / Next navigation ─────────────────────────────────────────────
+  const btnPrevLook = document.getElementById('btn-prev-look');
+  const btnNextLook = document.getElementById('btn-next-look');
+  if (btnPrevLook) {
+    btnPrevLook.addEventListener('click', () => {
+      let prevId = parseInt(currentOutfitId) - 1;
+      if (prevId < 1) prevId = 5;
+      triggerMiniAnalysisScan('LOADING PREVIOUS LOOK...');
+      setTimeout(() => { updateActiveConfiguration(prevId.toString()); }, 300);
+    });
+  }
+  if (btnNextLook) {
+    btnNextLook.addEventListener('click', () => {
+      let nextId = parseInt(currentOutfitId) + 1;
+      if (nextId > 5) nextId = 1;
+      triggerMiniAnalysisScan('LOADING NEXT LOOK...');
+      setTimeout(() => { updateActiveConfiguration(nextId.toString()); }, 300);
+    });
+  }
+
+  // ── v2: Change Photo button ────────────────────────────────────────────────
+  const btnChangePhoto = document.getElementById('btn-change-photo');
+  if (btnChangePhoto) {
+    btnChangePhoto.addEventListener('click', () => {
+      fileInput.click();
+    });
+  }
+
+  // ── v2: Generate AI Look CTA ───────────────────────────────────────────────
+  const btnGenerateLook = document.getElementById('btn-generate-look');
+  if (btnGenerateLook) {
+    btnGenerateLook.addEventListener('click', () => {
+      const originalText = btnGenerateLook.innerHTML;
+      btnGenerateLook.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg> Generating...`;
+      btnGenerateLook.style.opacity = '0.75';
+      triggerMiniAnalysisScan('GENERATING PERSONALIZED AI LOOK...');
       setTimeout(() => {
-        btnSaveLook.innerHTML = '<i data-lucide="bookmark"></i> <span>Save Look</span>';
-        lucide.createIcons();
-      }, 2000);
+        const keys = Object.keys(configurations);
+        const randomKey = keys[Math.floor(Math.random() * keys.length)];
+        updateActiveConfiguration(randomKey);
+        btnGenerateLook.innerHTML = originalText;
+        btnGenerateLook.style.opacity = '1';
+        triggerMiniAnalysisScan('✓ LOOK GENERATED');
+      }, 1800);
+    });
+  }
+
+  // ── v2: Outfit source buttons ──────────────────────────────────────────────
+  const btnUploadOutfit = document.getElementById('btn-upload-outfit');
+  const btnSelectStore  = document.getElementById('btn-select-store');
+  [btnUploadOutfit, btnSelectStore].forEach(btn => {
+    if (!btn) return;
+    btn.addEventListener('click', () => {
+      [btnUploadOutfit, btnSelectStore].forEach(b => b?.classList.remove('active'));
+      btn.classList.add('active');
+    });
+  });
+
+  // ── v2: Save look (add to cart) ────────────────────────────────────────────
+  btnSaveLook.addEventListener('click', () => {
+    const orig = btnSaveLook.innerHTML;
+    btnSaveLook.innerHTML = '<span>Adding to Cart...</span>';
+    setTimeout(() => {
+      btnSaveLook.innerHTML = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg> Added Successfully!';
+      setTimeout(() => { btnSaveLook.innerHTML = orig; }, 2000);
     }, 1000);
   });
+
+  // ── v2: New Try-On button resets photo state ───────────────────────────────
+  const btnNewTryon = document.getElementById('btn-new-tryon');
+  if (btnNewTryon) {
+    btnNewTryon.addEventListener('click', () => {
+      activeUploadedImageURL = null;
+      localStorage.removeItem(TRYON_IMAGE_KEY);
+      if (window.AuraState) AuraState.setActiveUserImage(null);
+      heroDisplayImage.src = configurations['1'].image;
+      heroDisplayImage.style.filter = '';
+
+      // Reset studio to empty state
+      const emptyState   = document.getElementById('photo-empty-state');
+      const previewState = document.getElementById('photo-preview-state');
+      if (emptyState)   emptyState.classList.remove('hidden');
+      if (previewState) previewState.classList.add('hidden');
+
+      // Reset wireframe
+      const facePlaceholder = document.getElementById('face-placeholder');
+      const faceWireframe   = document.getElementById('face-wireframe');
+      if (facePlaceholder) facePlaceholder.classList.remove('hidden');
+      if (faceWireframe)   faceWireframe.classList.add('hidden');
+
+      const analysisStatus = document.getElementById('ai-analysis-status');
+      if (analysisStatus) analysisStatus.textContent = 'Analyzing your features...';
+      const detectionAttrs = document.getElementById('detection-attributes');
+      if (detectionAttrs) detectionAttrs.classList.add('hidden');
+
+      updateActiveConfiguration('1');
+    });
+  }
 
   compactProductCards.forEach(card => {
     card.addEventListener('click', () => {
       const targetOutfitId = card.dataset.targetOutfit;
       triggerMiniAnalysisScan('RENDERING RECOMMENDED APPAREL...');
-      setTimeout(() => {
-        updateActiveConfiguration(targetOutfitId);
-      }, 500);
+      setTimeout(() => { updateActiveConfiguration(targetOutfitId); }, 500);
     });
   });
+
+  // ── v2: Style Info Modal (Premium) ─────────────────────────────────────────
+  const btnOpenStyleInfo = document.getElementById('btn-open-style-info');
+  const btnCloseStyleInfo = document.getElementById('btn-close-style-info');
+  const styleInfoModal = document.getElementById('style-info-modal');
+
+  if (btnOpenStyleInfo && styleInfoModal) {
+    btnOpenStyleInfo.addEventListener('click', () => {
+      styleInfoModal.classList.add('active');
+    });
+  }
+
+  if (btnCloseStyleInfo && styleInfoModal) {
+    btnCloseStyleInfo.addEventListener('click', () => {
+      styleInfoModal.classList.remove('active');
+    });
+  }
+
+  if (styleInfoModal) {
+    styleInfoModal.addEventListener('click', (e) => {
+      if (e.target === styleInfoModal) {
+        styleInfoModal.classList.remove('active');
+      }
+    });
+  }
 
   /* ==========================================================================
      6. Modal Upgrade Dialog (Original code integrated)
@@ -749,6 +1219,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Load initial score rings values
   updateScoreRings(92, 89, 87);
+
+  // Restore uploaded photo from localStorage (survives page refresh)
+  if (activeUploadedImageURL) {
+    heroDisplayImage.src = activeUploadedImageURL;
+    heroDisplayImage.style.filter = '';
+
+    // v2: also restore studio photo preview
+    const studioPhoto = document.getElementById('studio-user-photo');
+    if (studioPhoto) studioPhoto.src = activeUploadedImageURL;
+    const emptyState   = document.getElementById('photo-empty-state');
+    const previewState = document.getElementById('photo-preview-state');
+    if (emptyState)   emptyState.classList.add('hidden');
+    if (previewState) previewState.classList.remove('hidden');
+    const facePlaceholder = document.getElementById('face-placeholder');
+    const faceWireframe   = document.getElementById('face-wireframe');
+    if (facePlaceholder) facePlaceholder.classList.add('hidden');
+    if (faceWireframe)   faceWireframe.classList.remove('hidden');
+  }
 
   // ─── Home Page Upload Handler (powered by shared AuraUpload module) ────────
   const homeFileInput      = document.getElementById('home-file-input');

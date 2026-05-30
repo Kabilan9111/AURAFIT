@@ -196,4 +196,63 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 150);
     });
   }
+
+  /* ==========================================================================
+     6. AI Engine Integration — map cards to outfit feed + persist likes
+     ========================================================================== */
+  function initRecsEngine() {
+    if (!window.AuraEngine || !window.AuraState) return;
+
+    const feed = window.AuraEngine.getFeed(10);
+
+    // Collect all interactive cards in DOM order
+    const allCards = [
+      ...document.querySelectorAll('#page-recommendations .premium-rec-card'),
+      ...document.querySelectorAll('#page-recommendations .outfit-rec-card')
+    ];
+
+    allCards.forEach((card, i) => {
+      const outfit = feed[i];
+      if (!outfit) return;
+
+      // Tag card with outfit ID
+      card.dataset.outfitId = outfit.id;
+
+      // Restore persisted like state
+      const heartBtn = card.querySelector('.rec-heart-btn') ||
+                       card.querySelector('.outfit-action-btn[aria-label="Like"]');
+      if (heartBtn) {
+        const isLiked = AuraState.isLiked(outfit.id);
+        heartBtn.classList.toggle('active', isLiked);
+        const icon = heartBtn.querySelector('i');
+        if (icon) {
+          isLiked
+            ? icon.setAttribute('fill', 'currentColor')
+            : icon.removeAttribute('fill');
+        }
+
+        // Wire click to state (remove old generic listener by cloning)
+        const fresh = heartBtn.cloneNode(true);
+        heartBtn.parentNode.replaceChild(fresh, heartBtn);
+        fresh.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const liked = AuraState.likeOutfit(outfit.id);
+          fresh.classList.toggle('active', liked);
+          const ic = fresh.querySelector('i');
+          if (ic) liked ? ic.setAttribute('fill', 'currentColor') : ic.removeAttribute('fill');
+          // Update badge
+          const badge = document.querySelector('#page-recommendations #wishlist-counter-value');
+          if (badge) {
+            const n = AuraState.likedOutfits.length;
+            badge.textContent = Math.max(9, n + 7);
+            badge.style.transform = 'scale(1.2)';
+            setTimeout(() => { badge.style.transform = 'scale(1)'; }, 150);
+          }
+        });
+      }
+    });
+  }
+
+  initRecsEngine();
+  window.addEventListener('aura:statechange', initRecsEngine);
 });

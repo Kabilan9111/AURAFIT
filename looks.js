@@ -148,4 +148,66 @@ document.addEventListener('DOMContentLoaded', () => {
       }, 500);
     });
   }
+
+  /* ==========================================================================
+     3. AI Engine Integration — persist save/like interactions
+     ========================================================================== */
+  function initLooksEngine() {
+    if (!window.AuraEngine || !window.AuraState) return;
+
+    const feed = window.AuraEngine.getFeed(12);
+
+    // All saveable cards in DOM order
+    const allCards = [
+      ...document.querySelectorAll('#page-looks .featured-look-card'),
+      ...document.querySelectorAll('#page-looks .lookbook-card'),
+      ...document.querySelectorAll('#page-looks .saved-look-card')
+    ];
+
+    allCards.forEach((card, i) => {
+      const outfit = feed[i];
+      if (!outfit) return;
+
+      card.dataset.outfitId = outfit.id;
+
+      // Find the save/heart button on this card
+      const saveBtn = card.querySelector(
+        '.looks-action-btn, .saved-card-heart-btn, .lookbook-save-btn'
+      );
+      if (!saveBtn) return;
+
+      // Restore persisted save state
+      const saved = AuraState.isSaved(outfit.id);
+      saveBtn.classList.toggle('active', saved);
+      const icon = saveBtn.querySelector('i');
+      if (icon) {
+        saved
+          ? icon.setAttribute('fill', 'currentColor')
+          : icon.removeAttribute('fill');
+      }
+
+      // Replace listener to wire to AuraState
+      const fresh = saveBtn.cloneNode(true);
+      saveBtn.parentNode.replaceChild(fresh, saveBtn);
+      fresh.addEventListener('click', (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        const isSaved = AuraState.saveOutfit(outfit.id);
+        fresh.classList.toggle('active', isSaved);
+        const ic = fresh.querySelector('i');
+        if (ic) isSaved ? ic.setAttribute('fill', 'currentColor') : ic.removeAttribute('fill');
+        // Badge update
+        const badge = document.querySelector('#page-looks #wishlist-counter-value');
+        if (badge) {
+          const n = AuraState.savedLooks.length;
+          badge.textContent = Math.max(3, n + 3);
+          badge.style.transform = 'scale(1.2)';
+          setTimeout(() => { badge.style.transform = 'scale(1)'; }, 150);
+        }
+      });
+    });
+  }
+
+  initLooksEngine();
+  window.addEventListener('aura:statechange', initLooksEngine);
 });
